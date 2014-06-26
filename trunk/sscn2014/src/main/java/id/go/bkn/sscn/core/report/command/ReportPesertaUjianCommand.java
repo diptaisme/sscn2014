@@ -93,27 +93,13 @@ public class ReportPesertaUjianCommand extends ReportCommand {
 			PrintWriter out = response.getWriter();
 			out.println("<HTML><HEAD><TITLE>SSCN Server</TITLE>"
 					+ "</HEAD><BODY>Maaf proses cetak kartu peserta ujian gagal. Klik <a href='"
-					+ Constanta.URL_WEB_SSCN_SERVER
+					+ Constanta.URL_WEB_SSCN
 					+ "'>link ini </a> untuk kembali</BODY></HTML>");
 			out.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}
-
-	private void cetakNotAksesRegistrasi(HttpServletResponse response) {
-		try {
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			out.println("<HTML><HEAD><TITLE>SSCN Server</TITLE>"
-					+ "</HEAD><BODY>Maaf anda tidak dapat mengakses halaman ini. Klik <a href='"
-					+ Constanta.URL_WEB_SSCN_SERVER
-					+ "'>link ini </a> untuk kembali</BODY></HTML>");
-			out.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
+	}	
 
 	@Override
 	protected byte[] generateXls(Object[] pMyData, Map<String, Object> myMap)

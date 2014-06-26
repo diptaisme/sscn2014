@@ -54,9 +54,6 @@ public class ReportServlet extends HttpServlet {
 			Class<? extends ReportCommand>[] clazzez = ClassUtils
 			        .toClass(new Object[] { reportCommand });
 			Class<? extends ReportCommand> clazz = clazzez[0];
-			// This creates/instantiates the bean injecting the properties
-			// marked
-			// for injection
 			reportCommand = (ReportCommand) applicationContext
 			        .getAutowireCapableBeanFactory().createBean(clazz,
 			                AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, false);

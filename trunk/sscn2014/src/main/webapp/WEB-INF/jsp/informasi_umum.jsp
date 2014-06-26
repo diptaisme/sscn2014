@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<c:set var="isLogin" value="${sessionScope.isLogin}" />
+<c:set var="userLogin" value="${sessionScope.userLogin}" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,9 +47,9 @@
                     <li><a href="ActionServlet?page=index">BERANDA</a></li>                    
                     <li><a href="ActionServlet?page=contacts">KONTAK</a></li>
                     <c:choose>
-						<c:when test="${isLogin == true}">
+						<c:when test="${userLogin != null}">
 							<li><a href="ActionServlet?page=daftar">DAFTAR</a></li>
-							<li><a href="LoginServlet?page=logout">LOGOUT</a></li>
+							<li><a href="logout.do">LOGOUT</a></li>
 						</c:when>
 						<c:otherwise>
 							<li><a href="ActionServlet?page=login">LOGIN</a></li>

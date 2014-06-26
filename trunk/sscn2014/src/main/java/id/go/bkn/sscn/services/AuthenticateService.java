@@ -1,7 +1,7 @@
 package id.go.bkn.sscn.services;
 
-import id.go.bkn.sscn.persistence.entities.DtUser;
+import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
 
 public interface AuthenticateService {
-	DtUser login(String username, String password);
+	TabelPendaftar login(String username, String password);
 }
