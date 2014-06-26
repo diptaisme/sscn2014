@@ -1,6 +1,6 @@
 package id.go.bkn.sscn.controller;
 
-import id.go.bkn.sscn.persistence.entities.DtUser;
+import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
 import id.go.bkn.sscn.services.AuthenticateService;
 
 import javax.inject.Inject;
@@ -23,13 +23,14 @@ public class AuthenticateController {
 			@RequestParam("password") String password) {
 
 		try {
-			DtUser user = authenticateService.login(username, password);
-			if (user != null) {
+			TabelPendaftar pendaftar = authenticateService.login(username,
+					password);
+			if (pendaftar != null) {
 				if (session.getAttribute("userLogin") != null) {
-					session.removeAttribute("userLogin");					
+					session.removeAttribute("userLogin");
 				}
-				session.setAttribute("userLogin", user);
-				return "dashboard";
+				session.setAttribute("userLogin", pendaftar);
+				return "index";
 			} else {
 				map.addAttribute("pesan",
 						"Login anda gagal, silahkan ulangi kembali");
@@ -48,7 +49,7 @@ public class AuthenticateController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/logout.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout(ModelMap map, HttpSession session) {
 		if (session.getAttribute("userLogin") != null) {
 			session.removeAttribute("userLogin");

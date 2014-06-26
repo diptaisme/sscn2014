@@ -20,7 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * Servlet implementation class EmailServlet
+ * Servlet implementation class RegistrasiServlet
  */
 
 public class RegistrasiServlet extends HttpServlet {

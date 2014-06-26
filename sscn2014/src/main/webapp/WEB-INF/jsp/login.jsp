@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="userLogin" value="${sessionScope.userLogin}" />
+<c:choose>
+	<c:when test="${userLogin != null}">		
+		<%
+		    String redirectURL = "ActionServlet?page=index";
+		    response.sendRedirect(redirectURL);
+		%>
+	</c:when>
+</c:choose>
 <html lang="en">
 <head>
   	<title>Seleksi CPNS 2014</title>
@@ -54,9 +64,9 @@
             	<article class="a2">
                 	<div class="wrapper">                    	
 					  <div class="col-9">
-					  	<form action="LoginServlet" method="post">
-								<p align="center">Username: <input type="text" name="username"></p>
-								<p align="center">Password: <input type="password" name="password"></p>
+					  	<form action="processLogin.do" method="post">
+								<p align="center">Username: <input type="text" name="username" id="username"></p>
+								<p align="center">Password: <input type="password" name="password" id="password"></p>
 								<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<input type="button" value="reset" /> <input type="submit" value="submit" /></p>        
         				</form>
@@ -74,9 +84,9 @@
         <footer>
             <div class="copyright style2">Hak Cipta  ©  2014 Badan Kepegawaian Negara. Semua Hak Dilindungi.</a></div>
             <ul class="social-list">
-            	<li><a href="https://twitter.com/BKN_RI"><img src="images/soc-icon-1.png" alt=""></a></li>
-              <li><a href="https://www.facebook.com/pages/Badan-Kepegawaian-Negara-BKN-Republik-Indonesia/383767665088202"><img src="images/soc-icon-2.png" alt=""></a></li>
-                <li><a href="#"><img src="images/soc-icon-3.png" alt=""></a></li>
+            	<li><a href="https://twitter.com/BKN_RI"><img src="/sscn2014/resources/images/soc-icon-1.png" alt=""></a></li>
+              <li><a href="https://www.facebook.com/pages/Badan-Kepegawaian-Negara-BKN-Republik-Indonesia/383767665088202"><img src="/sscn2014/resources/images/soc-icon-2.png" alt=""></a></li>
+                <li><a href="#"><img src="/sscn2014/resources/images/soc-icon-3.png" alt=""></a></li>
             </ul>
         </footer>
     </div>
