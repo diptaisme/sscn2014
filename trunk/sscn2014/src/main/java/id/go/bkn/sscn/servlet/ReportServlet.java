@@ -1,4 +1,4 @@
-package id.go.bkn.sscn.servlet.test;
+package id.go.bkn.sscn.servlet;
 
 import id.go.bkn.sscn.core.report.GeneralReportFactory;
 import id.go.bkn.sscn.core.report.command.ReportCommand;

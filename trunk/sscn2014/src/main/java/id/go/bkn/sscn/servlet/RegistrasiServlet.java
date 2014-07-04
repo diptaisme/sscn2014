@@ -2,6 +2,7 @@ package id.go.bkn.sscn.servlet;
 
 import id.go.bkn.sscn.manager.Constanta;
 import id.go.bkn.sscn.persistence.entities.DtPendaftaran;
+import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
 import id.go.bkn.sscn.services.RegistrasiService;
 
 import java.io.IOException;
@@ -66,30 +67,29 @@ public class RegistrasiServlet extends HttpServlet {
 					//
 					String remoteAddr = request.getRemoteAddr();
 					ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
-					reCaptcha.setPrivateKey("6LdlHOsSAAAAACe2WYaGCjU2sc95EZqCI9wLcLXY");
+					reCaptcha
+							.setPrivateKey("6LdlHOsSAAAAACe2WYaGCjU2sc95EZqCI9wLcLXY");
 
 					String challenge = request
 							.getParameter("recaptcha_challenge_field");
-					String uresponse = request.getParameter("recaptcha_response_field");
-					ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(
-							remoteAddr, challenge, uresponse);
+					String uresponse = request
+							.getParameter("recaptcha_response_field");
+					ReCaptchaResponse reCaptchaResponse = reCaptcha
+							.checkAnswer(remoteAddr, challenge, uresponse);
 
-					if (!reCaptchaResponse.isValid()) {						
+					if (!reCaptchaResponse.isValid()) {
 						cetakRegistrasiGagalCaptchaNotValid(response);
-					} else {											
+					} else {
 						//
+						TabelPendaftar pendaftar = (TabelPendaftar) request
+								.getSession().getAttribute("userLogin");
 						DtPendaftaran pendaftaran = registrasiService
-								.insertPendaftaran(request);
+								.insertPendaftaran(request, pendaftar);
 						if (pendaftaran == null) {
 							cetakRegistrasiGagal(response);
 						} else {
 							// redirect ke afterRegistrasi
 							try {
-								// RequestDispatcher rd =
-								// request.getRequestDispatcher("afterRegistrasi.do");
-								// request.setAttribute("idRegistrasi",
-								// pendaftaran.getNoRegister());
-								// rd.forward(request, response);
 								response.sendRedirect("afterRegistrasi.do?idRegistrasi="
 										+ pendaftaran.getNoRegister());
 							} catch (Exception ex) {
@@ -144,7 +144,7 @@ public class RegistrasiServlet extends HttpServlet {
 			ex.printStackTrace();
 		}
 	}
-	
+
 	private void cetakRegistrasiGagalCaptchaNotValid(
 			HttpServletResponse response) {
 		try {

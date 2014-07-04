@@ -116,7 +116,7 @@ public class DtPendaftaran implements java.io.Serializable {
 		this.tabelPendaftar = tabelPendaftar;
 	}
 
-	@Column(name = "NO_NIK", nullable = false, length = 16)
+	@Column(name = "NO_NIK", nullable = false, length = 18)
 	public String getNoNik() {
 		return this.noNik;
 	}

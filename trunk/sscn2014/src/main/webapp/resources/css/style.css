@@ -74,7 +74,8 @@ h1,h2,h3,h4,h5,h6{
 }
 h1{font-size:36px; line-height:42px;}
 h2{font-size:30px; line-height:36px;}
-h3{background:url('images/left_h3.gif');font-size:24px; line-height:30px;}
+/*h3{background:url('images/left_h3.gif');font-size:24px; line-height:30px;}*/
+h3{font-size:24px; line-height:30px;}
 h4{font-size:20px; line-height:24px;}  
 h5{font-size:18px; line-height:22px;}
 h6{font-size:16px; line-height:20px;}
