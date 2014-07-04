@@ -1,4 +1,4 @@
-package id.go.bkn.sscn.servlet;
+package id.go.bkn.sscn.servlet.test;
 
 import java.io.IOException;
 

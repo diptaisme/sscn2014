@@ -49,7 +49,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>id.go.bkn.sscn.servlet.LoginServlet</servlet-class>
+		<servlet-class>id.go.bkn.sscn.servlet.test.LoginServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
@@ -65,7 +65,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ReportServlet</servlet-name>
-		<servlet-class>id.go.bkn.sscn.servlet.test.ReportServlet</servlet-class>
+		<servlet-class>id.go.bkn.sscn.servlet.ReportServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ReportServlet</servlet-name>
@@ -133,6 +133,10 @@
 	<error-page>
 		<error-code>404</error-code>
 		<location>/error404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/error.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>

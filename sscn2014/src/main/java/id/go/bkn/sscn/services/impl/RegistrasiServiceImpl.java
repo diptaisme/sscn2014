@@ -12,6 +12,7 @@ import id.go.bkn.sscn.persistence.entities.RefInstansi;
 import id.go.bkn.sscn.persistence.entities.RefJabatan;
 import id.go.bkn.sscn.persistence.entities.RefLokasi;
 import id.go.bkn.sscn.persistence.entities.RefPendidikan;
+import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
 import id.go.bkn.sscn.services.RegistrasiService;
 
 import java.text.SimpleDateFormat;
@@ -52,15 +53,15 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public List<RefInstansi> getInstansi(int maxRows, String startWith) {
-//		return refInstansiDao.findLikeProperty("nama", startWith, new int[] {
-//				0, maxRows });
+		// return refInstansiDao.findLikeProperty("nama", startWith, new int[] {
+		// 0, maxRows });
 		Map<String, String> properties = new HashMap<String, String>();
 		properties.put("nama", startWith);
 		properties.put("status", "1");
-//		return refInstansiDao.findLikeMapOfProperties(properties,  new int[] {
-//				0, maxRows });
-		return refInstansiDao.findPrefixLikeMapOfProperties(properties, null, null, new int[] {
-				0, maxRows });
+		// return refInstansiDao.findLikeMapOfProperties(properties, new int[] {
+		// 0, maxRows });
+		return refInstansiDao.findPrefixLikeMapOfProperties(properties, null,
+				null, new int[] { 0, maxRows });
 	}
 
 	@Override
@@ -123,7 +124,8 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public DtPendaftaran insertPendaftaran(HttpServletRequest request) {
+	public DtPendaftaran insertPendaftaran(HttpServletRequest request,
+			TabelPendaftar pendaftar) {
 		try {
 
 			String noNik = request.getParameter("no_nik");
@@ -141,26 +143,40 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 			String telpon = request.getParameter("telpon");
 			String email = request.getParameter("email");
 
-			String instansi = request.getParameter("instansiValue");
-			String jabatan = request.getParameter("jabatan");
-			String lokasiKerja = request.getParameter("lokasi_kerja");
-			String pendidikan = request.getParameter("pendidikan"); // kode yg
-																	// disimpan
+			String instansi = request.getParameter("instansi");
+			String jabatan1 = request.getParameter("jabatan1");
+			String lokasiKerja1 = request.getParameter("lokasi_kerja1");
+			String pendidikan1 = request.getParameter("pendidikan1"); // kode yg
+																		// disimpan
 			// String pendidikan = refPendidikanDao
 			// .findByProperty("kode", request.getParameter("pendidikan"),
 			// null).get(0).getNama();
 
-			MFormasi mFormasi = null; // formasi nanti, sudah
+			String jabatan2 = request.getParameter("jabatan2");
+			String lokasiKerja2 = request.getParameter("lokasi_kerja2");
+			String pendidikan2 = request.getParameter("pendidikan2");
+			if (lokasiKerja2 != null && !lokasiKerja2.equals("") && pendidikan2 != null && !pendidikan2.equals("") 
+					&& jabatan2 != null && !jabatan2.equals("")) {
+
+			}
+			String jabatan3 = request.getParameter("jabatan3");
+			String lokasiKerja3 = request.getParameter("lokasi_kerja3");
+			String pendidikan3 = request.getParameter("pendidikan3");
+			if (lokasiKerja3 != null && !lokasiKerja3.equals("") && pendidikan3 != null && !pendidikan3.equals("") 
+					&& jabatan3 != null && !jabatan3.equals("")) {
+
+			}
+			MFormasi mFormasi1 = null; // formasi nanti, sudah
 			HashMap<String, String> propertiesMap = new HashMap<String, String>();
 			propertiesMap.put("refInstansi.kode", instansi);
-			propertiesMap.put("refLokasi.kode", lokasiKerja);
-			propertiesMap.put("refJabatan.kode", jabatan);
+			propertiesMap.put("refLokasi.kode", lokasiKerja1);
+			propertiesMap.put("refJabatan.kode", jabatan1);
 			List<MFormasi> listFormasi = mFormasiDao.findByMapOfProperties(
 					propertiesMap, null, null);
 			if (listFormasi == null || listFormasi.size() == 0) {
 				return null;
 			} else {
-				mFormasi = listFormasi.get(0);
+				mFormasi1 = listFormasi.get(0);
 			}
 
 			String noIjazah = request.getParameter("no_ijazah");
@@ -169,7 +185,7 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 			String regStatus = ""; // regStatus
 
 			String lembaga = request.getParameter("universitas"); // lembaga =
-																	// universitas??
+																	// universitas
 			String akreditasi = request.getParameter("akreditasi");
 			String nilaiIPK = request.getParameter("nilai_ipk");
 			// memang tidak diisi
@@ -181,17 +197,22 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 			Date tglValidate = new Date();
 			String keterangan = "";
 
-			String noPeserta = null;  //noPeserta dibuatkan null
+			String noPeserta = null; // noPeserta dibuatkan null
 
 			String noRegister = generateNoRegistrasi();
 
-			DtPendaftaran pendaftaran = new DtPendaftaran(mFormasi, noNik,
+			DtPendaftaran pendaftaran = new DtPendaftaran(mFormasi1, noNik,
 					noRegister, nama, tempatLahir, tglLahir, jnsKelamin,
-					alamat, kodePos, propinsi, kota, telpon, email, pendidikan,
-					lembaga, noIjazah, status, regStatus, noPeserta, tglTest,
-					lokasiTest, tglCreated, tglUpdated, userValidate,
-					tglValidate, keterangan, akreditasi, nilaiIPK);
-			dtPendaftaranDao.insert(pendaftaran);
+					alamat, kodePos, propinsi, kota, telpon, email,
+					pendidikan1, lembaga, noIjazah, status, regStatus,
+					noPeserta, tglTest, lokasiTest, tglCreated, tglUpdated,
+					userValidate, tglValidate, keterangan, akreditasi, nilaiIPK);
+			if (pendaftar != null) {
+				pendaftaran.setTabelPendaftar(pendaftar);
+			} else {
+				return null;
+			}
+			pendaftaran = dtPendaftaranDao.insert(pendaftaran);
 			return pendaftaran;
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -222,7 +243,6 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 		Long finalResult = Long.valueOf(resut);
 		return finalResult.toString();
 	}
-	
 
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
@@ -234,23 +254,25 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 		List<MFormasi> listFormasi = mFormasiDao.findByMapOfProperties(map,
 				null, null);
 		HashMap<String, RefPendidikan> mapPendidikan = new HashMap<String, RefPendidikan>();
-		
-		for(MFormasi mFormasi:listFormasi){
+
+		for (MFormasi mFormasi : listFormasi) {
 			Iterator<DtFormasi> iterator = mFormasi.getDtFormasis().iterator();
 			while (iterator.hasNext()) {
 				DtFormasi dtFormasi = iterator.next();
-				mapPendidikan.put(dtFormasi.getPendidikan().getKode(), dtFormasi.getPendidikan());
+				mapPendidikan.put(dtFormasi.getPendidikan().getKode(),
+						dtFormasi.getPendidikan());
 			}
 		}
 		return new ArrayList<RefPendidikan>(mapPendidikan.values());
 	}
-	
 
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-	public List<RefJabatan> getJabatan(String instansi, String lokasi, String pendidikan) {		
-				
-		List<MFormasi> listFormasi = mFormasiDao.findByInstansiLokasiPendidikan(instansi, lokasi, pendidikan);		
+	public List<RefJabatan> getJabatan(String instansi, String lokasi,
+			String pendidikan) {
+
+		List<MFormasi> listFormasi = mFormasiDao
+				.findByInstansiLokasiPendidikan(instansi, lokasi, pendidikan);
 
 		List<RefJabatan> listJabatan = new ArrayList<RefJabatan>();
 

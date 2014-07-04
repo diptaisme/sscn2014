@@ -2,15 +2,19 @@ package id.go.bkn.sscn.persistence.entities;
 
 // Generated Jun 17, 2014 3:07:46 PM by Hibernate Tools 3.4.0.CR1
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,7 +33,7 @@ public class TabelPendaftar implements java.io.Serializable {
 	private String jenisKelamin;
 	private String tempatLahir;
 	private Date tglLahir;
-	private Integer idInstansi;
+	private RefInstansi refInstansi;
 	private String email;
 	private String idLogin;
 	private String password;
@@ -44,7 +48,7 @@ public class TabelPendaftar implements java.io.Serializable {
 	}
 
 	public TabelPendaftar(String nik, String nama, String jenisKelamin,
-			String tempatLahir, Date tglLahir, Integer idInstansi,
+			String tempatLahir, Date tglLahir, RefInstansi idInstansi,
 			String email, String idLogin, String password, Date tglDaftar,
 			Date createdAt, Date updatedAt, String noRegistrasi,
 			Integer jumlahDaftar, Set<DtPendaftaran> dtPendaftarans) {
@@ -53,7 +57,7 @@ public class TabelPendaftar implements java.io.Serializable {
 		this.jenisKelamin = jenisKelamin;
 		this.tempatLahir = tempatLahir;
 		this.tglLahir = tglLahir;
-		this.idInstansi = idInstansi;
+		this.refInstansi = idInstansi;
 		this.email = email;
 		this.idLogin = idLogin;
 		this.password = password;
@@ -122,13 +126,14 @@ public class TabelPendaftar implements java.io.Serializable {
 		this.tglLahir = tglLahir;
 	}
 
-	@Column(name = "id_instansi")
-	public Integer getIdInstansi() {
-		return this.idInstansi;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_instansi", nullable = false)
+	public RefInstansi getRefInstansi() {
+		return this.refInstansi;
 	}
 
-	public void setIdInstansi(Integer idInstansi) {
-		this.idInstansi = idInstansi;
+	public void setRefInstansi(RefInstansi refInstansi) {
+		this.refInstansi = refInstansi;
 	}
 
 	@Column(name = "email", length = 200)
