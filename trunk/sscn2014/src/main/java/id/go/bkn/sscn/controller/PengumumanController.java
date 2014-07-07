@@ -6,6 +6,7 @@ import id.go.bkn.sscn.persistence.entities.DtUser;
 import id.go.bkn.sscn.persistence.entities.RefInstansi;
 import id.go.bkn.sscn.services.PengumumanService;
 import id.go.bkn.sscn.services.UserService;
+import id.go.bkn.sscn.util.FileUpload;
 
 import java.util.ArrayList;
 import java.util.Formatter;

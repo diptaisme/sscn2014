@@ -135,7 +135,8 @@ public class DtPendaftaran implements java.io.Serializable {
 		this.formasi = formasi;
 	}
 
-	@Column(name = "NO_REGISTER", unique = true, nullable = false, length = 10)
+	//@Column(name = "NO_REGISTER", unique = true, nullable = false, length = 10)
+	@Column(name = "NO_REGISTER", nullable = false, length = 10)
 	public String getNoRegister() {
 		return this.noRegister;
 	}

@@ -35,18 +35,20 @@ public class ActionServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// controller untuk halaman
 		String page = request.getParameter("page");
-		if (page == null) {
-			cetakNotSSCN(response);
-		} else {
+		if (page.equals("index") || page.equals("login")
+				|| page.equals("logout")) {
 			page = "/WEB-INF/jsp/" + page + ".jsp";
 			try {
 				RequestDispatcher rd = request.getRequestDispatcher(page);
 				rd.forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-				cetakNotAvalaibleSSCN(response);
+				cetakNotSSCN(response);
 			}
+		} else {
+			cetakNotAvalaibleSSCN(response);
 		}
+
 	}
 
 	/**
