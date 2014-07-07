@@ -44,11 +44,22 @@
             <marquee>Untuk tampilan terbaik diharapkan menggunakan browser <b>Mozilla Firefox 3, Safari, Google Chrome</b> atau diatasnya</marquee>
 			<nav>
                 <ul class="sf-menu">
-                    <li><a href="ActionServlet?page=index">BERANDA</a></li>                    
-                    <li class="current"><a href="ActionServlet?page=contacts">KONTAK</a></li>
+                    <li><a href="index.do">BERANDA</a></li>                    
+                    <li class="current"><a href="contacts.do">KONTAK</a></li>
                     <c:choose>
 						<c:when test="${userLogin != null}">
-							<li><a href="ActionServlet?page=daftar">DAFTAR</a></li>
+							<c:choose>
+								<c:when test="${userLogin.jumlahDaftar == 0}">
+									<li><a href="daftar_new.do">DAFTAR</a></li>
+								</c:when>
+								<c:when test="${userLogin.jumlahDaftar > 2}">
+									<li><a href="cetak.do">CETAK</a></li>
+								</c:when>								
+								<c:otherwise>									
+									<li><a href="daftar_new.do">DAFTAR</a></li>
+									<li><a href="cetak.do">CETAK</a></li>
+								</c:otherwise>
+							</c:choose>									
 							<li><a href="logout.do">LOGOUT</a></li>
 						</c:when>
 						<c:otherwise>

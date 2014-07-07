@@ -2,6 +2,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <%@ page import="net.tanesha.recaptcha.ReCaptcha"%>
 <%@ page import="net.tanesha.recaptcha.ReCaptchaFactory"%>
 <c:set var="userLogin" value="${sessionScope.userLogin}" />
@@ -19,6 +21,7 @@
 <meta name="keywords" content="seleksi,cpns,2014">
 <meta name="author" content="HerieSharkfins">
 <link rel="stylesheet" href="/sscn2014/resources/css/style.css">
+<link rel="stylesheet" href="/sscn2014/resources/css/tabs.css">
 
 <script src="/sscn2014/resources/js/jquery-1.4.2.min.js" type="text/javascript"></script>
 <script src="/sscn2014/resources/js/jquery-ui-1.8.16/jquery-1.6.2.js"></script>
@@ -34,6 +37,116 @@
 <script type="text/javascript"
 	src="/sscn2014/resources/js/jquery-ui-1.8.16/ui/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="/sscn2014/resources/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/sscn2014/resources/js/daftar1.js"></script>
+<script type="text/javascript" src="/sscn2014/resources/js/daftar2.js"></script>
+<script type="text/javascript" src="/sscn2014/resources/js/daftar3.js"></script>
+
+<script type="text/javascript">
+$(document).ready(	
+	function() {
+		$('#formRegistrasi').validate(
+						{
+							rules : {
+								no_nik : {
+									minlength : 14,
+									maxlength : 18,
+									required : true
+								},
+								nama : {
+									required : true,
+									lettersonly : true
+								},
+								tempat_lahir : {
+									required : true,
+									lettersonly : true
+								},
+								datepickerTglLahir : {
+									required : true
+								},
+								alamat : {
+									required : true
+								},
+								kota : {
+									required : true,
+									lettersonly : true
+								},
+								propinsi : {
+									required : true,
+									lettersonly : true
+								},
+								kode_pos : {
+									required : true
+								},
+								telpon : {
+									minlength : 5,
+									maxlength : 12,
+									required : true
+								},
+								email : {
+								//required : true
+								},
+								universitas : {
+									required : true
+								},
+								no_ijazah : {
+									required : true
+								},
+								akreditasi : {
+									required : true,
+									lettersonly : true
+								},
+								nilai_ipk : {
+									required : true,
+									ipkcheck : true
+								},
+								jenis_kelamin : {
+									required : true
+								},
+								/*instansi1 : {
+									required : true
+								//lettersonly: true
+								},*/
+								lokasi_kerja1 : {
+									required : true
+								},
+								jabatan1 : {
+									required : true
+								},
+								pendidikan1 : {
+									required : true
+								}
+							},
+							highlight : function(element) {
+								$(element).closest('.control-group')
+										.removeClass('success').addClass(
+												'error');
+							},
+							success : function(element) {
+								element.text('OK!').addClass('valid').closest(
+										'.control-group').removeClass('error')
+										.addClass('success');
+							},
+							submitHandler : function(form) {
+								var data = "NIK : " + $("input#no_nik").val();
+								$("div#dialog-nik").html(data);
+								data = "Nama : " + $("input#nama").val() + " (" + $("#jenis_kelamin option:selected").text() + ")";
+								$("div#dialog-nama").html(data);
+								data = "TTL : " + $("input#tempat_lahir").val() + " , "+$("input#datepickerTglLahir").val();
+								$("div#dialog-ttl").html(data);
+								data = "Telpon: " + $("input#telpon").val()+ " , Email : " + $("input#email").val();			
+								$("div#dialog-email").html(data);								
+								data = "Instansi: ${userLogin.refInstansi.nama} , Lokasi : " + $("#lokasi_kerja1 option:selected").text()
+								 + " , Pendidikan : " + $("#pendidikan1 option:selected").text() + " , Jabatan : " + $("#jabatan1 option:selected").text();
+								$("div#dialog-formasi").html(data);
+								$('#dialogKonfirmasi').dialog('open');
+							}
+						});
+						$(this).bind('contextmenu',function(e){
+							e.preventDefault();
+						});
+		});
+</script>
+
 
 <style>
 #instansi {
@@ -103,339 +216,6 @@ label.error {
 	})();
 </script>
 
-<script>
-	$(document).ready(
-			function() {
-				function validate(value) {
-					var valid = ".0123456789";
-
-					var ok = true;
-					var temp;
-					for ( var i = 0; i < value.length; i++) {
-						temp = "" + value.substring(i, i + 1);
-						if (valid.indexOf(temp) == "-1") {
-							ok = false;
-						}
-					}
-
-					return ok;
-				}
-				$("#imgLoadingLokasi").hide();
-				$("#imgLoadingJabatan").hide();
-				$("#imgLoadingPendidikan").hide();
-				jQuery.validator.addMethod("lettersonly", function(value,
-						element) {
-					return this.optional(element) || /^[a-z- ]+$/i.test(value);
-				}, "Field tidak valid");
-				jQuery.validator.addMethod("numericsonly", function(value,
-						element) {
-					return this.optional(element) || /^[0-9]+$/i.test(value);
-				}, "Field tidak valid");
-				jQuery.validator.addMethod("ipkcheck",
-						function(value, element) {
-							return validate(value);
-						}, 'Field tidak valid');
-				$('#formRegistrasi').validate(
-						{
-							rules : {
-								no_nik : {
-									minlength : 14,
-									maxlength : 18,
-									required : true
-								},
-								nama : {
-									required : true,
-									lettersonly : true
-								},
-								tempat_lahir : {
-									required : true,
-									lettersonly : true
-								},
-								datepickerTglLahir : {
-									required : true
-								},
-								alamat : {
-									required : true
-								},
-								kota : {
-									required : true,
-									lettersonly : true
-								},
-								propinsi : {
-									required : true,
-									lettersonly : true
-								},
-								kode_pos : {
-									required : true
-								},
-								telpon : {
-									minlength : 5,
-									maxlength : 12,
-									required : true
-								},
-								email : {
-								//required : true
-								},
-								universitas : {
-									required : true
-								},
-								no_ijazah : {
-									required : true
-								},
-								akreditasi : {
-									required : true,
-									lettersonly : true
-								},
-								nilai_ipk : {
-									required : true,
-									ipkcheck : true
-								},
-								jenis_kelamin : {
-									required : true
-								},
-								instansi : {
-									required : true
-								//lettersonly: true
-								},
-								lokasi_kerja : {
-									required : true
-								},
-								jabatan : {
-									required : true
-								},
-								pendidikan : {
-									required : true
-								}
-							},
-							highlight : function(element) {
-								$(element).closest('.control-group')
-										.removeClass('success').addClass(
-												'error');
-							},
-							success : function(element) {
-								element.text('OK!').addClass('valid').closest(
-										'.control-group').removeClass('error')
-										.addClass('success');
-							},
-							submitHandler : function(form) {
-								//window.location = "ActionServlet?page=home";
-								//window.location = "/SSCN/ActionServlet?page=home";	
-								//form.submit();
-								var data = "NIK : " + $("input#no_nik").val();
-								$("div#dialog-nik").html(data);
-								data = "Nama : " + $("input#nama").val() + " (" + $("#jenis_kelamin option:selected").text() + ")";
-								$("div#dialog-nama").html(data);
-								data = "TTL : " + $("input#tempat_lahir").val() + " , "+$("input#datepickerTglLahir").val();
-								$("div#dialog-ttl").html(data);
-								data = "Telpon: " + $("input#telpon").val()+ " , Email : " + $("input#email").val();			
-								$("div#dialog-email").html(data);								
-								data = "Instansi: " + $("#instansi option:selected").text() + " , Lokasi : " + $("#lokasi_kerja option:selected").text()
-								 + " , Pendidikan : " + $("#pendidikan option:selected").text() + " , Jabatan : " + $("#jabatan option:selected").text();
-								$("div#dialog-formasi").html(data);
-								$('#dialogKonfirmasi').dialog('open');
-							}
-						});
-
-				$('#nilai_ipk').change(
-						function() {
-							var ipk = $(this).val();
-							if (parseFloat(ipk) > 10.0) {
-								$(this).val("");
-								$(this).closest('.control-group').removeClass(
-										'success').addClass('error');
-							}
-						});
-				$('#dialogKonfirmasi').dialog({
-					autoOpen : false,
-					width : 600,
-					width : 600,
-					modal : true,
-					resizable : false,
-					buttons : {
-						"Submit Form" : function() {
-							if($("#formRegistrasi").valid()){
-								document.formRegistrasi.submit();
-							}else{
-								alert("form tidak valid");
-							}
-							
-						},
-						"Cancel" : function() {
-							$(this).dialog("close");
-						}
-					}
-				});
-			/*	
-				$('#formRegistrasi').submit(function(e) {
-					e.preventDefault();
-					var data = "NIK : " + $("input#no_nik").val();
-					$("div#dialog-nik").html(data);
-					data = "Nama : " + $("input#nama").val() + " (" + $("#jenis_kelamin").val() + ")";
-					$("div#dialog-nama").html(data);
-					data = "Email : " + $("input#email").val();			
-					$("div#dialog-email").html(data);
-					$('#dialogKonfirmasi').dialog('open');
-					//return false;
-				}); */
-			});
-</script>
-<script>
-	function caps(element) {
-		element.value = element.value.toUpperCase();
-	}
-</script>
-<script>
-	$(function() {
-		//$("#datepickerTglLahir").datepicker();
-		$("#datepickerTglLahir").datepicker({
-			changeMonth : true,
-			changeYear : true,
-			yearRange : '1973:1995',
-			dateFormat : "dd-mm-yy"
-		});
-	});
-</script>
-<!--jquery autocomplete-->
-<script>
-	$(function() {
-		$('#lokasi_kerja').change(function() {
-			//clear pendidikan
-			var html = '<option value="">Pilih Pendidikan</option>';
-			$('#pendidikan').html(html);
-			//clear jabatan
-			html = '<option value="">Pilih Jabatan</option>';
-			$('#jabatan').html(html);
-			$("#imgLoadingPendidikan").hide();
-			$("#imgLoadingJabatan").hide();
-			getPendidikan();
-		});
-		$('#pendidikan').change(function() {
-			//clear jabatan
-			var html = '<option value="">Pilih Jabatan</option>';
-			$('#jabatan').html(html);
-			$("#imgLoadingJabatan").hide();
-			getJabatan();
-		});
-		$('#instansi').change(function() {
-			//clear lokasi
-			var html = '<option value="">Pilih Lokasi Kerja</option>';
-			$('#lokasi_kerja').html(html);
-			//clear pendidikan
-			html = '<option value="">Pilih Pendidikan</option>';
-			$('#pendidikan').html(html);
-			//clear jabatan
-			html = '<option value="">Pilih Jabatan</option>';
-			$('#jabatan').html(html);
-
-			$("#imgLoadingLokasi").hide();
-			$("#imgLoadingPendidikan").hide();
-			$("#imgLoadingJabatan").hide();
-			getLokasi();
-		});
-	});
-
-	function changeImage() {
-		element = document.getElementById('cekbox')
-		if (element.src.match("before")) {
-			element.src = "/sscn2014/resources/images/after.gif";
-			document.getElementById("btnKirimPendaftaran").disabled = false;
-		} else {
-			element.src = "/sscn2014/resources/images/before.gif";
-			document.getElementById("btnKirimPendaftaran").disabled = true;
-		}
-	}
-	function getLokasi() {
-		$("#imgLoadingLokasi").show();
-		var param = $('#instansi').val();
-		var url = 'cb_lokasi_by_instansi.do?instansi=' + param;
-		$.ajax({
-			url : url,
-			dataType : "jsonp",
-			data : {
-				featureClass : "P"
-			},
-			success : function(data) {
-				$.map(data.lokasis, function(item) {
-					var html = '<option value="">Pilih Lokasi Kerja</option>';
-					$.map(data.lokasis, function(item) {
-						html += '<option value="' + item.kode + '">'
-								+ item.nama + '</option>';
-					});
-					html += '</option>';
-					$('#lokasi_kerja').html(html);
-					//clear jabatan
-					html = '<option value="">Pilih Jabatan</option>';
-					$('#jabatan').html(html);
-					//clear pendidikan
-					html = '<option value="">Pilih Pendidikan</option>';
-					$('#pendidikan').html(html);
-					$("#imgLoadingLokasi").hide();
-				});
-			}
-		});
-	}
-	function getPendidikan() {
-		$("#imgLoadingPendidikan").show();
-		var param = $('#instansi').val();
-		var param2 = $('#lokasi_kerja').val();
-		var url = 'cb_pendidikan_by_instansi_lokasi.do?instansi='
-				+ param + '&lokasi=' + param2;
-
-		$.ajax({
-			url : url,
-			dataType : "jsonp",
-			data : {
-				featureClass : "P"
-			},
-			success : function(data) {
-				var html = '<option value="">Pilih Pendidikan</option>';
-				$.map(data.pendidikans, function(item) {
-					html += '<option value="' + item.kode + '">' + item.nama
-							+ '</option>';
-				})
-				html += '</option>';
-				$('#pendidikan').html(html);
-
-				html = '<option value="">Pilih Jabatan</option>';
-				$('#jabatan').html(html);
-
-				$("#imgLoadingPendidikan").hide();
-				$("#imgLoadingJabatan").hide();
-			}
-		});
-	}
-
-	function getJabatan() {
-		$("#imgLoadingJabatan").show();
-		var param = $('#instansi').val();
-		var param2 = $('#lokasi_kerja').val();
-		var param3 = $('#pendidikan').val();
-
-		var url = 'cb_jabatan_by_instansi_lokasi_pendidikan.do?instansi='
-				+ param + '&lokasi=' + param2 + '&pendidikan=' + param3;
-		$.ajax({
-			url : url,
-			dataType : "jsonp",
-			data : {
-				featureClass : "P"
-			},
-			success : function(data) {
-				var html = '<option value="">Pilih Jabatan</option>';
-				$.map(data.jabatans, function(item) {
-					html += '<option value="' + item.kode + '">' + item.nama
-							+ '</option>';
-				})
-				html += '</option>';
-				$('#jabatan').html(html);
-				$("#imgLoadingJabatan").hide();
-			}
-		});
-	}
-</script>
-<!-- konfirmasi dialog submit -->
-<script>	
-</script>
-
 <style type="text/css">
 .form-label {
 	width: 150px !important;
@@ -482,28 +262,28 @@ label.error {
 				</marquee>
 				<nav>
 					<ul class="sf-menu">
-						<li class="current"><a href="ActionServlet?page=index">BERANDA</a></li>
-						<li><a href="ActionServlet?page=contacts">KONTAK</a></li>
+						<li class="current"><a href="index.do">BERANDA</a></li>
+						<li><a href="contacts.do">KONTAK</a></li>
 						<c:choose>
-						<c:when test="${userLogin != null}">
-							<c:choose>
-								<c:when test="${userLogin.jumlahDaftar == 0}">
-									<li><a href="ActionServlet?page=daftar_new">DAFTAR</a></li>
-								</c:when>
-								<c:when test="${userLogin.jumlahDaftar > 2}">
-									<li><a href="ActionServlet?page=cetak">CETAK</a></li>
-								</c:when>								
-								<c:otherwise>									
-									<li><a href="ActionServlet?page=daftar_new">DAFTAR</a></li>
-									<li><a href="ActionServlet?page=cetak">CETAK</a></li>
-								</c:otherwise>
-							</c:choose>									
-							<li><a href="logout.do">LOGOUT</a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="ActionServlet?page=login">LOGIN</a></li>
-						</c:otherwise>
-					</c:choose>
+							<c:when test="${userLogin != null}">
+								<c:choose>
+									<c:when test="${userLogin.jumlahDaftar == 0}">
+										<li><a href="daftar_new.do">DAFTAR</a></li>
+									</c:when>
+									<c:when test="${userLogin.jumlahDaftar > 2}">
+										<li><a href="cetak.do">CETAK</a></li>
+									</c:when>								
+									<c:otherwise>									
+										<li><a href="daftar_new.do">DAFTAR</a></li>
+										<li><a href="cetak.do">CETAK</a></li>
+									</c:otherwise>
+								</c:choose>									
+								<li><a href="logout.do">LOGOUT</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="ActionServlet?page=login">LOGIN</a></li>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</nav>
 				<div class="clear"></div>
@@ -516,7 +296,7 @@ label.error {
 						<div class="col-10">
 							<h3>MENU UTAMA</h3>
 							<ul class="list-2">
-								<li><a href="ActionServlet?page=informasi_umum">INFORMASI
+								<li><a href="informasi_umum.do">INFORMASI
 										UMUM</a></li>
 								<li><a href="#">PENGUMUMAN INSTANSI</a></li>
 								<li><a href="#">PETUNJUK PENDAFTARAN</a></li>
@@ -546,14 +326,14 @@ label.error {
 													Passport</label>
 												<div id="cid_4" class="form-input">
 													<input type="number" class=" form-textbox" maxlength="18"
-														data-type="input-textbox" id="no_nik" name="no_nik"
-														title="NIK / Passport" size="20" />
+														data-type="input-textbox" id="no_nik" name="no_nik" value="${userLogin.nik}"
+														title="NIK / Passport" size="20" readonly/>
 												</div></li>
 											<li class="form-line" style="background-color: #E6E6E6"
 												id="id_3"><label class="form-label-left" id="label_3"
 												for="input_3"> Nama Lengkap (tanpa gelar) </label>
 												<div id="cid_3" class="form-input">
-													<input type="text" class=" form-textbox"
+													<input type="text" class=" form-textbox" readonly value="${userLogin.nama}"
 														title="Nama Lengkap" data-type="input-textbox" id="nama"
 														name="nama" size="35" onKeyUp="caps(this)" />
 												</div></li>
@@ -561,27 +341,31 @@ label.error {
 												class="form-label-left"> Jenis Kelamin </label>
 												<div class="form-input">
 													<select id="jenis_kelamin" name="jenis_kelamin"
-														title="Jenis Kelamin">
-														<option value="">Pilih Jenis Kelamin</option>
-
-														<option value="P">Pria</option>
-														<option value="W">Wanita</option>
+														title="Jenis Kelamin">														
+														<c:choose>
+														    <c:when test="${userLogin.jenisKelamin == 'P'}">
+																<option value="P" selected>Pria</option>
+														    </c:when>
+															<c:otherwise>
+																<option value="W" selected>Wanita</option>
+														    </c:otherwise>
+														</c:choose>														
 													</select>
 												</div></li>
 											<li class="form-line" style="background-color: #E6E6E6"
 												id="id_5"><label class="form-label-left" id="label_5"
 												for="input_5"> Tempat Lahir </label>
 												<div id="cid_5" class="form-input">
-													<input type="text" class=" form-textbox"
+													<input type="text" class=" form-textbox" readonly value="${userLogin.tempatLahir}"
 														title="Tempat Lahir" data-type="input-textbox"
 														id="tempat_lahir" name="tempat_lahir" size="40"
 														onKeyUp="caps(this)" />
 												</div></li>
 											<li class="form-line" style="background-color: #E6E6E6"
 												id="id_7"><label class="form-label-left" id="label_7"
-												for="input_7"> Tanggal Lahir </label>
+												for="input_7"> Tanggal Lahir </label>												
 												<div id="cid_7" class="form-input">
-													<input type="text" name="datepickerTglLahir"
+													<input type="text" name="datepickerTglLahir" value="<fmt:formatDate pattern='dd-MM-yyyy' value='${userLogin.tglLahir}' />"
 														title="Tanggal Lahir" size="10" id="datepickerTglLahir"
 														readonly="readonly" /> <label> dd-mm-yyyy</label>
 												</div></li>
@@ -687,52 +471,109 @@ label.error {
 												for="input_11"> Instansi Pemerintah (K/L/D/I)<span
 													class="style3">*</span></label>
 												<div id="cid_11" class="form-input">
-													<!--  <input type="hidden" name="instansiValue"
-														id="instansiValue" /> <input id="instansi" size="50" type="text" title="Instansi"
-														name="instansi"/> -->
-													<!--  <select class="form-dropdown" style="width: 200px" title="Instansi"
-														id="instansi" name="instansi">
-														<option value="">Pilih instansi</option>
-													</select>-->
-													<jsp:include page="listInstansi.jsp" />													
-													${userLogin.refInstansi.nama}
+													Instansi : ${userLogin.refInstansi.nama}
+													<input type="hidden" id="instansi" name="instansi" value="${userLogin.refInstansi.kode}"/>
 												</div></li>
-											<li class="form-line" style="background-color: #E6E6E6"
+												<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Pilihan 1</a></li>
+    <li><a href="#tabs-2">Pilihan 2</a></li>
+    <li><a href="#tabs-3">Pilihan 3</a></li>
+  </ul>
+  <div id="tabs-1">
+    <li class="form-line" style="background-color: #E6E6E6"
 												id="id_12"><label class="form-label-left" id="label_12"
 												for="input_12"> Lokasi Kerja </label>
 												<div id="cid_12" class="form-input">
 													<select class="form-dropdown" style="width: 250px"
-														title="Lokasi Kerja" id="lokasi_kerja" name="lokasi_kerja">
+														title="Lokasi Kerja" id="lokasi_kerja1" name="lokasi_kerja1">
 														<option value="">Pilih lokasi kerja</option>
-													</select> <img id="imgLoadingLokasi" src="/sscn2014/resources/images/loading.png" />
+													</select> <img id="imgLoadingLokasi1" src="/sscn2014/resources/images/loading.png" />
 												</div></li>
 											<li class="form-line" style="background-color: #E6E6E6"
 												id="id_15"><label class="form-label-left" id="label_15"
 												for="input_15"> Kualifikasi Pendidikan </label>
 												<div id="cid_15" class="form-input">
 													<select class="form-dropdown" style="width: 300px"
-														title="Kualifikasi Pendidikan" id="pendidikan"
-														name="pendidikan">
+														title="Kualifikasi Pendidikan" id="pendidikan1"
+														name="pendidikan1">
 														<option value="">Pilih Pendidikan</option>
-													</select> <img id="imgLoadingPendidikan" src="/sscn2014/resources/images/loading.png" />
+													</select> <img id="imgLoadingPendidikan1" src="/sscn2014/resources/images/loading.png" />
 												</div></li>
 											<li class="form-line" style="background-color: #E6E6E6"
 												id="id_13"><label class="form-label-left" id="label_13"
 												for="input_13"> Jabatan yang dilamar</label>
 												<div id="cid_13" class="form-input">
 													<select class="form-dropdown" style="width: 300px"
-														title="Jabatan" id="jabatan" name="jabatan">
+														title="Jabatan" id="jabatan1" name="jabatan1">
 														<option value="">Pilih jabatan</option>
-													</select> <img id="imgLoadingJabatan" src="/sscn2014/resources/images/loading.png" />
+													</select> <img id="imgLoadingJabatan1" src="/sscn2014/resources/images/loading.png" />
 												</div></li>
+  </div>
+  <div id="tabs-2">
+    <li class="form-line" style="background-color: #E6E6E6"
+												id="id_12"><label class="form-label-left" id="label_12"
+												for="input_12"> Lokasi Kerja </label>
+												<div id="cid_12" class="form-input">
+													<select class="form-dropdown" style="width: 250px"
+														title="Lokasi Kerja" id="lokasi_kerja2" name="lokasi_kerja2">
+														<option value="">Pilih lokasi kerja</option>
+													</select> <img id="imgLoadingLokasi2" src="/sscn2014/resources/images/loading.png" />
+												</div></li>
+											<li class="form-line" style="background-color: #E6E6E6"
+												id="id_15"><label class="form-label-left" id="label_15"
+												for="input_15"> Kualifikasi Pendidikan </label>
+												<div id="cid_15" class="form-input">
+													<select class="form-dropdown" style="width: 300px"
+														title="Kualifikasi Pendidikan" id="pendidikan2"
+														name="pendidikan2">
+														<option value="">Pilih Pendidikan</option>
+													</select> <img id="imgLoadingPendidikan2" src="/sscn2014/resources/images/loading.png" />
+												</div></li>
+											<li class="form-line" style="background-color: #E6E6E6"
+												id="id_13"><label class="form-label-left" id="label_13"
+												for="input_13"> Jabatan yang dilamar</label>
+												<div id="cid_13" class="form-input">
+													<select class="form-dropdown" style="width: 300px"
+														title="Jabatan" id="jabatan2" name="jabatan2">
+														<option value="">Pilih jabatan</option>
+													</select> <img id="imgLoadingJabatan2" src="/sscn2014/resources/images/loading.png" />
+												</div></li>
+  </div>
+  <div id="tabs-3">
+    <li class="form-line" style="background-color: #E6E6E6"
+												id="id_12"><label class="form-label-left" id="label_12"
+												for="input_12"> Lokasi Kerja </label>
+												<div id="cid_12" class="form-input">
+													<select class="form-dropdown" style="width: 250px"
+														title="Lokasi Kerja" id="lokasi_kerja3" name="lokasi_kerja3">
+														<option value="">Pilih lokasi kerja</option>
+													</select> <img id="imgLoadingLokasi3" src="/sscn2014/resources/images/loading.png" />
+												</div></li>
+											<li class="form-line" style="background-color: #E6E6E6"
+												id="id_15"><label class="form-label-left" id="label_15"
+												for="input_15"> Kualifikasi Pendidikan </label>
+												<div id="cid_15" class="form-input">
+													<select class="form-dropdown" style="width: 300px"
+														title="Kualifikasi Pendidikan" id="pendidikan3"
+														name="pendidikan3">
+														<option value="">Pilih Pendidikan</option>
+													</select> <img id="imgLoadingPendidikan3" src="/sscn2014/resources/images/loading.png" />
+												</div></li>
+											<li class="form-line" style="background-color: #E6E6E6"
+												id="id_13"><label class="form-label-left" id="label_13"
+												for="input_13"> Jabatan yang dilamar</label>
+												<div id="cid_13" class="form-input">
+													<select class="form-dropdown" style="width: 300px"
+														title="Jabatan" id="jabatan3" name="jabatan3">
+														<option value="">Pilih jabatan</option>
+													</select> <img id="imgLoadingJabatan3" src="/sscn2014/resources/images/loading.png" />
+												</div></li>
+  </div>
+</div>
+											
 											<li class="form-line" style="background-color: #E6E6E6">
 												<div id=class="form-input"></div>
-											</li>
-											<li class="form-line" style="background-color: #E6E6E6">
-												<div id=class="form-input">
-													<span class="style3">*</span>Pilih instansi pada dropdown
-													list
-												</div>
 											</li>
 										</fieldset>
 										<li class="form-line">
@@ -777,7 +618,7 @@ label.error {
 										</li>
 									</ul>
 								</div>
-								<input type="hidden" name="csrfPreventionSalt" value="<c:out value='${csrfPreventionSalt}'/>"/>
+								
 								<input type="hidden" id="simple_spc" name="simple_spc"
 									value="32063786011852" />
 								<script type="text/javascript">

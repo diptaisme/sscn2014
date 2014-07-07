@@ -44,11 +44,22 @@
 			<marquee>Untuk tampilan terbaik diharapkan menggunakan browser <b>Mozilla Firefox 3, Safari, Google Chrome</b> atau diatasnya</marquee>
             <nav>
                 <ul class="sf-menu">
-                    <li><a href="ActionServlet?page=index">BERANDA</a></li>                    
-                    <li><a href="ActionServlet?page=contacts">KONTAK</a></li>
+                    <li><a href="index.do">BERANDA</a></li>                    
+                    <li><a href="contacts.do">KONTAK</a></li>
                     <c:choose>
 						<c:when test="${userLogin != null}">
-							<li><a href="ActionServlet?page=daftar">DAFTAR</a></li>
+							<c:choose>
+								<c:when test="${userLogin.jumlahDaftar == 0}">
+									<li><a href="daftar_new.do">DAFTAR</a></li>
+								</c:when>
+								<c:when test="${userLogin.jumlahDaftar > 2}">
+									<li><a href="cetak.do">CETAK</a></li>
+								</c:when>								
+								<c:otherwise>									
+									<li><a href="daftar_new.do">DAFTAR</a></li>
+									<li><a href="cetak.do">CETAK</a></li>
+								</c:otherwise>
+							</c:choose>									
 							<li><a href="logout.do">LOGOUT</a></li>
 						</c:when>
 						<c:otherwise>
@@ -67,9 +78,9 @@
                     	<div class="col-10">
                         	<h3>INFORMASI UMUM </h3>
                             <ul class="list-2">
-					<li><a href="ActionServlet?page=peraturan"><img src="/sscn2014/resources/images/peraturan.jpg" width="243" height="37" border="0" align="left"></a></img></li>
-					<li><a href="ActionServlet?page=alur"><img src="/sscn2014/resources/images/alur.jpg" width="243" height="37" border="0" align="left"></a></img></li>								
-                    <li><a href="ActionServlet?page=calendar"><img src="/sscn2014/resources/images/jadwal.jpg" width="243" height="37" border="0" align="left"></a></img></li>
+					<li><a href="peraturan.do"><img src="/sscn2014/resources/images/peraturan.jpg" width="243" height="37" border="0" align="left"></a></img></li>
+					<li><a href="alur.do"><img src="/sscn2014/resources/images/alur.jpg" width="243" height="37" border="0" align="left"></a></img></li>								
+                    <li><a href="calendar.do"><img src="/sscn2014/resources/images/jadwal.jpg" width="243" height="37" border="0" align="left"></a></img></li>
                             </ul>                            
                         </div>
 			   		<div class="col-9">
