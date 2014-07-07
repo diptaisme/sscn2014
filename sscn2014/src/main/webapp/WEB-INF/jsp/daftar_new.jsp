@@ -140,9 +140,10 @@ $(document).ready(
 								 + " , Pendidikan : " + $("#pendidikan1 option:selected").text() + " , Jabatan : " + $("#jabatan1 option:selected").text();
 								$("div#dialog-formasi1").html(data);								
 								
-								if ($("#lokasi_kerja2 option:selected").length){
-										if ($("#pendidikan2 option:selected").length){
-											if ($("#jabatan2 option:selected").length){
+								$("div#dialog-formasi2").html("");
+								if ($("#lokasi_kerja2 option:selected").val() != ""){
+										if ($("#pendidikan2 option:selected").val() != ""){
+											if ($("#jabatan2 option:selected").val() != ""){
 												data = "<BR>Pilihan 2 Lokasi : " + $("#lokasi_kerja2 option:selected").text()
 								 + " , Pendidikan : " + $("#pendidikan2 option:selected").text() + " , Jabatan : " + $("#jabatan2 option:selected").text();
 								$("div#dialog-formasi2").html(data);
@@ -150,9 +151,11 @@ $(document).ready(
 										}
 								}
 								
-								if ($("#lokasi_kerja3 option:selected").length){
-										if ($("#pendidikan3 option:selected").length){
-											if ($("#jabatan3 option:selected").length){
+								
+								$("div#dialog-formasi3").html("");
+								if ($("#lokasi_kerja3 option:selected").val() != ""){
+										if ($("#pendidikan3 option:selected").val() != ""){
+											if ($("#jabatan3 option:selected").val() != ""){
 												data = "<BR>Pilihan 3 Lokasi : " + $("#lokasi_kerja3 option:selected").text()
 								 + " , Pendidikan : " + $("#pendidikan3 option:selected").text() + " , Jabatan : " + $("#jabatan3 option:selected").text();
 								$("div#dialog-formasi3").html(data);

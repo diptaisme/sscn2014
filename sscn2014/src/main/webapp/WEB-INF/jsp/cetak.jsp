@@ -113,8 +113,6 @@
 											  <input
 												type="submit" value="Cetak Nomor Pendaftaran"
 												class="form-submit-button style2" /> 
-											  <input type="button" onClick="kembali()"
-												name="btnKembali" value="Kembali" class="form-submit-button style2" />
 										</form>  
 							    </c:when>
 							</c:choose>	
@@ -133,8 +131,6 @@
 											  <input
 												type="submit" value="Cetak Nomor Pendaftaran"
 												class="form-submit-button style2" /> 
-											  <input type="button" onClick="kembali()"
-												name="btnKembali" value="Kembali" class="form-submit-button style2" />
 										</form>  
 							    </c:when>
 							</c:choose>		
@@ -151,9 +147,7 @@
 												type="hidden" name="typeReport" value="rptRegistrasi" /> 
 											  <input
 												type="submit" value="Cetak Nomor Pendaftaran"
-												class="form-submit-button style2" /> 
-											  <input type="button" onClick="kembali()"
-												name="btnKembali" value="Kembali" class="form-submit-button style2" />
+												class="form-submit-button style2" /> 											  
 										</form>  
 							    </c:when>
 							</c:choose>	
