@@ -44,12 +44,13 @@ public class ReportRegistrasiCommand extends ReportCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		if (request.getParameter("formID") != null) {
+		String formId= request.getParameter("formID"); 
+		if ( formId != null) {
 			// check form id dari form Pendaftaran web SSCN
-			if (request.getParameter("formID").equals("32063786011852")) {
+			if (formId.substring(0, formId.length()-1).equals("3206378601185")) {
 				try {
 					DtPendaftaran pendaftaran = registrasiService
-							.getPendaftaranByNoRegistrasi(request.getParameter("idRegistrasi"));
+							.getPendaftaranById(request.getParameter("idRegistrasi"));
 					
 					if (pendaftaran == null) {
 						cetakRegistrasiGagal(response);

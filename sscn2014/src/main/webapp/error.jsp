@@ -1,12 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page isErrorPage="true" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+       <title>Exceptional Even Occurred! IN in SSCN</title>
+       <style>
+       body, p { font-family:Tahoma; font-size:10pt; padding-left:30; }
+       pre { font-size:20pt; }
+       </style>
 </head>
 <body>
-halaman error
+ 
+<%-- Exception Handler --%>
+<font color="red">
+<%= exception.toString() %><br>
+</font>
+ klik <a href="http://sscn.bkn.go.id">SSCN 2014</a></h1> untuk kembali
 </body>
 </html>

@@ -35,6 +35,17 @@ public interface FindLayerDao<T> extends CountLayerDao<T> {
 	 *          exception if no instance is found.
 	 */
 	T findById(Integer id);
+	
+	/**
+	 * Finds an instance by its Id
+	 * 
+	 * @author Roberto
+	 * @param id
+	 *            the id
+	 * @returnT The instance which id is the one passed by parameter. An
+	 *          exception if no instance is found.
+	 */
+	T findById(Long id);
 
 	/**
 	 * Finds an instance by its Id, eagerly fetching specific child objects.

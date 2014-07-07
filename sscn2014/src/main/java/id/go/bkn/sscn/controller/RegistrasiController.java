@@ -23,16 +23,20 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.util.JSONPObject;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.support.HttpRequestHandlerServlet;
 
 @Controller
 public class RegistrasiController {
@@ -338,12 +342,12 @@ public class RegistrasiController {
 	
 	
 	
-	//after registrasi
-	@RequestMapping(value = "/afterRegistrasi.do", method = RequestMethod.GET)
+	//after registrasi yang lama
+	/*@RequestMapping(value = "/afterRegistrasi.do", method = RequestMethod.GET)
 	public String afterRegistrasi(@RequestParam("idRegistrasi") String idRegistrasi, ModelMap model) {
 		model.addAttribute("idRegistrasi", idRegistrasi);
 		return "afterRegistrasi";
-	}
+	}*/
 
 	//updated
 	@RequestMapping(value = "/cb_pendidikan_by_instansi_lokasi.do", method = RequestMethod.GET)
@@ -390,5 +394,20 @@ public class RegistrasiController {
 		return objectMapper.writeValueAsString(new JSONPObject(callBack,
 				jabatanMap));
 	}
+	
+		//after registrasi
+		@RequestMapping(value = "/cetakPendaftaran.do", method = RequestMethod.GET)
+		public String afterRegistrasi(HttpServletRequest request, ModelMap model) {
+			if(request.getParameter("idRegistrasi1")!=null){
+				model.addAttribute("idRegistrasi1", request.getParameter("idRegistrasi1"));
+			}
+			if(request.getParameter("idRegistrasi2")!=null){
+				model.addAttribute("idRegistrasi2", request.getParameter("idRegistrasi2"));
+			}
+			if(request.getParameter("idRegistrasi3")!=null){
+				model.addAttribute("idRegistrasi3", request.getParameter("idRegistrasi3"));
+			}
+			return "cetakPendaftaran";
+		}
 
 }

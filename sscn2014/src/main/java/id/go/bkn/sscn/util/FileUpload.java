@@ -1,4 +1,4 @@
-package id.go.bkn.sscn.controller;
+package id.go.bkn.sscn.util;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 

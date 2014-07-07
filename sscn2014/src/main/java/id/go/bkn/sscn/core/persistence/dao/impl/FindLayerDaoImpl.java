@@ -75,6 +75,25 @@ public class FindLayerDaoImpl<T> extends CountLayerDaoImpl<T> implements FindLay
 			        re);
 		}
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.sscn.core.persistence.dao.FindLayerDao#findById(java.lang.Long)
+	 */
+	@Override
+	@SuppressWarnings(UNCHECKED)
+	public T findById(Long id) {
+		try {
+			return (T) getCurrentSession().get(clazz.getName(), id);
+		} catch (Exception re) {
+			LOG.error(I18N_FIND + I18N_FAILED, re);
+			throw new CorePersistenceException(CoreExceptionText.I18N_OPERATION_FAILED,
+			        re);
+		}
+	}
+
 
 	/**
 	 * Find by id.

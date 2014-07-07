@@ -1,15 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isErrorPage="true"%>
-    
-<% response.setStatus(404); %>
-    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+       <title>Page Not Found in SSCN</title>
+       <style>
+       body, p { font-family:Tahoma; font-size:10pt; padding-left:30; }
+       pre { font-size:20pt; }
+       </style>
 </head>
 <body>
-halaman error 404
+ 
+<%-- Exception Handler --%>
+<font color="red">
+Anda mengakses halaman yang tidak terautentikasi atau tidak ditemukan di SSCN
+</font>
+ klik <a href="http://sscn.bkn.go.id">SSCN 2014</a></h1> untuk kembali
 </body>
 </html>
