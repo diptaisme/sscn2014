@@ -3,7 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="userLogin" value="${sessionScope.userLogin}" />
-
+<c:choose>
+    <c:when test="${sessionScope.userLogin == null}">
+        <c:redirect url="ActionServlet?page=login" />
+    </c:when>
+</c:choose>	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +17,16 @@
     <meta name="keywords" content="seleksi,cpns,2014">
     <meta name="author" content="HerieSharkfins">
     <link rel="stylesheet" href="/sscn2014/resources/css/style.css">
-    <script src="/sscn2014/resources/js/jquery-1.7.1.min.js"></script>
-    <script src="/sscn2014/resources/js/superfish.js"></script>
-    <script src="/sscn2014/resources/js/jquery.easing.1.3.js"></script>
-    <script src="/sscn2014/resources/js/tms-0.4.1.js"></script>
-    <script src="/sscn2014/resources/js/slider.js"></script>
+    <script src="/sscn2014/resources/js/jquery-1.7.1.min.js"></script>    
+	<script type="text/javascript">
+		$(document).ready(	
+			function() {
+				$(this).bind('contextmenu',function(e){
+							e.preventDefault();
+						});
+				});
+	</script>		
+						
 <!--[if lt IE 8]>
    <div style=' clear: both; text-align:center; position: relative;'>
      <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -40,7 +49,7 @@
     <div class="main">
         <!-- Header -->
         <header>
-            <h1 class="logo"><a href="index.html">SSCN 2014</a></h1>
+            <h1 class="logo"><a href="http://sscn.bkn.go.id">SSCN 2014</a></h1>
 			<marquee>Untuk tampilan terbaik diharapkan menggunakan browser <b>Mozilla Firefox 3, Safari, Google Chrome</b> atau diatasnya</marquee>
             <nav>
                 <ul class="sf-menu">
@@ -85,8 +94,69 @@
                             
                         </div>
 					  <div class="col-9">
-                        	<h3>ALUR MEKANISME PENDAFTARAN CPNS 2014 </h3>
-                            <p align="justify"><img src="/sscn2014/resources/images/alur1.png" width="612" height="810"></p>
+                        	<h3>CETAK PENDAFTARAN</h3>
+                           <p align="center">
+							Anda sudah mendaftarkan untuk mengikuti Seleksi CPNS di posisi yang
+							anda lamar. <br> Silahkan melakukan Cetak Nomor Pendaftaran pada
+							tombol dibawah ini.	</p>
+							<p align="center">
+							<c:choose>
+							    <c:when test="${idRegistrasi1 != null}">
+										<form action="ReportServlet" method="post" target="_blank"
+											name="formCetakRegistrasi1" id="formCetakRegistrasi1">
+											<div align="center">
+											  <input type="hidden" name="idRegistrasi" value="${idRegistrasi1}" /> 
+											  <input
+												type="hidden" name="formID" value="32063786011851" /> 
+											  <input
+												type="hidden" name="typeReport" value="rptRegistrasi" /> 
+											  <input
+												type="submit" value="Cetak Nomor Pendaftaran"
+												class="form-submit-button style2" /> 
+											  <input type="button" onClick="kembali()"
+												name="btnKembali" value="Kembali" class="form-submit-button style2" />
+										</form>  
+							    </c:when>
+							</c:choose>	
+	
+							<c:choose>
+							    <c:when test="${idRegistrasi2 != null}">
+									<p align="center">
+										<form action="ReportServlet" method="post" target="_blank"
+											name="formCetakRegistrasi2" id="formCetakRegistrasi2">
+											<div align="center">
+											  <input type="hidden" name="idRegistrasi" value="${idRegistrasi2}" /> 
+											  <input
+												type="hidden" name="formID" value="32063786011852" /> 
+											  <input
+												type="hidden" name="typeReport" value="rptRegistrasi" /> 
+											  <input
+												type="submit" value="Cetak Nomor Pendaftaran"
+												class="form-submit-button style2" /> 
+											  <input type="button" onClick="kembali()"
+												name="btnKembali" value="Kembali" class="form-submit-button style2" />
+										</form>  
+							    </c:when>
+							</c:choose>		
+							<c:choose>
+							    <c:when test="${idRegistrasi3 != null}">
+									<p align="center">
+										<form action="ReportServlet" method="post" target="_blank"
+											name="formCetakRegistrasi3" id="formCetakRegistrasi3">
+											<div align="center">
+											  <input type="hidden" name="idRegistrasi" value="${idRegistrasi3}" /> 
+											  <input
+												type="hidden" name="formID" value="32063786011853" /> 
+											  <input
+												type="hidden" name="typeReport" value="rptRegistrasi" /> 
+											  <input
+												type="submit" value="Cetak Nomor Pendaftaran"
+												class="form-submit-button style2" /> 
+											  <input type="button" onClick="kembali()"
+												name="btnKembali" value="Kembali" class="form-submit-button style2" />
+										</form>  
+							    </c:when>
+							</c:choose>	
                       </div>
 				  </div>
                 </article>

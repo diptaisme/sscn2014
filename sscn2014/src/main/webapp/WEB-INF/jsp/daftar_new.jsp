@@ -135,9 +135,31 @@ $(document).ready(
 								$("div#dialog-ttl").html(data);
 								data = "Telpon: " + $("input#telpon").val()+ " , Email : " + $("input#email").val();			
 								$("div#dialog-email").html(data);								
-								data = "Instansi: ${userLogin.refInstansi.nama} , Lokasi : " + $("#lokasi_kerja1 option:selected").text()
+								data = "Instansi: ${userLogin.refInstansi.nama} <BR><BR> "+								
+								"Pilihan 1 Lokasi : " + $("#lokasi_kerja1 option:selected").text()
 								 + " , Pendidikan : " + $("#pendidikan1 option:selected").text() + " , Jabatan : " + $("#jabatan1 option:selected").text();
-								$("div#dialog-formasi").html(data);
+								$("div#dialog-formasi1").html(data);								
+								
+								if ($("#lokasi_kerja2 option:selected").length){
+										if ($("#pendidikan2 option:selected").length){
+											if ($("#jabatan2 option:selected").length){
+												data = "<BR>Pilihan 2 Lokasi : " + $("#lokasi_kerja2 option:selected").text()
+								 + " , Pendidikan : " + $("#pendidikan2 option:selected").text() + " , Jabatan : " + $("#jabatan2 option:selected").text();
+								$("div#dialog-formasi2").html(data);
+											}
+										}
+								}
+								
+								if ($("#lokasi_kerja3 option:selected").length){
+										if ($("#pendidikan3 option:selected").length){
+											if ($("#jabatan3 option:selected").length){
+												data = "<BR>Pilihan 3 Lokasi : " + $("#lokasi_kerja3 option:selected").text()
+								 + " , Pendidikan : " + $("#pendidikan3 option:selected").text() + " , Jabatan : " + $("#jabatan3 option:selected").text();
+								$("div#dialog-formasi3").html(data);
+											}
+										}
+								}
+								
 								$('#dialogKonfirmasi').dialog('open');
 							}
 						});
@@ -262,11 +284,22 @@ label.error {
 				</marquee>
 				<nav>
 					<ul class="sf-menu">
-						<li class="current"><a href="ActionServlet?page=index">BERANDA</a></li>
-						<li><a href="ActionServlet?page=contacts">KONTAK</a></li>
+						<li class="current"><a href="index.do">BERANDA</a></li>
+						<li><a href="contacts.do">KONTAK</a></li>
 						<c:choose>
 							<c:when test="${userLogin != null}">
-								<li><a href="ActionServlet?page=daftar">DAFTAR</a></li>
+								<c:choose>
+									<c:when test="${userLogin.jumlahDaftar == 0}">
+										<li><a href="daftar_new.do">DAFTAR</a></li>
+									</c:when>
+									<c:when test="${userLogin.jumlahDaftar > 2}">
+										<li><a href="cetak.do">CETAK</a></li>
+									</c:when>								
+									<c:otherwise>									
+										<li><a href="daftar_new.do">DAFTAR</a></li>
+										<li><a href="cetak.do">CETAK</a></li>
+									</c:otherwise>
+								</c:choose>									
 								<li><a href="logout.do">LOGOUT</a></li>
 							</c:when>
 							<c:otherwise>
@@ -285,7 +318,7 @@ label.error {
 						<div class="col-10">
 							<h3>MENU UTAMA</h3>
 							<ul class="list-2">
-								<li><a href="ActionServlet?page=informasi_umum">INFORMASI
+								<li><a href="informasi_umum.do">INFORMASI
 										UMUM</a></li>
 								<li><a href="#">PENGUMUMAN INSTANSI</a></li>
 								<li><a href="#">PETUNJUK PENDAFTARAN</a></li>
@@ -643,7 +676,9 @@ label.error {
 					<div id="dialog-nama"></div>
 					<div id="dialog-ttl"></div>
 					<div id="dialog-email"></div>
-					<div id="dialog-formasi"></div>
+					<div id="dialog-formasi1"></div>
+					<div id="dialog-formasi2"></div>
+					<div id="dialog-formasi3"></div>
 					<br>
 					<p>If this is correct, click Submit Form.</p>
 					<p>To edit, click Cancel.
