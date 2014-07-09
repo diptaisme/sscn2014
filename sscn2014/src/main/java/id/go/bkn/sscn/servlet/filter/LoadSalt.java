@@ -10,7 +10,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.RandomStringUtils;
@@ -21,7 +20,6 @@ import com.google.common.cache.CacheBuilder;
 /**
  * Servlet Filter implementation class LoadSalt
  */
-@WebFilter("/LoadSalt")
 public class LoadSalt implements Filter {
 
 	@Override

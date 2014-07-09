@@ -4,8 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<%@ page import="net.tanesha.recaptcha.ReCaptcha"%>
-<%@ page import="net.tanesha.recaptcha.ReCaptchaFactory"%>
 <c:set var="userLogin" value="${sessionScope.userLogin}" />
 <c:choose>
     <c:when test="${sessionScope.userLogin == null}">
@@ -44,6 +42,7 @@
 <script type="text/javascript">
 $(document).ready(	
 	function() {
+		showRecaptcha('recaptcha_div');
 		$('#formRegistrasi').validate(
 						{
 							rules : {
@@ -172,7 +171,16 @@ $(document).ready(
 		});
 </script>
 
-
+<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+      <!-- Wrapping the Recaptcha create method in a javascript function -->
+      <script type="text/javascript">
+         function showRecaptcha(element) {
+           Recaptcha.create("6LcqAfUSAAAAAJSKj6Z98v7_T4lBwGOHLpNgrPzQ", element, {
+             theme: "red",
+             callback: Recaptcha.focus_response_field});
+         }
+	</script>
+	  
 <style>
 #instansi {
 	color: blue;
@@ -625,14 +633,7 @@ label.error {
 										<li class="form-line" id="id_2">
 											<div id="cid_2" class="form-input-wide">
 												<div style="margin-left: 156px" class="form-buttons-wrapper">
-													<br>
-													<%
-														ReCaptcha c = ReCaptchaFactory.newReCaptcha(
-																"6LdlHOsSAAAAAM8ypy8W2KXvgMtY2dFsiQT3HVq-",
-																"6LdlHOsSAAAAACe2WYaGCjU2sc95EZqCI9wLcLXY", false);
-														out.print(c.createRecaptchaHtml(null, null));
-													%>
-													<br>
+													 <div id="recaptcha_div"></div>													
 													<button type="submit" disabled="disabled"
 														class="form-submit-button style2" id="btnKirimPendaftaran">DAFTAR</button>
 												</div>

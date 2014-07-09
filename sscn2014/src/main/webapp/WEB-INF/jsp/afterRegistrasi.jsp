@@ -27,6 +27,15 @@
   })();
 
 </script>
+<script src="/sscn2014/resources/js/jquery-1.7.1.min.js"></script>    
+	<script type="text/javascript">
+		$(document).ready(	
+			function() {
+				$(this).bind('contextmenu',function(e){
+							e.preventDefault();
+						});
+				});
+	</script>		
 <script>
 function kembali(){
 	window.location.href = 'http://sscn.bkn.go.id';

@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import net.tanesha.recaptcha.ReCaptchaImpl;
 import net.tanesha.recaptcha.ReCaptchaResponse;
 
-import org.hibernate.Hibernate;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -73,9 +72,11 @@ public class RegistrasiServlet extends HttpServlet {
 				try {
 					//
 					String remoteAddr = request.getRemoteAddr();
+					String serverName = request.getServerName();
+					System.out.println("remoteAddr = "+remoteAddr+" , serverName = "+serverName);
 					ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
 					reCaptcha
-							.setPrivateKey("6LdlHOsSAAAAACe2WYaGCjU2sc95EZqCI9wLcLXY");
+							.setPrivateKey(Constanta.PRIVATE_KEY_RECAPTCHA);
 
 					String challenge = request
 							.getParameter("recaptcha_challenge_field");
