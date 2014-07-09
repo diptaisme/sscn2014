@@ -2,6 +2,8 @@ package id.go.bkn.sscn.persistence.entities;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import id.go.bkn.sscn.manager.Constanta;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -14,7 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dt_persyaratan", catalog = "dbseleksicpns")
+@Table(name = "dt_persyaratan", catalog = Constanta.DB_CATALOG)
 public class DtPersyaratan implements Serializable {
 	/**
 	 * 

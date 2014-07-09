@@ -480,5 +480,27 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 	public RefInstansi getInstansibyId(String id) {		
 		return refInstansiDao.findByProperty("kode", id, null).get(0);
 	}
+	
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public MFormasi getFormasi(String instansi, String lokasi,
+			String jabatan) {
+
+		List<MFormasi> listFormasi = mFormasiDao
+				.findByInstansiLokasiJabatan(instansi, lokasi, jabatan);		
+
+		if(listFormasi.size() > 0) {
+			return listFormasi.get(0);
+		}
+		return null;
+	}
+	
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public int countFormasiInPendaftaran(MFormasi formasi) {
+		int count = dtPendaftaranDao.countByProperty("formasi.id", formasi.getId());
+		return count;
+	}
+
 
 }

@@ -1,6 +1,7 @@
 package id.go.bkn.sscn.services;
 
 import id.go.bkn.sscn.persistence.entities.DtPendaftaran;
+import id.go.bkn.sscn.persistence.entities.MFormasi;
 import id.go.bkn.sscn.persistence.entities.RefInstansi;
 import id.go.bkn.sscn.persistence.entities.RefJabatan;
 import id.go.bkn.sscn.persistence.entities.RefLokasi;
@@ -48,4 +49,9 @@ public interface RegistrasiService {
 	List<DtPendaftaran> getPendaftaransByUser(Integer idUser);
 	
 	RefInstansi getInstansibyId(String id);
+	
+	MFormasi getFormasi(String instansi, String lokasi,
+			String jabatan);
+	
+	int countFormasiInPendaftaran(MFormasi formasi);
 }

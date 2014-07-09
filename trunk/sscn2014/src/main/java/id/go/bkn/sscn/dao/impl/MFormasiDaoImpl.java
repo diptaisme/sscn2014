@@ -47,4 +47,27 @@ public class MFormasiDaoImpl extends CoreDaoImpl<MFormasi> implements
 
 		return doQuery(query, null);
 	}
+	
+	public List<MFormasi> findByInstansiLokasiJabatan(String instansi,
+			String lokasi, String jabatan) {
+		/*
+		 * SELECT m.jabatan FROM m_formasi m 
+		 * WHERE m.instansi = '4011' AND m.lokasi = '1234' AND
+		 * m.jabatan = '2110303';
+		 */
+
+		StringBuilder sbFind = new StringBuilder(
+				"SELECT model FROM MFormasi as model ");
+		sbFind.append("WHERE ");
+		sbFind.append("model.refInstansi.kode = :instansi ");
+		sbFind.append("AND model.refLokasi.kode = :lokasi ");
+		sbFind.append("AND model.refJabatan.kode = :jabatan ");
+
+		Query query = createQuery(sbFind);
+		query.setParameter("instansi", instansi);
+		query.setParameter("lokasi", lokasi);
+		query.setParameter("jabatan", jabatan);
+
+		return doQuery(query, null);
+	}
 }

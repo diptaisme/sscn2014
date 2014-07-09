@@ -1,6 +1,7 @@
 package id.go.bkn.sscn.controller;
 
 import id.go.bkn.sscn.persistence.entities.DtPendaftaran;
+import id.go.bkn.sscn.persistence.entities.MFormasi;
 import id.go.bkn.sscn.persistence.entities.RefInstansi;
 import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
 import id.go.bkn.sscn.services.RegistrasiService;
@@ -8,6 +9,7 @@ import id.go.bkn.sscn.services.RegistrasiService;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -107,6 +109,24 @@ public class ActionController {
 			return "halamanyangsalah";
 		}
 		return "daftar_new1";
+	}
+	
+	@RequestMapping(value = "/info_instansi.do", method = RequestMethod.GET)
+	public String info_instansi() {
+		return "info_instansi";
+	}
+	
+	@RequestMapping(value = "/get_info_formasi.do", method = RequestMethod.POST)
+	public String get_info_formasi(HttpServletRequest request, ModelMap model) {		
+		MFormasi formasi = registrasiService
+				.getFormasi(request.getParameter("instansiValue"), request.getParameter("lokasi_kerja"), request.getParameter("jabatan"));
+		
+		int countFormasiInPendaftaran = registrasiService.countFormasiInPendaftaran(formasi);
+		
+		model.addAttribute("countAvailableFormasi", formasi.getJumlah());
+		model.addAttribute("countFormasiInPendaftaran", countFormasiInPendaftaran);
+		
+		return "info_instansi";
 	}
 	
 }

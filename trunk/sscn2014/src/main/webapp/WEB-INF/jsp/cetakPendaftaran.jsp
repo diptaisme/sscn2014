@@ -50,7 +50,7 @@ body {
 </style></head>
 <body id="page1">
 <header>   
-  <h1 class="logo"><a href="http://localhost:8080/sscn2014/index.do">SSCN 2014</a></h1>
+  <h1 class="logo"><a href="http://sscn.bkn.go.id">SSCN 2014</a></h1>
 </header>
 <p align="center">
 		Anda sudah mendaftarkan untuk mengikuti Seleksi CPNS di posisi yang

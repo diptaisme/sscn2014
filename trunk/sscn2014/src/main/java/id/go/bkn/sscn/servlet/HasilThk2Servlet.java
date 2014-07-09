@@ -1,11 +1,8 @@
 package id.go.bkn.sscn.servlet;
 
-import id.go.bkn.sscn.manager.Constanta;
 import id.go.bkn.sscn.persistence.entities.DtHasil;
-import id.go.bkn.sscn.persistence.entities.DtPendaftaran;
 import id.go.bkn.sscn.persistence.entities.DtPeserta;
 import id.go.bkn.sscn.services.HasilService;
-import id.go.bkn.sscn.services.RegistrasiService;
 import id.go.bkn.sscn.util.json.HasilJsonMessage;
 
 import java.io.IOException;
@@ -20,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.util.JSONPObject;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 

@@ -24,6 +24,14 @@
     <script src="/sscn2014/resources/js/jquery.easing.1.3.js"></script>
     <script src="/sscn2014/resources/js/tms-0.4.1.js"></script>
     <script src="/sscn2014/resources/js/slider.js"></script>
+	<script type="text/javascript">
+		$(document).ready(	
+			function() {
+				$(this).bind('contextmenu',function(e){
+							e.preventDefault();
+						});
+				});
+	</script>		
 <!--[if lt IE 8]>
    <div style=' clear: both; text-align:center; position: relative;'>
      <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">

@@ -9,4 +9,7 @@ import java.util.List;
 public interface MFormasiDao extends CoreDao<MFormasi> {
 	List<MFormasi> findByInstansiLokasiPendidikan(String instansi,
 			String lokasi, String pendidikan);
+	
+	List<MFormasi> findByInstansiLokasiJabatan(String instansi,
+			String lokasi, String jabatan);
 }

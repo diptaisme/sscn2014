@@ -8,7 +8,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 import com.google.common.cache.Cache;
@@ -16,7 +15,6 @@ import com.google.common.cache.Cache;
 /**
  * Servlet Filter implementation class ValidateSalt
  */
-@WebFilter("/ValidateSalt")
 public class ValidateSalt implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
