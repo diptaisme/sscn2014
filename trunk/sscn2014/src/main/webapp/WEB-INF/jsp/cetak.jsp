@@ -87,9 +87,9 @@
                     	<div class="col-10">
                         	<h3>INFORMASI UMUM </h3>
                             <ul class="list-2">
-                                <li><a href="peraturan.do"><img src="/sscn2014/resources/images/peraturan.jpg" width="243" height="37" border="0" align="left"></a></img></li>
-					<li><a href="alur.do"><img src="/sscn2014/resources/images/alur.jpg" width="243" height="37" border="0" align="left"></a></img></li>								
-                                	<li><a href="calendar.do"><img src="/sscn2014/resources/images/jadwal.jpg" width="243" height="37" border="0" align="left"></a></img></li>
+                                <li><a href="informasi_umum.do"><img src="/sscn2014/resources/images/info.jpg" width="243" height="37" border="0" align="left"></a></img></li>
+					<li><a href="#"><img src="/sscn2014/resources/images/pengumuman.jpg" width="243" height="37" border="0" align="left"></a></img></li>												
+                                	<li><a href="#"><img src="/sscn2014/resources/images/petunjuk.jpg" width="243" height="37" border="0" align="left"></a></img></li>
                             </ul>
                             
                         </div>
