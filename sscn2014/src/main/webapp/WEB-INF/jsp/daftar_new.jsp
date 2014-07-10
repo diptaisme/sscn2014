@@ -329,16 +329,13 @@ label.error {
 						<div class="col-10">
 							<h3>MENU UTAMA</h3>
 							<ul class="list-2">
-								<li><a href="informasi_umum.do">INFORMASI
-										UMUM</a></li>
-								<li><a href="#">PENGUMUMAN INSTANSI</a></li>
-								<li><a href="#">PETUNJUK PENDAFTARAN</a></li>
+<li><a href="informasi_umum.do"><img src="/sscn2014/resources/images/info.jpg" width="243" height="37" border="0" align="left"></a></img></li>
+					<li><a href="#"><img src="/sscn2014/resources/images/pengumuman.jpg" width="243" height="37" border="0" align="left"></a></img></li>												
+                                	<li><a href="#"><img src="/sscn2014/resources/images/petunjuk.jpg" width="243" height="37" border="0" align="left"></a></img></li>
 							</ul>
-
 						</div>
 						<div class="col-9">
-							<h3>FORM PENDAFTARAN</h3>
-							<p>
+							<h3>FORM PENDAFTARAN</h3>							
 								<form class="jotform-form" action="RegistrasiServlet"
 								method="post" name="formRegistrasi" id="formRegistrasi"
 								accept-charset="utf-8">
