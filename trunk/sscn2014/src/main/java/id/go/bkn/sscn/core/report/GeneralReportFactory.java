@@ -4,6 +4,7 @@ import id.go.bkn.sscn.core.report.command.ReportCommand;
 import id.go.bkn.sscn.core.report.command.ReportDataPendaftaranCommand;
 import id.go.bkn.sscn.core.report.command.ReportDataPesertaTestCommand;
 import id.go.bkn.sscn.core.report.command.ReportPesertaUjianCommand;
+import id.go.bkn.sscn.core.report.command.ReportRegistrasi2014Command;
 import id.go.bkn.sscn.core.report.command.ReportRegistrasiCommand;
 import id.go.bkn.sscn.core.report.command.ReportRekapanPendaftaranCommand;
 import id.go.bkn.sscn.core.report.command.ReportTestCommand;
@@ -26,6 +27,8 @@ public class GeneralReportFactory {
 	public static final String RPT_TEST_CETAK = "rptTestCetak";
 	/** The Constant RPT_REGISTRASI. */
 	public static final String RPT_REGISTRASI = "rptRegistrasi";
+	/** The Constant RPT_REGISTRASI_2014. */
+	public static final String RPT_REGISTRASI_2014 = "rptRegistrasi2014";
 	/** The Constant RPT_PESERTA_UJIAN. */
 	public static final String RPT_PESERTA_UJIAN = "rptPesertaUjian";
 	/** The Constant RPT_REKAPAN_PENDAFTARAN. */
@@ -40,6 +43,7 @@ public class GeneralReportFactory {
 	static {
 		REPORT_COMMANDS.put(RPT_TEST_CETAK, ReportTestCommand.class);
 		REPORT_COMMANDS.put(RPT_REGISTRASI, ReportRegistrasiCommand.class);
+		REPORT_COMMANDS.put(RPT_REGISTRASI_2014, ReportRegistrasi2014Command.class);
 		REPORT_COMMANDS.put(REPORT_PENGUMUMAN, PengumumanReportCommand.class);
 		REPORT_COMMANDS.put(RPT_PESERTA_UJIAN, ReportPesertaUjianCommand.class);
 		REPORT_COMMANDS.put(RPT_DATA_PENDAFTARAN,

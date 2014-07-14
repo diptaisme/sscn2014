@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository("DtFormasiDao")
-public class DtFormasiDaoImpl extends CoreDaoImpl<DtFormasi> implements DtFormasiDao{
+public class DtFormasiDaoImpl extends CoreDaoImpl<DtFormasi> implements
+		DtFormasiDao {
 	/**
 	 * Default constructor.
 	 * 
@@ -20,4 +21,5 @@ public class DtFormasiDaoImpl extends CoreDaoImpl<DtFormasi> implements DtFormas
 	public DtFormasiDaoImpl(SessionFactory sessionFactory) {
 		super(DtFormasi.class, sessionFactory);
 	}
+
 }

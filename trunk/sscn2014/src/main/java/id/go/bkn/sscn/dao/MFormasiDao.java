@@ -12,4 +12,7 @@ public interface MFormasiDao extends CoreDao<MFormasi> {
 	
 	List<MFormasi> findByInstansiLokasiJabatan(String instansi,
 			String lokasi, String jabatan);
+	
+	List<MFormasi> findByInstansiPendidikan(String instansi,
+			String pendidikan);
 }

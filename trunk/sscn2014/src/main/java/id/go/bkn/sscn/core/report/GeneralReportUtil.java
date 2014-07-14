@@ -14,7 +14,7 @@ public class GeneralReportUtil {
 	/** The rpt DataPesertaTest. */
 	private static String rptDataPesertaTest = defaultDirectory
 			+ "rptDataPesertaTest.xls";
-	
+
 	/** The rpt Rekapan Pendaftaran. */
 	private static String rptRekapanPendaftaran = defaultDirectory
 			+ "rptRekapanPendaftaran.xls";
@@ -22,6 +22,9 @@ public class GeneralReportUtil {
 	/** The rpt Registrasi. */
 	private static String rptRegistrasi = defaultDirectory
 			+ "rptRegistrasi.jasper";
+	/** The rpt Registrasi2014. */
+	private static String rptRegistrasi2014 = defaultDirectory
+			+ "rptRegistrasi2014.jasper";
 	/** The rpt Peserta Ujian. */
 	private static String rptPesertaUjian = defaultDirectory
 			+ "rptPesertaUjian.jasper";
@@ -32,6 +35,10 @@ public class GeneralReportUtil {
 
 	public static String getRptRegistrasi() {
 		return rptRegistrasi;
+	}
+
+	public static String getRptRegistrasi2014() {
+		return rptRegistrasi2014;
 	}
 
 	public static String getRptPesertaUjian() {

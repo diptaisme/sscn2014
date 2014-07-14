@@ -62,6 +62,9 @@ public class RegistrasiServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		String remoteAddr = request.getRemoteAddr();
+		String serverName = request.getServerName();
+		System.out.println("ada yang coba submit/regis remoteAddr = "+remoteAddr+" , serverName = "+serverName);
 		if (request.getParameter("formID") != null) {
 			// check form id dari form Pendaftaran web SSCN
 			if (request.getParameter("formID").equals("32063786011852")) {
@@ -70,10 +73,6 @@ public class RegistrasiServlet extends HttpServlet {
 						.getSession().getAttribute("userLogin");
 				int jumlahDaftarAwal = pendaftar.getJumlahDaftar();
 				try {
-					//
-					String remoteAddr = request.getRemoteAddr();
-					String serverName = request.getServerName();
-					System.out.println("remoteAddr = "+remoteAddr+" , serverName = "+serverName);
 					ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
 					reCaptcha
 							.setPrivateKey(Constanta.PRIVATE_KEY_RECAPTCHA);

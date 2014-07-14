@@ -27,31 +27,34 @@ public interface RegistrasiService {
 	DtPendaftaran insertPendaftaran(HttpServletRequest request,
 			TabelPendaftar pendaftar);
 
-	//mungkin tidak akan terpakai lagi
+	// mungkin tidak akan terpakai lagi
 	DtPendaftaran getPendaftaranByNoRegistrasi(String noRegister);
 
 	List<RefPendidikan> getPendidikan(String instansi, String lokasi);
 
 	List<RefJabatan> getJabatan(String instansi, String lokasi,
 			String pendidikan);
-	
-	List<DtPendaftaran>  insertPendaftarans(HttpServletRequest request,
+
+	List<DtPendaftaran> insertPendaftarans(HttpServletRequest request,
 			TabelPendaftar pendaftar);
-	
+
 	DtPendaftaran getPendaftaranById(String id);
-	
+
 	List<DtPendaftaran> getPendaftaransByNoRegistrasi(String noRegister);
-	
+
 	boolean deletePendaftarans(List<DtPendaftaran> pendaftarans);
-	
+
 	TabelPendaftar updatePendaftar(TabelPendaftar pendaftar);
-	
+
 	List<DtPendaftaran> getPendaftaransByUser(Integer idUser);
-	
+
 	RefInstansi getInstansibyId(String id);
-	
-	MFormasi getFormasi(String instansi, String lokasi,
-			String jabatan);
-	
+
+	MFormasi getFormasi(String instansi, String lokasi, String jabatan);
+
 	int countFormasiInPendaftaran(MFormasi formasi);
+
+	List<RefPendidikan> getPendidikanByInstansi(String instansi);
+	
+	List<RefLokasi> getLokasi(String instansi, String pendidikan);
 }

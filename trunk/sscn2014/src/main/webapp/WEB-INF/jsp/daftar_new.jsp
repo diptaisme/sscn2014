@@ -43,6 +43,7 @@
 $(document).ready(	
 	function() {
 		showRecaptcha('recaptcha_div');
+		$('#alamat').focus();
 		$('#formRegistrasi').validate(
 						{
 							rules : {
@@ -111,7 +112,7 @@ $(document).ready(
 								jabatan1 : {
 									required : true
 								},
-								pendidikan1 : {
+								pendidikan : {
 									required : true
 								}
 							},
@@ -136,27 +137,26 @@ $(document).ready(
 								$("div#dialog-email").html(data);								
 								data = "Instansi: ${userLogin.refInstansi.nama} <BR><BR> "+								
 								"Pilihan 1 Lokasi : " + $("#lokasi_kerja1 option:selected").text()
-								 + " , Pendidikan : " + $("#pendidikan1 option:selected").text() + " , Jabatan : " + $("#jabatan1 option:selected").text();
+								 + " , Pendidikan : " + $("#pendidikan option:selected").text() + " , Jabatan : " + $("#jabatan1 option:selected").text();
 								$("div#dialog-formasi1").html(data);								
 								
 								$("div#dialog-formasi2").html("");
 								if ($("#lokasi_kerja2 option:selected").val() != ""){
-										if ($("#pendidikan2 option:selected").val() != ""){
+										if ($("#pendidikan option:selected").val() != ""){
 											if ($("#jabatan2 option:selected").val() != ""){
 												data = "<BR>Pilihan 2 Lokasi : " + $("#lokasi_kerja2 option:selected").text()
-								 + " , Pendidikan : " + $("#pendidikan2 option:selected").text() + " , Jabatan : " + $("#jabatan2 option:selected").text();
+								 + " , Pendidikan : " + $("#pendidikan option:selected").text() + " , Jabatan : " + $("#jabatan2 option:selected").text();
 								$("div#dialog-formasi2").html(data);
 											}
 										}
-								}
-								
+								}								
 								
 								$("div#dialog-formasi3").html("");
 								if ($("#lokasi_kerja3 option:selected").val() != ""){
-										if ($("#pendidikan3 option:selected").val() != ""){
+										if ($("#pendidikan option:selected").val() != ""){
 											if ($("#jabatan3 option:selected").val() != ""){
 												data = "<BR>Pilihan 3 Lokasi : " + $("#lokasi_kerja3 option:selected").text()
-								 + " , Pendidikan : " + $("#pendidikan3 option:selected").text() + " , Jabatan : " + $("#jabatan3 option:selected").text();
+								 + " , Pendidikan : " + $("#pendidikan option:selected").text() + " , Jabatan : " + $("#jabatan3 option:selected").text();
 								$("div#dialog-formasi3").html(data);
 											}
 										}
@@ -179,6 +179,8 @@ $(document).ready(
              theme: "red",
              callback: Recaptcha.focus_response_field});
          }
+		 <!-- Recaptcha is not focus when form is loaded -->
+		 Recaptcha.focus_response_field = function(){return false;};
 	</script>
 	  
 <style>
@@ -504,6 +506,16 @@ label.error {
 													Instansi : ${userLogin.refInstansi.nama}
 													<input type="hidden" id="instansi" name="instansi" value="${userLogin.refInstansi.kode}"/>
 												</div></li>
+												<li class="form-line" style="background-color: #E6E6E6"
+												id="id_15"><label class="form-label-left" id="label_15"
+												for="input_15"> Kualifikasi Pendidikan </label>
+												<div id="cid_15" class="form-input">
+													<select class="form-dropdown" style="width: 300px"
+														title="Kualifikasi Pendidikan" id="pendidikan"
+														name="pendidikan">
+														<option value="">Pilih Pendidikan</option>
+													</select> <img id="imgLoadingPendidikan" src="/sscn2014/resources/images/loading.png" />
+												</div></li>
 												<div id="tabs">
   <ul>
     <li><a href="#tabs-1">Pilihan 1</a></li>
@@ -519,17 +531,7 @@ label.error {
 														title="Lokasi Kerja" id="lokasi_kerja1" name="lokasi_kerja1">
 														<option value="">Pilih lokasi kerja</option>
 													</select> <img id="imgLoadingLokasi1" src="/sscn2014/resources/images/loading.png" />
-												</div></li>
-											<li class="form-line" style="background-color: #E6E6E6"
-												id="id_15"><label class="form-label-left" id="label_15"
-												for="input_15"> Kualifikasi Pendidikan </label>
-												<div id="cid_15" class="form-input">
-													<select class="form-dropdown" style="width: 300px"
-														title="Kualifikasi Pendidikan" id="pendidikan1"
-														name="pendidikan1">
-														<option value="">Pilih Pendidikan</option>
-													</select> <img id="imgLoadingPendidikan1" src="/sscn2014/resources/images/loading.png" />
-												</div></li>
+												</div></li>											
 											<li class="form-line" style="background-color: #E6E6E6"
 												id="id_13"><label class="form-label-left" id="label_13"
 												for="input_13"> Jabatan yang dilamar</label>
@@ -549,17 +551,7 @@ label.error {
 														title="Lokasi Kerja" id="lokasi_kerja2" name="lokasi_kerja2">
 														<option value="">Pilih lokasi kerja</option>
 													</select> <img id="imgLoadingLokasi2" src="/sscn2014/resources/images/loading.png" />
-												</div></li>
-											<li class="form-line" style="background-color: #E6E6E6"
-												id="id_15"><label class="form-label-left" id="label_15"
-												for="input_15"> Kualifikasi Pendidikan </label>
-												<div id="cid_15" class="form-input">
-													<select class="form-dropdown" style="width: 300px"
-														title="Kualifikasi Pendidikan" id="pendidikan2"
-														name="pendidikan2">
-														<option value="">Pilih Pendidikan</option>
-													</select> <img id="imgLoadingPendidikan2" src="/sscn2014/resources/images/loading.png" />
-												</div></li>
+												</div></li>											
 											<li class="form-line" style="background-color: #E6E6E6"
 												id="id_13"><label class="form-label-left" id="label_13"
 												for="input_13"> Jabatan yang dilamar</label>
@@ -579,17 +571,7 @@ label.error {
 														title="Lokasi Kerja" id="lokasi_kerja3" name="lokasi_kerja3">
 														<option value="">Pilih lokasi kerja</option>
 													</select> <img id="imgLoadingLokasi3" src="/sscn2014/resources/images/loading.png" />
-												</div></li>
-											<li class="form-line" style="background-color: #E6E6E6"
-												id="id_15"><label class="form-label-left" id="label_15"
-												for="input_15"> Kualifikasi Pendidikan </label>
-												<div id="cid_15" class="form-input">
-													<select class="form-dropdown" style="width: 300px"
-														title="Kualifikasi Pendidikan" id="pendidikan3"
-														name="pendidikan3">
-														<option value="">Pilih Pendidikan</option>
-													</select> <img id="imgLoadingPendidikan3" src="/sscn2014/resources/images/loading.png" />
-												</div></li>
+												</div></li>											
 											<li class="form-line" style="background-color: #E6E6E6"
 												id="id_13"><label class="form-label-left" id="label_13"
 												for="input_13"> Jabatan yang dilamar</label>
