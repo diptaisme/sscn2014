@@ -5,6 +5,7 @@ import id.go.bkn.sscn.dao.RefPendidikanDao;
 import id.go.bkn.sscn.manager.Constanta;
 import id.go.bkn.sscn.persistence.entities.DtPendaftaran;
 import id.go.bkn.sscn.persistence.entities.DtPersyaratan;
+import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
 import id.go.bkn.sscn.services.PersyaratanService;
 import id.go.bkn.sscn.services.RegistrasiService;
 
@@ -21,6 +22,7 @@ import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 
@@ -49,16 +51,23 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 			// check form id dari form Pendaftaran web SSCN
 			if (formId.substring(0, formId.length()-1).equals("3206378601185")) {
 				try {
-					DtPendaftaran pendaftaran = registrasiService
-							.getPendaftaranById(request.getParameter("idRegistrasi"));
+//					DtPendaftaran pendaftaran = registrasiService
+//							.getPendaftaranById(request.getParameter("idRegistrasi"));
+					HttpSession session = request.getSession();
+					TabelPendaftar pendaftar = null;
+					if (session.getAttribute("userLogin") != null) {						
+						pendaftar = (TabelPendaftar) session.getAttribute("userLogin");
+					}
+					List<DtPendaftaran> listPendafatans = registrasiService.getPendaftaranByUserId(pendaftar);
 					
-					if (pendaftaran == null) {
+					if (listPendafatans == null || listPendafatans.size() == 0) {
 						cetakRegistrasiGagal(response);
 					} else {
 						// generate pdf :)
 						try {
-							Map<String, Object> mapParamater = generateParameterToReport(pendaftaran);
-
+							Map<String, Object> mapParamater = generateParameterToReport(listPendafatans);
+							DtPendaftaran pendaftaran = listPendafatans.get(0);
+								
 							String baseDir = getBaseDirectory(request);
 							String fileName = baseDir
 									+ GeneralReportUtil.getRptRegistrasi2014();
@@ -135,7 +144,8 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 	}
 
 	private Map<String, Object> generateParameterToReport(
-			DtPendaftaran pendaftaran) {
+			List<DtPendaftaran> listPendafatans) {
+		DtPendaftaran pendaftaran = listPendafatans.get(0); //get ke 0 untuk informasi yang umum
 		Map<String, Object> mapParamater = new HashMap<String, Object>();
 		mapParamater.put("NO_REGISTRASI", pendaftaran.getNoRegister());
 		mapParamater.put("NAMA", pendaftaran.getNama());
@@ -151,14 +161,38 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 		mapParamater.put("PENDIDIKAN", pendidikan);
 		mapParamater.put("NO_IJAZAH", pendaftaran.getNoIjazah());
 		mapParamater.put("AKREDITAS", pendaftaran.getAkreditasi());
-		mapParamater.put("JABATAN", pendaftaran.getFormasi().getRefJabatan()
-				.getNama());
+		
 		mapParamater.put("INSTANSI", pendaftaran.getFormasi().getRefInstansi()
 				.getNama());
 		Locale id = new Locale("in", "ID");
+		
+		
+		//JABATAN1
 		SimpleDateFormat formatDateTglDaftar = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", id);
-		String tglDaftar= formatDateTglDaftar.format(pendaftaran.getTglCreated());
-		mapParamater.put("TGL_DAFTAR", tglDaftar);
+		String tglDaftar1= formatDateTglDaftar.format(pendaftaran.getTglCreated());
+		mapParamater.put("JABATAN1", pendaftaran.getFormasi().getRefJabatan()
+				.getNama()+" ("+tglDaftar1+") ");
+		mapParamater.put("JABATAN2", "");
+		mapParamater.put("JABATAN3", "");
+		if(listPendafatans.size()==2){
+			//JABATAN2		
+			DtPendaftaran pendaftaran2 = listPendafatans.get(1);
+			String tglDaftar2= formatDateTglDaftar.format(pendaftaran2.getTglCreated());
+			mapParamater.put("JABATAN2", pendaftaran2.getFormasi().getRefJabatan()
+					.getNama()+" ("+tglDaftar2+") ");
+		}
+		if(listPendafatans.size()==3){
+			//JABATAN2		
+			DtPendaftaran pendaftaran2 = listPendafatans.get(1);
+			String tglDaftar2= formatDateTglDaftar.format(pendaftaran2.getTglCreated());
+			mapParamater.put("JABATAN2", pendaftaran2.getFormasi().getRefJabatan()
+					.getNama()+" ("+tglDaftar2+") ");
+			//JABATAN3		
+			DtPendaftaran pendaftaran3 = listPendafatans.get(2);
+			String tglDaftar3= formatDateTglDaftar.format(pendaftaran3.getTglCreated());
+			mapParamater.put("JABATAN3", pendaftaran3.getFormasi().getRefJabatan()
+					.getNama()+" ("+tglDaftar3+") ");
+		}
 		
 		return mapParamater;
 	}

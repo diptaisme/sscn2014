@@ -241,7 +241,7 @@ public class RegistrasiServlet extends HttpServlet {
 		int i = 0;
 		for (DtPendaftaran pendaftaran : pendaftarans) {
 			++i;
-			url += "idRegistrasi" + i + "=" + pendaftaran.getId() + "&";
+			url += "idRegistrasi" + i + "=" + pendaftaran.getId() + "&"; //cukup make idRegistrasi1
 		}
 		return url;
 	}
