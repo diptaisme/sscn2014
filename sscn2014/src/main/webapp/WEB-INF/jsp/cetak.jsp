@@ -115,9 +115,8 @@
 												class="form-submit-button style2" /> 
 										</form>  
 							    </c:when>
-							</c:choose>	
-	
-							<c:choose>
+							</c:choose>
+							<!--<c:choose>
 							    <c:when test="${idRegistrasi2 != null}">
 									<p align="center">
 										<form action="ReportServlet" method="post" target="_blank"
@@ -150,7 +149,7 @@
 												class="form-submit-button style2" /> 											  
 										</form>  
 							    </c:when>
-							</c:choose>	
+							</c:choose>	-->
                       </div>
 				  </div>
                 </article>
