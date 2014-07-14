@@ -109,7 +109,7 @@
 											  <input
 												type="hidden" name="formID" value="32063786011851" /> 
 											  <input
-												type="hidden" name="typeReport" value="rptRegistrasi" /> 
+												type="hidden" name="typeReport" value="rptRegistrasi2014" /> 
 											  <input
 												type="submit" value="Cetak Nomor Pendaftaran"
 												class="form-submit-button style2" /> 
