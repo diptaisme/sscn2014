@@ -66,15 +66,14 @@ body {
 					  <input
 						type="hidden" name="formID" value="32063786011851" /> 
 					  <input
-						type="hidden" name="typeReport" value="rptRegistrasi" /> 
+						type="hidden" name="typeReport" value="rptRegistrasi2014" /> 
 					  <input
 						type="submit" value="Cetak Nomor Pendaftaran"
 						class="form-submit-button style2" /> 
 				</form>  
 	    </c:when>
 	</c:choose>	
-	
-	<c:choose>
+	<!-- <c:choose>
 	    <c:when test="${idRegistrasi2 != null}">
 			<p align="center">
 				<form action="ReportServlet" method="post" target="_blank"
@@ -107,7 +106,7 @@ body {
 						class="form-submit-button style2" /> 					  
 				</form>  
 	    </c:when>
-	</c:choose>		
+	</c:choose>		-->
 <div>		
 		<p align="center" class="lf">&nbsp;</p>
 		<p align="center" class="lf">Hak Cipta &copy; 2013 Badan Kepegawaian Negara.
