@@ -16,7 +16,7 @@
 				}
 				$("#imgLoadingLokasi1").hide();
 				$("#imgLoadingJabatan1").hide();
-				$("#imgLoadingPendidikan1").hide();
+				$("#imgLoadingPendidikan").hide();
 				
 				jQuery.validator.addMethod("lettersonly", function(value,
 						element) {
@@ -62,7 +62,7 @@
 				});
 
 				$('#tabs').tabs();
-				getLokasi();
+				getPendidikan();
 			});
 
 	function caps(element) {
@@ -83,22 +83,30 @@
 
 	$(function() {
 		$('#lokasi_kerja1').change(function() {
-			//clear pendidikan
-			var html = '<option value="">Pilih Pendidikan</option>';
-			$('#pendidikan1').html(html);
-			//clear jabatan
-			html = '<option value="">Pilih Jabatan</option>';
-			$('#jabatan1').html(html);
-			$("#imgLoadingPendidikan1").hide();
-			$("#imgLoadingJabatan1").hide();
-			getPendidikan1();
-		});
-		$('#pendidikan1').change(function() {
 			//clear jabatan
 			var html = '<option value="">Pilih Jabatan</option>';
 			$('#jabatan1').html(html);
 			$("#imgLoadingJabatan1").hide();
 			getJabatan1();
+		});
+		$('#pendidikan').change(function() {
+			//clear lokasi
+			var html = '<option value="">Pilih Lokasi Kerja</option>';
+			$('#lokasi_kerja1').html(html);
+			$('#lokasi_kerja2').html(html);
+			$('#lokasi_kerja3').html(html);
+			$("#imgLoadingLokasi1").hide();
+			$("#imgLoadingLokasi2").hide();
+			$("#imgLoadingLokasi3").hide();
+			//clear jabatan			
+			html = '<option value="">Pilih Jabatan</option>';
+			$('#jabatan1').html(html);
+			$('#jabatan2').html(html);
+			$('#jabatan3').html(html);
+			$("#imgLoadingJabatan1").hide();
+			$("#imgLoadingJabatan2").hide();
+			$("#imgLoadingJabatan3").hide();
+			getLokasi();
 		});
 		/*$('#instansi').change(function() {
 			//clear lokasi
@@ -129,11 +137,14 @@
 		}
 	}
 	function getLokasi() {
-		$("#imgLoadingLokasi1").show();
-		$("#imgLoadingLokasi2").show();
-		$("#imgLoadingLokasi3").show();
+		if ($("#pendidikan option:selected").val() != ""){
+			$("#imgLoadingLokasi1").show();
+			$("#imgLoadingLokasi2").show();
+			$("#imgLoadingLokasi3").show();
+		}
 		var param = $('#instansi').val();
-		var url = 'cb_lokasi_by_instansi.do?instansi=' + param;
+		var param2 = $('#pendidikan').val();
+		var url = 'cb_lokasi_by_instansi_pendidikan.do?instansi=' + param+ ' &pendidikan='+param2;
 		$.ajax({
 			url : url,
 			dataType : "jsonp",
@@ -151,29 +162,26 @@
 					$('#lokasi_kerja1').html(html);
 					$('#lokasi_kerja2').html(html);
 					$('#lokasi_kerja3').html(html);
+					$("#imgLoadingLokasi1").hide();
+					$("#imgLoadingLokasi2").hide();
+					$("#imgLoadingLokasi3").hide();
 					//clear jabatan
 					html = '<option value="">Pilih Jabatan</option>';
 					$('#jabatan1').html(html);
 					$('#jabatan2').html(html);
 					$('#jabatan3').html(html);
-					//clear pendidikan
-					html = '<option value="">Pilih Pendidikan</option>';
-					$('#pendidikan1').html(html);
-					$('#pendidikan2').html(html);
-					$('#pendidikan3').html(html);
-					$("#imgLoadingLokasi1").hide();
-					$("#imgLoadingLokasi2").hide();
-					$("#imgLoadingLokasi3").hide();
+					$("#imgLoadingJabatan1").hide();
+					$("#imgLoadingJabatan2").hide();
+					$("#imgLoadingJabatan3").hide();
 				});
 			}
 		});
 	}
-	function getPendidikan1() {
-		$("#imgLoadingPendidikan1").show();
+	function getPendidikan() {
+		$("#imgLoadingPendidikan").show();
 		var param = $('#instansi').val();
-		var param2 = $('#lokasi_kerja1').val();
-		var url = 'cb_pendidikan_by_instansi_lokasi.do?instansi='
-				+ param + '&lokasi=' + param2;
+		var url = 'cb_pendidikan_by_instansi.do?instansi='
+				+ param;
 
 		$.ajax({
 			url : url,
@@ -188,13 +196,25 @@
 							+ '</option>';
 				})
 				html += '</option>';
-				$('#pendidikan1').html(html);
+				$('#pendidikan').html(html);
 
+				html = '<option value="">Pilih Lokasi Kerja</option>';
+				$('#lokasi_kerja1').html(html);
+				$('#lokasi_kerja2').html(html);
+				$('#lokasi_kerja3').html(html);				
+				
 				html = '<option value="">Pilih Jabatan</option>';
 				$('#jabatan1').html(html);
+				$('#jabatan2').html(html);
+				$('#jabatan3').html(html);
 
-				$("#imgLoadingPendidikan1").hide();
+				$("#imgLoadingPendidikan").hide();
+				$("#imgLoadingLokasi1").hide();
+				$("#imgLoadingLokasi2").hide();
+				$("#imgLoadingLokasi3").hide();
 				$("#imgLoadingJabatan1").hide();
+				$("#imgLoadingJabatan2").hide();
+				$("#imgLoadingJabatan3").hide();
 			}
 		});
 	}
@@ -203,7 +223,7 @@
 		$("#imgLoadingJabatan1").show();
 		var param = $('#instansi').val();
 		var param2 = $('#lokasi_kerja1').val();
-		var param3 = $('#pendidikan1').val();
+		var param3 = $('#pendidikan').val();
 
 		var url = 'cb_jabatan_by_instansi_lokasi_pendidikan.do?instansi='
 				+ param + '&lokasi=' + param2 + '&pendidikan=' + param3;

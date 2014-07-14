@@ -1,5 +1,6 @@
 package id.go.bkn.sscn.services.impl;
 
+import id.go.bkn.sscn.dao.DtFormasiDao;
 import id.go.bkn.sscn.dao.DtPendaftaranDao;
 import id.go.bkn.sscn.dao.MFormasiDao;
 import id.go.bkn.sscn.dao.RefInstansiDao;
@@ -44,6 +45,8 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 	private MFormasiDao mFormasiDao;
 	@Inject
 	private TabelPendaftarDao tabelPendaftarDao;
+	@Inject
+	private DtFormasiDao dtFormasiDao;
 
 	@Inject
 	private RefPendidikanDao refPendidikanDao;
@@ -318,7 +321,7 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 			String instansi = request.getParameter("instansi");
 			String jabatan1 = request.getParameter("jabatan1");
 			String lokasiKerja1 = request.getParameter("lokasi_kerja1");
-			String pendidikan1 = request.getParameter("pendidikan1"); // kode yg
+			String pendidikan1 = request.getParameter("pendidikan"); // kode yg
 																		// disimpan
 			// String pendidikan = refPendidikanDao
 			// .findByProperty("kode", request.getParameter("pendidikan"),
@@ -380,7 +383,7 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 			//formasi ke 2
 			String jabatan2 = request.getParameter("jabatan2");
 			String lokasiKerja2 = request.getParameter("lokasi_kerja2");
-			String pendidikan2 = request.getParameter("pendidikan2");
+			String pendidikan2 = request.getParameter("pendidikan");
 			if (lokasiKerja2 != null && !lokasiKerja2.equals("") && pendidikan2 != null && !pendidikan2.equals("") 
 					&& jabatan2 != null && !jabatan2.equals("")) {				
 				if(propertiesMap.size() > 0){
@@ -411,7 +414,7 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 			//formasi ke 3
 			String jabatan3 = request.getParameter("jabatan3");
 			String lokasiKerja3 = request.getParameter("lokasi_kerja3");
-			String pendidikan3 = request.getParameter("pendidikan3");
+			String pendidikan3 = request.getParameter("pendidikan");
 			if (lokasiKerja3 != null && !lokasiKerja3.equals("") && pendidikan3 != null && !pendidikan3.equals("") 
 					&& jabatan3 != null && !jabatan3.equals("")) {
 				if(propertiesMap.size() > 0){
@@ -502,5 +505,22 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 		return count;
 	}
 
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public List<RefPendidikan> getPendidikanByInstansi(String instansi) {
+		return refPendidikanDao.findPendidikanByInstansi(instansi);		
+	}
+	
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public List<RefLokasi> getLokasi(String instansi, String pendidikan) {
+		List<MFormasi> listFormasi = mFormasiDao.findByInstansiPendidikan(instansi, pendidikan);		
+		List<RefLokasi> listLokasi = new ArrayList<RefLokasi>();
+
+		for (MFormasi formasi : listFormasi) {
+			listLokasi.add(formasi.getRefLokasi());
+		}
+		return listLokasi;
+	}
 
 }

@@ -3,6 +3,7 @@ package id.go.bkn.sscn.controller;
 import id.go.bkn.sscn.model.json.JabatanJson;
 import id.go.bkn.sscn.model.json.LokasiJson;
 import id.go.bkn.sscn.model.json.PendidikanJson;
+import id.go.bkn.sscn.persistence.entities.DtFormasi;
 import id.go.bkn.sscn.persistence.entities.DtPendaftaran;
 import id.go.bkn.sscn.persistence.entities.MFormasi;
 import id.go.bkn.sscn.persistence.entities.RefInstansi;
@@ -409,5 +410,60 @@ public class RegistrasiController {
 			}
 			return "cetakPendaftaran";
 		}
+		
+		@RequestMapping(value = "/cb_pendidikan_by_instansi.do", method = RequestMethod.GET)
+		@ResponseBody
+		public String getPendidikans(@RequestParam("callback") String callBack,
+				@RequestParam("instansi") String instansi) throws Exception{
+
+			ObjectMapper objectMapper = new ObjectMapper();
+			
+			List<RefPendidikan> pendidikans = registrasiService.getPendidikanByInstansi(instansi);
+			Map<String, RefPendidikan> mapPendidikans = new Hashtable<String, RefPendidikan>();
+			for (RefPendidikan pendidikan : pendidikans) {
+				if(!mapPendidikans.containsKey(pendidikan.getKode())){
+					mapPendidikans.put(pendidikan.getKode(), pendidikan);
+				}
+			}
+			pendidikans = new ArrayList<RefPendidikan>(mapPendidikans.values());
+		
+			List<PendidikanJson> newPendidikans = new ArrayList<PendidikanJson>();
+			for (RefPendidikan pendidikan : pendidikans) {
+				newPendidikans.add(new PendidikanJson(pendidikan.getKode(),
+						pendidikan.getNama(), pendidikan.getTingkat()));
+			}
+			Map<String, List<PendidikanJson>> pendidikanMap = new HashMap<String, List<PendidikanJson>>();
+			pendidikanMap.put("pendidikans", newPendidikans);
+			
+			return objectMapper.writeValueAsString(new JSONPObject(callBack,
+					pendidikanMap));
+		}
+		
+		@RequestMapping(value = "/cb_lokasi_by_instansi_pendidikan.do", method = RequestMethod.GET)
+		@ResponseBody
+		public String getLokasis(@RequestParam("callback") String callBack,
+				@RequestParam("instansi") String instansi, @RequestParam("pendidikan") String pendidikan) throws Exception{
+			
+			ObjectMapper objectMapper = new ObjectMapper();
+			List<RefLokasi> lokasis = registrasiService.getLokasi(instansi, pendidikan);
+
+			Map<String, RefLokasi> mapLokasis = new Hashtable<String, RefLokasi>();
+			for (RefLokasi lokasi : lokasis) {
+				if(!mapLokasis.containsKey(lokasi.getKode())){
+					mapLokasis.put(lokasi.getKode(), lokasi);
+				}
+			}
+			lokasis = new ArrayList<RefLokasi>(mapLokasis.values());
+			List<LokasiJson> newLokasis = new ArrayList<LokasiJson>();
+			for (RefLokasi lokasi : lokasis) {
+				newLokasis.add(new LokasiJson(lokasi.getKode(), lokasi.getNama()));
+			}
+			Map<String, List<LokasiJson>> lokasiMap = new HashMap<String, List<LokasiJson>>();
+			lokasiMap.put("lokasis", newLokasis);
+			
+			return objectMapper.writeValueAsString(new JSONPObject(callBack,
+					lokasiMap));
+		}
+
 
 }
