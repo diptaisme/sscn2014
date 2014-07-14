@@ -522,5 +522,11 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 		}
 		return listLokasi;
 	}
+	
+	//get pendaftaran by id pendfatar
+	@Override
+	public List<DtPendaftaran> getPendaftaranByUserId(TabelPendaftar pendaftar) {
+		return dtPendaftaranDao.findByProperty("tabelPendaftar", pendaftar, null);
+	}
 
 }

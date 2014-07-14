@@ -57,4 +57,6 @@ public interface RegistrasiService {
 	List<RefPendidikan> getPendidikanByInstansi(String instansi);
 	
 	List<RefLokasi> getLokasi(String instansi, String pendidikan);
+	
+	List<DtPendaftaran> getPendaftaranByUserId(TabelPendaftar pendaftar);
 }
