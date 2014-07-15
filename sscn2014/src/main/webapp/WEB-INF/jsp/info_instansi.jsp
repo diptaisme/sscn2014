@@ -28,7 +28,7 @@
 <script type="text/javascript"
 	src="/sscn2014/resources/js/jquery-ui-1.8.16/ui/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="/sscn2014/resources/js/jquery.validate.js"></script>
-<script src="/sscn2014/resources/js/jquery-1.7.1.min.js"></script>    
+
 	<script type="text/javascript">
 		$(document).ready(	
 			function() {
@@ -113,7 +113,8 @@ label.error {
 				$("#imgLoadingJabatan").hide();
 				$("#imgLoadingPendidikan").hide();
 				
-				$('#formInfoInstansi').validate(						{
+				$('#formInfoInstansi').validate(		
+					{
 							rules : {								
 								instansi : {
 									required : true
