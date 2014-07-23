@@ -1,7 +1,7 @@
 <%@ page isErrorPage="true" %>
 <html>
 <head>
-       <title>Exceptional Even Occurred! IN in SSCN</title>
+       <title>Exceptional Even Occurred! in SSCN 2014</title>
        <style>
        body, p { font-family:Tahoma; font-size:10pt; padding-left:30; }
        pre { font-size:20pt; }

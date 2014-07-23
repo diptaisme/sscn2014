@@ -1,7 +1,7 @@
 <%@ page %>
 <html>
 <head>
-       <title>Page Not Found in SSCN</title>
+       <title>Page Not Found in SSCN 2014</title>
        <style>
        body, p { font-family:Tahoma; font-size:10pt; padding-left:30; }
        pre { font-size:20pt; }
