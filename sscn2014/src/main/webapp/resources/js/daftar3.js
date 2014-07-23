@@ -26,7 +26,7 @@
 		$("#imgLoadingPendidikan3").show();
 		var param = $('#instansi').val();
 		var param2 = $('#lokasi_kerja3').val();
-		var url = 'cb_pendidikan_by_instansi_lokasi.do?instansi='
+		var url = 'cb_pendidikan_by_instansi_lokasi.html?instansi='
 				+ param + '&lokasi=' + param2;
 
 		$.ajax({
@@ -59,7 +59,7 @@
 		var param2 = $('#lokasi_kerja3').val();
 		var param3 = $('#pendidikan').val();
 
-		var url = 'cb_jabatan_by_instansi_lokasi_pendidikan.do?instansi='
+		var url = 'cb_jabatan_by_instansi_lokasi_pendidikan.html?instansi='
 				+ param + '&lokasi=' + param2 + '&pendidikan=' + param3;
 		$.ajax({
 			url : url,
