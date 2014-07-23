@@ -4,15 +4,19 @@
 <c:set var="userLogin" value="${sessionScope.userLogin}" />
 <c:choose>
     <c:when test="${sessionScope.userLogin == null}">
-        <c:redirect url="ActionServlet?page=login" />
+        <c:redirect url="page?page=login" />
     </c:when>
 </c:choose>	
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Seleksi CPNS 2013</title>
+<title>Seleksi CPNS 2014</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+<script type = "text/javascript" >
+   function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+</script>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -33,7 +37,10 @@
 				$(this).bind('contextmenu',function(e){
 							e.preventDefault();
 						});
-				});
+				window.onbeforeunload = function(){
+					return "halaman pendaftaran is not longer available";
+				};
+			});
 	</script>
 <script>
 function kembali(){
@@ -58,11 +65,11 @@ body {
 		tombol dibawah ini.	</p>
 	<p align="center">
 	<c:choose>
-	    <c:when test="${idRegistrasi1 != null}">
-				<form action="ReportServlet" method="post" target="_blank"
-					name="formCetakRegistrasi1" id="formCetakRegistrasi1">
+	    <c:when test="${idRegistrasi!=null}">
+				<form action="report" method="post" target="_blank"
+					name="formCetakRegistrasi" id="formCetakRegistrasi">
 					<div align="center">
-					  <input type="hidden" name="idRegistrasi" value="${idRegistrasi1}" /> 
+					  <input type="hidden" name="idRegistrasi" value="${idRegistrasi}" /> 
 					  <input
 						type="hidden" name="formID" value="32063786011851" /> 
 					  <input
@@ -72,41 +79,7 @@ body {
 						class="form-submit-button style2" /> 
 				</form>  
 	    </c:when>
-	</c:choose>	
-	<!-- <c:choose>
-	    <c:when test="${idRegistrasi2 != null}">
-			<p align="center">
-				<form action="ReportServlet" method="post" target="_blank"
-					name="formCetakRegistrasi2" id="formCetakRegistrasi2">
-					<div align="center">
-					  <input type="hidden" name="idRegistrasi" value="${idRegistrasi2}" /> 
-					  <input
-						type="hidden" name="formID" value="32063786011852" /> 
-					  <input
-						type="hidden" name="typeReport" value="rptRegistrasi" /> 
-					  <input
-						type="submit" value="Cetak Nomor Pendaftaran"
-						class="form-submit-button style2" /> 
-				</form>  
-	    </c:when>
 	</c:choose>		
-	<c:choose>
-	    <c:when test="${idRegistrasi3 != null}">
-			<p align="center">
-				<form action="ReportServlet" method="post" target="_blank"
-					name="formCetakRegistrasi3" id="formCetakRegistrasi3">
-					<div align="center">
-					  <input type="hidden" name="idRegistrasi" value="${idRegistrasi3}" /> 
-					  <input
-						type="hidden" name="formID" value="32063786011853" /> 
-					  <input
-						type="hidden" name="typeReport" value="rptRegistrasi" /> 
-					  <input
-						type="submit" value="Cetak Nomor Pendaftaran"
-						class="form-submit-button style2" /> 					  
-				</form>  
-	    </c:when>
-	</c:choose>		-->
 <div>		
 		<p align="center" class="lf">&nbsp;</p>
 		<p align="center" class="lf">Hak Cipta &copy; 2013 Badan Kepegawaian Negara.

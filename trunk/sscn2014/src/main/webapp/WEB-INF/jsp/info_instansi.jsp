@@ -187,7 +187,7 @@ label.error {
 	function getLokasi() {
 		$("#imgLoadingLokasi").show();
 		var param = $('#instansi').val();
-		var url = 'cb_lokasi_by_instansi.do?instansi=' + param;
+		var url = 'cb_lokasi_by_instansi.html?instansi=' + param;
 		$.ajax({
 			url : url,
 			dataType : "jsonp",
@@ -218,7 +218,7 @@ label.error {
 		$("#imgLoadingPendidikan").show();
 		var param = $('#instansi').val();
 		var param2 = $('#lokasi_kerja').val();
-		var url = 'cb_pendidikan_by_instansi_lokasi.do?instansi='
+		var url = 'cb_pendidikan_by_instansi_lokasi.html?instansi='
 				+ param + '&lokasi=' + param2;
 
 		$.ajax({
@@ -251,7 +251,7 @@ label.error {
 		var param2 = $('#lokasi_kerja').val();
 		var param3 = $('#pendidikan').val();
 
-		var url = 'cb_jabatan_by_instansi_lokasi_pendidikan.do?instansi='
+		var url = 'cb_jabatan_by_instansi_lokasi_pendidikan.html?instansi='
 				+ param + '&lokasi=' + param2 + '&pendidikan=' + param3;
 		$.ajax({
 			url : url,
@@ -320,26 +320,22 @@ label.error {
 				</marquee>
 				<nav>
 					<ul class="sf-menu">
-						<li><a href="index.do">BERANDA</a></li>                    
-						<li><a href="contacts.do">KONTAK</a></li>
+						<li><a href="index.html">BERANDA</a></li>                    
+						<li><a href="contacts.html">KONTAK</a></li>
 						<c:choose>
 							<c:when test="${userLogin != null}">
 								<c:choose>
 									<c:when test="${userLogin.jumlahDaftar == 0}">
-										<li><a href="daftar_new.do">DAFTAR</a></li>
-									</c:when>
-									<c:when test="${userLogin.jumlahDaftar > 2}">
-										<li><a href="cetak.do">CETAK</a></li>
-									</c:when>								
-									<c:otherwise>									
-										<li><a href="daftar_new.do">DAFTAR</a></li>
-										<li><a href="cetak.do">CETAK</a></li>
-									</c:otherwise>
+									<li><a href="daftar.html">DAFTAR</a></li>
+								</c:when>
+								<c:otherwise>									
+									<li><a href="cetak.html">CETAK</a></li>
+								</c:otherwise>
 								</c:choose>									
-								<li><a href="logout.do">LOGOUT</a></li>
+								<li><a href="logout.html">LOGOUT</a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="ActionServlet?page=login">LOGIN</a></li>
+								<li><a href="login.html">LOGIN</a></li>
 							</c:otherwise>						
 						</c:choose>
 					</ul>
@@ -354,7 +350,7 @@ label.error {
 						<div class="col-10">
 							<h3>MENU UTAMA</h3>
 							<ul class="list-2">
-								<li><a href="ActionServlet?page=informasi_umum">INFORMASI
+								<li><a href="page?page=informasi_umum">INFORMASI
 										UMUM</a></li>
 								<li><a href="#">PENGUMUMAN INSTANSI</a></li>
 								<li><a href="#">PETUNJUK PENDAFTARAN</a></li>
@@ -364,7 +360,7 @@ label.error {
 						<div class="col-9">
 							<h3>FORM PENDAFTARAN</h3>
 							<p>
-								<form class="jotform-form" action="get_info_formasi.do"
+								<form class="jotform-form" action="get_info_formasi.html"
 								method="post" name="formInfoInstansi" id="formInfoInstansi"
 								accept-charset="utf-8">								
 								<div class="form-all"
@@ -445,9 +441,10 @@ label.error {
 				<div class="copyright style2">Hak Cipta © 2014 Badan
 					Kepegawaian Negara. Semua Hak Dilindungi.</div>
 				<ul class="social-list">
-					<li><a href="#"><img src="/sscn2014/resources/images/soc-icon-1.png" alt=""></a></li>
-					<li><a href="#"><img src="/sscn2014/resources/images/soc-icon-2.png" alt=""></a></li>
-					<li><a href="#"><img src="/sscn2014/resources/images/soc-icon-3.png" alt=""></a></li>
+					<li><a href="https://twitter.com/BKN_RI"><img src="/sscn2014/resources/images/soc-icon-1.png" alt=""></a></li>
+              <li><a href="https://www.facebook.com/pages/Badan-Kepegawaian-Negara-BKN-Republik-Indonesia/383767665088202"><img src="/sscn2014/resources/images/soc-icon-2.png" alt=""></a></li>
+              <li><a href="#"><img src="/sscn2014/resources/images/soc-icon-3.png" alt=""></a></li>
+			  <li><a href="http://www.quick-counter.net/" title="HTML hit counter - Quick-counter.net"><img src="http://www.quick-counter.net/aip.php?tp=bb&tz=Asia%2FJakarta" alt="HTML hit counter - Quick-counter.net" border="0" /></a></li>	
 				</ul>
 			</footer>
 		</div>

@@ -47,26 +47,22 @@
             <h1 class="logo"><a href="http://sscn.bkn.go.id">SSCN 2014</a></h1>
             <nav>
                 <ul class="sf-menu">
-                    <li><a href="index.do">BERANDA</a></li>                    
-                    <li><a href="contacts.do">KONTAK</a></li>
+                    <li><a href="index.html">BERANDA</a></li>                    
+                    <li><a href="contacts.html">KONTAK</a></li>
                     <c:choose>
 						<c:when test="${userLogin != null}">
 							<c:choose>
 								<c:when test="${userLogin.jumlahDaftar == 0}">
-									<li><a href="daftar_new.do">DAFTAR</a></li>
+									<li><a href="daftar.html">DAFTAR</a></li>
 								</c:when>
-								<c:when test="${userLogin.jumlahDaftar > 2}">
-									<li><a href="cetak.do">CETAK</a></li>
-								</c:when>								
 								<c:otherwise>									
-									<li><a href="daftar_new.do">DAFTAR</a></li>
-									<li><a href="cetak.do">CETAK</a></li>
+									<li><a href="cetak.html">CETAK</a></li>
 								</c:otherwise>
 							</c:choose>									
-							<li><a href="logout.do">LOGOUT</a></li>
+							<li><a href="logout.html">LOGOUT</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="ActionServlet?page=login">LOGIN</a></li>
+							<li><a href="login.html">LOGIN</a></li>
 						</c:otherwise>
 					</c:choose>
                 </ul>
@@ -118,6 +114,7 @@
             	<li><a href="https://twitter.com/BKN_RI"><img src="/sscn2014/resources/images/soc-icon-1.png" alt=""></a></li>
               <li><a href="https://www.facebook.com/pages/Badan-Kepegawaian-Negara-BKN-Republik-Indonesia/383767665088202"><img src="/sscn2014/resources/images/soc-icon-2.png" alt=""></a></li>
               <li><a href="#"><img src="/sscn2014/resources/images/soc-icon-3.png" alt=""></a></li>
+			  <li><a href="http://www.quick-counter.net/" title="HTML hit counter - Quick-counter.net"><img src="http://www.quick-counter.net/aip.php?tp=bb&tz=Asia%2FJakarta" alt="HTML hit counter - Quick-counter.net" border="0" /></a></li>	
             </ul>
         </footer>
     </div>

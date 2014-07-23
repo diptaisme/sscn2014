@@ -45,26 +45,22 @@
 			<marquee>Untuk tampilan terbaik diharapkan menggunakan browser <b>Mozilla Firefox 3, Safari, Google Chrome</b> atau diatasnya</marquee>
             <nav>
                 <ul class="sf-menu">
-                    <li class="current"><a href="index.do">BERANDA</a></li>                    
-                    <li><a href="contacts.do">KONTAK</a></li>                    
+                    <li class="current"><a href="index.html">BERANDA</a></li>                    
+                    <li><a href="contacts.html">KONTAK</a></li>                    
                     <c:choose>
 						<c:when test="${userLogin != null}">
 							<c:choose>
 								<c:when test="${userLogin.jumlahDaftar == 0}">
-									<li><a href="daftar_new.do">DAFTAR</a></li>
+									<li><a href="daftar.html">DAFTAR</a></li>
 								</c:when>
-								<c:when test="${userLogin.jumlahDaftar > 2}">
-									<li><a href="cetak.do">CETAK</a></li>
-								</c:when>								
 								<c:otherwise>									
-									<li><a href="daftar_new.do">DAFTAR</a></li>
-									<li><a href="cetak.do">CETAK</a></li>
+									<li><a href="cetak.html">CETAK</a></li>
 								</c:otherwise>
 							</c:choose>									
-							<li><a href="logout.do">LOGOUT</a></li>
+							<li><a href="logout.html">LOGOUT</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="ActionServlet?page=login">LOGIN</a></li>
+							<li><a href="login.html">LOGIN</a></li>
 						</c:otherwise>
 					</c:choose>
                 </ul>
@@ -79,7 +75,7 @@
                     	<div class="col-10">
                         	<h3>MENU UTAMA  </h3>
                             <ul class="list-2">
-                            	<li><a href="informasi_umum.do"><img src="/sscn2014/resources/images/info.jpg" width="243" height="37" border="0" align="left"></a></img></li>
+                            	<li><a href="informasi_umum.html"><img src="/sscn2014/resources/images/info.jpg" width="243" height="37" border="0" align="left"></a></img></li>
 					<li><a href="#"><img src="/sscn2014/resources/images/pengumuman.jpg" width="243" height="37" border="0" align="left"></a></img>												
                                 	<li><a href="#"><img src="/sscn2014/resources/images/petunjuk.jpg" width="243" height="37" border="0" align="left"></a></img>
                             </ul>
@@ -104,6 +100,7 @@
             	<li><a href="https://twitter.com/BKN_RI"><img src="/sscn2014/resources/images/soc-icon-1.png" alt=""></a></li>
               <li><a href="https://www.facebook.com/pages/Badan-Kepegawaian-Negara-BKN-Republik-Indonesia/383767665088202"><img src="/sscn2014/resources/images/soc-icon-2.png" alt=""></a></li>
               <li><a href="#"><img src="/sscn2014/resources/images/soc-icon-3.png" alt=""></a></li>
+			  <li><a href="http://www.quick-counter.net/" title="HTML hit counter - Quick-counter.net"><img src="http://www.quick-counter.net/aip.php?tp=bb&tz=Asia%2FJakarta" alt="HTML hit counter - Quick-counter.net" border="0" /></a></li>	
             </ul>
         </footer>
     </div>
