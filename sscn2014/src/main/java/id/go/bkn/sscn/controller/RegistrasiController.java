@@ -3,7 +3,6 @@ package id.go.bkn.sscn.controller;
 import id.go.bkn.sscn.model.json.JabatanJson;
 import id.go.bkn.sscn.model.json.LokasiJson;
 import id.go.bkn.sscn.model.json.PendidikanJson;
-import id.go.bkn.sscn.persistence.entities.DtFormasi;
 import id.go.bkn.sscn.persistence.entities.DtPendaftaran;
 import id.go.bkn.sscn.persistence.entities.MFormasi;
 import id.go.bkn.sscn.persistence.entities.RefInstansi;
@@ -28,16 +27,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.util.JSONPObject;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.support.HttpRequestHandlerServlet;
 
 @Controller
 public class RegistrasiController {
@@ -45,7 +41,7 @@ public class RegistrasiController {
 	private RegistrasiService registrasiService;
 
 	// belum selesai
-	@RequestMapping(value = "/registrasi.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/registrasi.html", method = RequestMethod.POST)
 	public String registrasi(@RequestParam("no_ktp") String noKtp,
 			@RequestParam("nama") String nama,
 			@RequestParam("tempat_lahir") String tempatLahir,
@@ -126,7 +122,7 @@ public class RegistrasiController {
 		return "";
 	}
 
-	@RequestMapping(value = "/ac_instansi.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/ac_instansi.html", method = RequestMethod.GET)
 	@ResponseBody
 	public String findInstansiLikeByName(
 			@RequestParam("callback") String callBack,
@@ -142,40 +138,41 @@ public class RegistrasiController {
 				resultMap));
 	}
 
-	/*@RequestMapping(value = "/cb_lokasi_by_instansi.do", method = RequestMethod.GET)
-	@ResponseBody
-	public Map<String, List<LokasiJson>> getLokasis(
-			@RequestParam("instansi") String instansi) {
-
-		List<RefLokasi> lokasis = registrasiService.getLokasi(instansi);
-		Map<String, RefLokasi> mapLokasis = new Hashtable<String, RefLokasi>();
-		for (RefLokasi lokasi : lokasis) {
-			if(!mapLokasis.containsKey(lokasi.getKode())){
-				mapLokasis.put(lokasi.getKode(), lokasi);
-			}
-		}
-		lokasis = new ArrayList<RefLokasi>(mapLokasis.values());
-		List<LokasiJson> newLokasis = new ArrayList<LokasiJson>();
-		for (RefLokasi lokasi : lokasis) {
-			// lokasi.setRefInstansi(null);http://localhost:8080/sscnServer/dashboard.dohttp://localhost:8080/sscnServer/dashboard.do
-			newLokasis.add(new LokasiJson(lokasi.getKode(), lokasi.getNama()));
-		}
-		Map<String, List<LokasiJson>> lokasiMap = new HashMap<String, List<LokasiJson>>();
-		lokasiMap.put("lokasis", newLokasis);
-
-		return lokasiMap;
-	}*/
-	@RequestMapping(value = "/cb_lokasi_by_instansi.do", method = RequestMethod.GET)
+	/*
+	 * @RequestMapping(value = "/cb_lokasi_by_instansi.do", method =
+	 * RequestMethod.GET)
+	 * 
+	 * @ResponseBody public Map<String, List<LokasiJson>> getLokasis(
+	 * 
+	 * @RequestParam("instansi") String instansi) {
+	 * 
+	 * List<RefLokasi> lokasis = registrasiService.getLokasi(instansi);
+	 * Map<String, RefLokasi> mapLokasis = new Hashtable<String, RefLokasi>();
+	 * for (RefLokasi lokasi : lokasis) {
+	 * if(!mapLokasis.containsKey(lokasi.getKode())){
+	 * mapLokasis.put(lokasi.getKode(), lokasi); } } lokasis = new
+	 * ArrayList<RefLokasi>(mapLokasis.values()); List<LokasiJson> newLokasis =
+	 * new ArrayList<LokasiJson>(); for (RefLokasi lokasi : lokasis) { //
+	 * lokasi.
+	 * setRefInstansi(null);http://localhost:8080/sscnServer/dashboard.dohttp
+	 * ://localhost:8080/sscnServer/dashboard.do newLokasis.add(new
+	 * LokasiJson(lokasi.getKode(), lokasi.getNama())); } Map<String,
+	 * List<LokasiJson>> lokasiMap = new HashMap<String, List<LokasiJson>>();
+	 * lokasiMap.put("lokasis", newLokasis);
+	 * 
+	 * return lokasiMap; }
+	 */
+	@RequestMapping(value = "/cb_lokasi_by_instansi.html", method = RequestMethod.GET)
 	@ResponseBody
 	public String getLokasis(@RequestParam("callback") String callBack,
-			@RequestParam("instansi") String instansi) throws Exception{
-		
+			@RequestParam("instansi") String instansi) throws Exception {
+
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<RefLokasi> lokasis = registrasiService.getLokasi(instansi);
 
 		Map<String, RefLokasi> mapLokasis = new Hashtable<String, RefLokasi>();
 		for (RefLokasi lokasi : lokasis) {
-			if(!mapLokasis.containsKey(lokasi.getKode())){
+			if (!mapLokasis.containsKey(lokasi.getKode())) {
 				mapLokasis.put(lokasi.getKode(), lokasi);
 			}
 		}
@@ -187,11 +184,10 @@ public class RegistrasiController {
 		}
 		Map<String, List<LokasiJson>> lokasiMap = new HashMap<String, List<LokasiJson>>();
 		lokasiMap.put("lokasis", newLokasis);
-		
+
 		return objectMapper.writeValueAsString(new JSONPObject(callBack,
 				lokasiMap));
 	}
-
 
 	/*
 	 * @RequestMapping(value = "/cb_lokasi_by_instansi.do", method =
@@ -243,28 +239,28 @@ public class RegistrasiController {
 	 * lokasiMap; }
 	 */
 
-	/*@RequestMapping(value = "/cb_jabatan_by_instansi_lokasi.do", method = RequestMethod.GET)
-	@ResponseBody
-	public Map<String, List<JabatanJson>> getJabatans(
-			@RequestParam("instansi") String instansi,
-			@RequestParam("lokasi") String lokasi) {
-
-		List<RefJabatan> jabatans = registrasiService.getJabatan(instansi,
-				lokasi);
-		List<JabatanJson> newJabatans = new ArrayList<JabatanJson>();
-		for (RefJabatan jabatan : jabatans) {
-			newJabatans.add(new JabatanJson(jabatan.getKode(), jabatan
-					.getNama()));
-		}
-		Map<String, List<JabatanJson>> lokasiMap = new HashMap<String, List<JabatanJson>>();
-		lokasiMap.put("jabatans", newJabatans);
-		return lokasiMap;
-	}*/
-	@RequestMapping(value = "/cb_jabatan_by_instansi_lokasi.do", method = RequestMethod.GET)
+	/*
+	 * @RequestMapping(value = "/cb_jabatan_by_instansi_lokasi.do", method =
+	 * RequestMethod.GET)
+	 * 
+	 * @ResponseBody public Map<String, List<JabatanJson>> getJabatans(
+	 * 
+	 * @RequestParam("instansi") String instansi,
+	 * 
+	 * @RequestParam("lokasi") String lokasi) {
+	 * 
+	 * List<RefJabatan> jabatans = registrasiService.getJabatan(instansi,
+	 * lokasi); List<JabatanJson> newJabatans = new ArrayList<JabatanJson>();
+	 * for (RefJabatan jabatan : jabatans) { newJabatans.add(new
+	 * JabatanJson(jabatan.getKode(), jabatan .getNama())); } Map<String,
+	 * List<JabatanJson>> lokasiMap = new HashMap<String, List<JabatanJson>>();
+	 * lokasiMap.put("jabatans", newJabatans); return lokasiMap; }
+	 */
+	@RequestMapping(value = "/cb_jabatan_by_instansi_lokasi.html", method = RequestMethod.GET)
 	@ResponseBody
 	public String getJabatans(@RequestParam("callback") String callBack,
 			@RequestParam("instansi") String instansi,
-			@RequestParam("lokasi") String lokasi) throws Exception{
+			@RequestParam("lokasi") String lokasi) throws Exception {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<RefJabatan> jabatans = registrasiService.getJabatan(instansi,
@@ -274,10 +270,10 @@ public class RegistrasiController {
 			newJabatans.add(new JabatanJson(jabatan.getKode(), jabatan
 					.getNama()));
 		}
-		
+
 		Map<String, List<JabatanJson>> jabatanMap = new HashMap<String, List<JabatanJson>>();
 		jabatanMap.put("jabatans", newJabatans);
-		
+
 		return objectMapper.writeValueAsString(new JSONPObject(callBack,
 				jabatanMap));
 		//
@@ -300,31 +296,34 @@ public class RegistrasiController {
 	 * pendidikanMap = new HashMap<String, List<RefPendidikan>>();
 	 * pendidikanMap.put("pendidikans", pendidikans); return pendidikanMap; }
 	 */
-	/*@RequestMapping(value = "/cb_pendidikan_by_instansi_lokasi_jabatan.do", method = RequestMethod.GET)
-	@ResponseBody
-	public Map<String, List<PendidikanJson>> getPendidikans(
-			@RequestParam("instansi") String instansi,
-			@RequestParam("lokasi") String lokasi,
-			@RequestParam("jabatan") String jabatan) {
+	/*
+	 * @RequestMapping(value = "/cb_pendidikan_by_instansi_lokasi_jabatan.do",
+	 * method = RequestMethod.GET)
+	 * 
+	 * @ResponseBody public Map<String, List<PendidikanJson>> getPendidikans(
+	 * 
+	 * @RequestParam("instansi") String instansi,
+	 * 
+	 * @RequestParam("lokasi") String lokasi,
+	 * 
+	 * @RequestParam("jabatan") String jabatan) {
+	 * 
+	 * List<RefPendidikan> pendidikans = registrasiService.getPendidikan(
+	 * instansi, lokasi, jabatan); List<PendidikanJson> newPendidikans = new
+	 * ArrayList<PendidikanJson>(); for (RefPendidikan pendidikan : pendidikans)
+	 * { newPendidikans.add(new PendidikanJson(pendidikan.getKode(),
+	 * pendidikan.getNama(), pendidikan.getTingkat())); } Map<String,
+	 * List<PendidikanJson>> pendidikanMap = new HashMap<String,
+	 * List<PendidikanJson>>(); pendidikanMap.put("pendidikans",
+	 * newPendidikans); return pendidikanMap; }
+	 */
 
-		List<RefPendidikan> pendidikans = registrasiService.getPendidikan(
-				instansi, lokasi, jabatan);
-		List<PendidikanJson> newPendidikans = new ArrayList<PendidikanJson>();
-		for (RefPendidikan pendidikan : pendidikans) {
-			newPendidikans.add(new PendidikanJson(pendidikan.getKode(),
-					pendidikan.getNama(), pendidikan.getTingkat()));
-		}
-		Map<String, List<PendidikanJson>> pendidikanMap = new HashMap<String, List<PendidikanJson>>();
-		pendidikanMap.put("pendidikans", newPendidikans);
-		return pendidikanMap;
-	}*/
-	
-	@RequestMapping(value = "/cb_pendidikan_by_instansi_lokasi_jabatan.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/cb_pendidikan_by_instansi_lokasi_jabatan.html", method = RequestMethod.GET)
 	@ResponseBody
 	public String getPendidikans(@RequestParam("callback") String callBack,
 			@RequestParam("instansi") String instansi,
 			@RequestParam("lokasi") String lokasi,
-			@RequestParam("jabatan") String jabatan) throws Exception{
+			@RequestParam("jabatan") String jabatan) throws Exception {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<RefPendidikan> pendidikans = registrasiService.getPendidikan(
@@ -336,26 +335,26 @@ public class RegistrasiController {
 		}
 		Map<String, List<PendidikanJson>> pendidikanMap = new HashMap<String, List<PendidikanJson>>();
 		pendidikanMap.put("pendidikans", newPendidikans);
-		
+
 		return objectMapper.writeValueAsString(new JSONPObject(callBack,
 				pendidikanMap));
 	}
-	
-	
-	
-	//after registrasi yang lama
-	/*@RequestMapping(value = "/afterRegistrasi.do", method = RequestMethod.GET)
-	public String afterRegistrasi(@RequestParam("idRegistrasi") String idRegistrasi, ModelMap model) {
-		model.addAttribute("idRegistrasi", idRegistrasi);
-		return "afterRegistrasi";
-	}*/
 
-	//updated
-	@RequestMapping(value = "/cb_pendidikan_by_instansi_lokasi.do", method = RequestMethod.GET)
+	// after registrasi yang lama
+	/*
+	 * @RequestMapping(value = "/afterRegistrasi.do", method =
+	 * RequestMethod.GET) public String
+	 * afterRegistrasi(@RequestParam("idRegistrasi") String idRegistrasi,
+	 * ModelMap model) { model.addAttribute("idRegistrasi", idRegistrasi);
+	 * return "afterRegistrasi"; }
+	 */
+
+	// updated
+	@RequestMapping(value = "/cb_pendidikan_by_instansi_lokasi.html", method = RequestMethod.GET)
 	@ResponseBody
 	public String getPendidikans(@RequestParam("callback") String callBack,
 			@RequestParam("instansi") String instansi,
-			@RequestParam("lokasi") String lokasi) throws Exception{
+			@RequestParam("lokasi") String lokasi) throws Exception {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<RefPendidikan> pendidikans = registrasiService.getPendidikan(
@@ -367,103 +366,99 @@ public class RegistrasiController {
 		}
 		Map<String, List<PendidikanJson>> pendidikanMap = new HashMap<String, List<PendidikanJson>>();
 		pendidikanMap.put("pendidikans", newPendidikans);
-		
+
 		return objectMapper.writeValueAsString(new JSONPObject(callBack,
 				pendidikanMap));
 	}
-	
-	
-	@RequestMapping(value = "/cb_jabatan_by_instansi_lokasi_pendidikan.do", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/cb_jabatan_by_instansi_lokasi_pendidikan.html", method = RequestMethod.GET)
 	@ResponseBody
 	public String getJabatans(@RequestParam("callback") String callBack,
 			@RequestParam("instansi") String instansi,
 			@RequestParam("lokasi") String lokasi,
-			@RequestParam("pendidikan") String pendidikan) throws Exception{
+			@RequestParam("pendidikan") String pendidikan) throws Exception {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<RefJabatan> jabatans = registrasiService.getJabatan(instansi,
-				lokasi,pendidikan);
+				lokasi, pendidikan);
 		List<JabatanJson> newJabatans = new ArrayList<JabatanJson>();
 		for (RefJabatan jabatan : jabatans) {
 			newJabatans.add(new JabatanJson(jabatan.getKode(), jabatan
 					.getNama()));
 		}
-		
+
 		Map<String, List<JabatanJson>> jabatanMap = new HashMap<String, List<JabatanJson>>();
 		jabatanMap.put("jabatans", newJabatans);
-		
+
 		return objectMapper.writeValueAsString(new JSONPObject(callBack,
 				jabatanMap));
 	}
-	
-		//after registrasi
-		@RequestMapping(value = "/cetakPendaftaran.do", method = RequestMethod.GET)
-		public String afterRegistrasi(HttpServletRequest request, ModelMap model) {
-			if(request.getParameter("idRegistrasi1")!=null){
-				model.addAttribute("idRegistrasi1", request.getParameter("idRegistrasi1"));
-			}
-			if(request.getParameter("idRegistrasi2")!=null){
-				model.addAttribute("idRegistrasi2", request.getParameter("idRegistrasi2"));
-			}
-			if(request.getParameter("idRegistrasi3")!=null){
-				model.addAttribute("idRegistrasi3", request.getParameter("idRegistrasi3"));
-			}
-			return "cetakPendaftaran";
-		}
-		
-		@RequestMapping(value = "/cb_pendidikan_by_instansi.do", method = RequestMethod.GET)
-		@ResponseBody
-		public String getPendidikans(@RequestParam("callback") String callBack,
-				@RequestParam("instansi") String instansi) throws Exception{
 
-			ObjectMapper objectMapper = new ObjectMapper();
-			
-			List<RefPendidikan> pendidikans = registrasiService.getPendidikanByInstansi(instansi);
-			Map<String, RefPendidikan> mapPendidikans = new Hashtable<String, RefPendidikan>();
-			for (RefPendidikan pendidikan : pendidikans) {
-				if(!mapPendidikans.containsKey(pendidikan.getKode())){
-					mapPendidikans.put(pendidikan.getKode(), pendidikan);
-				}
-			}
-			pendidikans = new ArrayList<RefPendidikan>(mapPendidikans.values());
-		
-			List<PendidikanJson> newPendidikans = new ArrayList<PendidikanJson>();
-			for (RefPendidikan pendidikan : pendidikans) {
-				newPendidikans.add(new PendidikanJson(pendidikan.getKode(),
-						pendidikan.getNama(), pendidikan.getTingkat()));
-			}
-			Map<String, List<PendidikanJson>> pendidikanMap = new HashMap<String, List<PendidikanJson>>();
-			pendidikanMap.put("pendidikans", newPendidikans);
-			
-			return objectMapper.writeValueAsString(new JSONPObject(callBack,
-					pendidikanMap));
+	// after registrasi
+	@RequestMapping(value = "/cetakPendaftaran.html", method = RequestMethod.GET)
+	public String afterRegistrasi(HttpServletRequest request, ModelMap model) {
+		if (request.getParameter("idRegistrasi") != null) {
+			model.addAttribute("idRegistrasi",
+					request.getParameter("idRegistrasi"));
 		}
-		
-		@RequestMapping(value = "/cb_lokasi_by_instansi_pendidikan.do", method = RequestMethod.GET)
-		@ResponseBody
-		public String getLokasis(@RequestParam("callback") String callBack,
-				@RequestParam("instansi") String instansi, @RequestParam("pendidikan") String pendidikan) throws Exception{
-			
-			ObjectMapper objectMapper = new ObjectMapper();
-			List<RefLokasi> lokasis = registrasiService.getLokasi(instansi, pendidikan);
+		return "cetakPendaftaran";
+	}
 
-			Map<String, RefLokasi> mapLokasis = new Hashtable<String, RefLokasi>();
-			for (RefLokasi lokasi : lokasis) {
-				if(!mapLokasis.containsKey(lokasi.getKode())){
-					mapLokasis.put(lokasi.getKode(), lokasi);
-				}
+	@RequestMapping(value = "/cb_pendidikan_by_instansi.html", method = RequestMethod.GET)
+	@ResponseBody
+	public String getPendidikans(@RequestParam("callback") String callBack,
+			@RequestParam("instansi") String instansi) throws Exception {
+
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		List<RefPendidikan> pendidikans = registrasiService
+				.getPendidikanByInstansi(instansi);
+		Map<String, RefPendidikan> mapPendidikans = new Hashtable<String, RefPendidikan>();
+		for (RefPendidikan pendidikan : pendidikans) {
+			if (!mapPendidikans.containsKey(pendidikan.getKode())) {
+				mapPendidikans.put(pendidikan.getKode(), pendidikan);
 			}
-			lokasis = new ArrayList<RefLokasi>(mapLokasis.values());
-			List<LokasiJson> newLokasis = new ArrayList<LokasiJson>();
-			for (RefLokasi lokasi : lokasis) {
-				newLokasis.add(new LokasiJson(lokasi.getKode(), lokasi.getNama()));
-			}
-			Map<String, List<LokasiJson>> lokasiMap = new HashMap<String, List<LokasiJson>>();
-			lokasiMap.put("lokasis", newLokasis);
-			
-			return objectMapper.writeValueAsString(new JSONPObject(callBack,
-					lokasiMap));
 		}
+		pendidikans = new ArrayList<RefPendidikan>(mapPendidikans.values());
 
+		List<PendidikanJson> newPendidikans = new ArrayList<PendidikanJson>();
+		for (RefPendidikan pendidikan : pendidikans) {
+			newPendidikans.add(new PendidikanJson(pendidikan.getKode(),
+					pendidikan.getNama(), pendidikan.getTingkat()));
+		}
+		Map<String, List<PendidikanJson>> pendidikanMap = new HashMap<String, List<PendidikanJson>>();
+		pendidikanMap.put("pendidikans", newPendidikans);
+
+		return objectMapper.writeValueAsString(new JSONPObject(callBack,
+				pendidikanMap));
+	}
+
+	@RequestMapping(value = "/cb_lokasi_by_instansi_pendidikan.html", method = RequestMethod.GET)
+	@ResponseBody
+	public String getLokasis(@RequestParam("callback") String callBack,
+			@RequestParam("instansi") String instansi,
+			@RequestParam("pendidikan") String pendidikan) throws Exception {
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		List<RefLokasi> lokasis = registrasiService.getLokasi(instansi,
+				pendidikan);
+
+		Map<String, RefLokasi> mapLokasis = new Hashtable<String, RefLokasi>();
+		for (RefLokasi lokasi : lokasis) {
+			if (!mapLokasis.containsKey(lokasi.getKode())) {
+				mapLokasis.put(lokasi.getKode(), lokasi);
+			}
+		}
+		lokasis = new ArrayList<RefLokasi>(mapLokasis.values());
+		List<LokasiJson> newLokasis = new ArrayList<LokasiJson>();
+		for (RefLokasi lokasi : lokasis) {
+			newLokasis.add(new LokasiJson(lokasi.getKode(), lokasi.getNama()));
+		}
+		Map<String, List<LokasiJson>> lokasiMap = new HashMap<String, List<LokasiJson>>();
+		lokasiMap.put("lokasis", newLokasis);
+
+		return objectMapper.writeValueAsString(new JSONPObject(callBack,
+				lokasiMap));
+	}
 
 }

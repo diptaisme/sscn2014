@@ -25,10 +25,16 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "dt_pendaftaran", catalog = Constanta.DB_CATALOG, uniqueConstraints = @UniqueConstraint(columnNames = "NO_REGISTER"))
 public class DtPendaftaran implements java.io.Serializable {
 
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private TabelPendaftar tabelPendaftar;
 	private String noNik;
 	private MFormasi formasi;
+	private MFormasi formasi2;
+	private MFormasi formasi3;
 	private String noRegister;
 	private String nama;
 	private String tmpLahir;
@@ -59,7 +65,7 @@ public class DtPendaftaran implements java.io.Serializable {
 	public DtPendaftaran() {
 	}
 
-	public DtPendaftaran(MFormasi mFormasi, String noNik, String noRegister,
+	public DtPendaftaran(MFormasi mFormasi1, String noNik, String noRegister,
 			String nama, String tmpLahir, Date tglLahir, String jnsKelamin,
 			String alamat, String kodePos, String propinsi, String kota,
 			String telpon, String email, String pendidikan, String lembaga,
@@ -67,7 +73,7 @@ public class DtPendaftaran implements java.io.Serializable {
 			Date tglTest, String lokasiTest, Date tglCreated, Date tglUpdated,
 			String userValidate, Date tglValidate, String keterangan,
 			String akreditasi, String nilaiIpk) {
-		this.formasi = mFormasi;
+		this.formasi = mFormasi1;
 		this.noNik = noNik;
 		this.noRegister = noRegister;
 		this.nama = nama;
@@ -133,12 +139,12 @@ public class DtPendaftaran implements java.io.Serializable {
 		return this.formasi;
 	}
 
-	public void setFormasi(MFormasi formasi) {
-		this.formasi = formasi;
+	public void setFormasi(MFormasi formasi1) {
+		this.formasi = formasi1;
 	}
 
-	//@Column(name = "NO_REGISTER", unique = true, nullable = false, length = 10)
-	@Column(name = "NO_REGISTER", nullable = false, length = 10)
+	@Column(name = "NO_REGISTER", unique = true, nullable = false, length = 10)
+	//@Column(name = "NO_REGISTER", nullable = false, length = 10)
 	public String getNoRegister() {
 		return this.noRegister;
 	}
@@ -375,6 +381,27 @@ public class DtPendaftaran implements java.io.Serializable {
 
 	public void setNilaiIpk(String nilaiIpk) {
 		this.nilaiIpk = nilaiIpk;
+	}
+	
+	//add formasi 2 dan 3
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "FORMASI_ID2", nullable = true)
+	public MFormasi getFormasi2() {
+		return this.formasi2;
+	}
+
+	public void setFormasi2(MFormasi formasi2) {
+		this.formasi2 = formasi2;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "FORMASI_ID3", nullable = true)
+	public MFormasi getFormasi3() {
+		return this.formasi3;
+	}
+
+	public void setFormasi3(MFormasi formasi3) {
+		this.formasi3 = formasi3;
 	}
 
 }

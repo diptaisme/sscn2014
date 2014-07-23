@@ -26,7 +26,7 @@ public class UserController {
 	@Inject
 	private UserService userService;
 
-	@RequestMapping(value = "/user.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/user.html", method = RequestMethod.GET)
 	public String index(HttpServletRequest request, ModelMap model,
 			HttpSession session) {
 		DtUser user = (DtUser) session.getAttribute("userLogin");
@@ -82,7 +82,7 @@ public class UserController {
 		return "usermanagement";
 	}
 	
-	@RequestMapping(value = "/user.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/user.html", method = RequestMethod.POST)
 	public String indexPost(HttpServletRequest request, ModelMap model,
 			HttpSession session) {
 		DtUser user = (DtUser) session.getAttribute("userLogin");
@@ -138,7 +138,7 @@ public class UserController {
 		return "usermanagement";
 	}
 
-	@RequestMapping(value = "/userSave.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/userSave.html", method = RequestMethod.POST)
 	@ResponseBody
 	public StandardJsonMessage save(@RequestParam("username") String username,
 			@RequestParam("nip") String nip, @RequestParam("name") String name,
@@ -185,7 +185,7 @@ public class UserController {
 	}
 
 	// roberto
-	@RequestMapping(value = "/userUpdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/userUpdate.html", method = RequestMethod.POST)
 	@ResponseBody
 	public StandardJsonMessage update(
 			@RequestParam("username") String username,
@@ -233,7 +233,7 @@ public class UserController {
 		return res;
 	}
 
-	@RequestMapping(value = "/userDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/userDelete.html", method = RequestMethod.POST)
 	@ResponseBody
 	public StandardJsonMessage delete(
 			@RequestParam("username") String username, HttpSession session)
@@ -307,7 +307,7 @@ public class UserController {
 		return res;
 	}
 
-	@RequestMapping(value = "/userChangePassword.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/userChangePassword.html", method = RequestMethod.POST)
 	@ResponseBody
 	public StandardJsonMessage changePassword(
 			@RequestParam("username") String username,

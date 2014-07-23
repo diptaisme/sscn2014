@@ -17,7 +17,7 @@ public class AuthenticateController {
 	@Inject
 	private AuthenticateService authenticateService;
 
-	@RequestMapping(value = "/processLogin.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/process_login.html", method = RequestMethod.POST)
 	public String login(ModelMap map, HttpSession session,
 			@RequestParam("username") String username,
 			@RequestParam("password") String password) {
@@ -44,12 +44,12 @@ public class AuthenticateController {
 		}
 	}
 
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/login.html", method = RequestMethod.GET)
 	public String login() {
 		return "login";
 	}
 
-	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/logout.html", method = RequestMethod.GET)
 	public String logout(ModelMap map, HttpSession session) {
 		if (session.getAttribute("userLogin") != null) {
 			session.removeAttribute("userLogin");

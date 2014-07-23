@@ -16,6 +16,7 @@ import com.google.common.cache.Cache;
  * Servlet Filter implementation class ValidateSalt
  */
 public class ValidateSalt implements Filter {
+	@SuppressWarnings("unchecked")
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {

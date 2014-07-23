@@ -42,7 +42,7 @@ public class PengumumanController implements HandlerExceptionResolver {
 	@Inject
 	private UserService userService;
 	
-	@RequestMapping(value = "/cb_instansi.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/cb_instansi.html", method = RequestMethod.GET)
 	@ResponseBody
 	public String getInstansis(@RequestParam("callback") String callBack) throws Exception{
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -64,7 +64,7 @@ public class PengumumanController implements HandlerExceptionResolver {
 	 * @param session
 	 * @return String
 	 */
-	@RequestMapping(value = "/pengumuman.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/pengumuman.html", method = RequestMethod.GET)
 	public String index(ModelMap model, HttpSession session,HttpServletRequest request) {
 		DtUser user = (DtUser) session.getAttribute("userLogin");
 		if (user == null) {

@@ -24,6 +24,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  * Servlet implementation class RegistrasiServlet
+ * Proses Registrasi ditangani di sini
  */
 
 public class RegistrasiServlet extends HttpServlet {
@@ -64,11 +65,11 @@ public class RegistrasiServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String remoteAddr = request.getRemoteAddr();
 		String serverName = request.getServerName();
-		System.out.println("ada yang coba submit/regis remoteAddr = "+remoteAddr+" , serverName = "+serverName);
+		System.out.println("ada yang coba submit/registrasi remoteAddr = "+remoteAddr+" , serverName = "+serverName);
 		if (request.getParameter("formID") != null) {
 			// check form id dari form Pendaftaran web SSCN
 			if (request.getParameter("formID").equals("32063786011852")) {
-				List<DtPendaftaran> pendaftarans = null;
+				DtPendaftaran pendaftaran = null;
 				TabelPendaftar pendaftar = (TabelPendaftar) request
 						.getSession().getAttribute("userLogin");
 				int jumlahDaftarAwal = pendaftar.getJumlahDaftar();
@@ -95,28 +96,29 @@ public class RegistrasiServlet extends HttpServlet {
 							cetakRegistrasiGagal(response, instansi.getNama());
 						} else {
 							// cek jumlah daftarnya user
-							if (pendaftar.getJumlahDaftar() >= 0
-									&& pendaftar.getJumlahDaftar() < 3) {
-								pendaftarans = registrasiService
-										.insertPendaftarans(request, pendaftar);
+							if (pendaftar.getJumlahDaftar() == 0) {  //sekali daftar saja
+								pendaftaran = registrasiService
+										.insertPendaftaran(request, pendaftar);
 							}
-							if (pendaftarans == null) {
+							if (pendaftaran == null) {
 								cetakRegistrasiGagal(response);
 							} else {
 								// update jumlah_daftar field di tabel pendaftar
 								int jumlahDaftar = pendaftar.getJumlahDaftar()
-										+ pendaftarans.size();
+										+ (pendaftaran.getFormasi() == null?0:1)
+										+ (pendaftaran.getFormasi2() == null?0:1)
+										+ (pendaftaran.getFormasi3() == null?0:1);
 								if (jumlahDaftar <= 3) {
 									pendaftar.setJumlahDaftar(jumlahDaftar);
 									registrasiService
 											.updatePendaftar(pendaftar);
 									// redirect ke cetak registrasi page
 									try {
-										response.sendRedirect(getParamUrlCetakPendaftaran(pendaftarans));
+										response.sendRedirect(getParamUrlCetakPendaftaran(pendaftaran));
 									} catch (Exception ex) {
 										ex.printStackTrace();
 										registrasiService
-												.deletePendaftarans(pendaftarans); // rollback
+												.deletePendaftaran(pendaftaran); // rollback
 																					// pendaftaran
 																					// manually
 										pendaftar
@@ -127,7 +129,7 @@ public class RegistrasiServlet extends HttpServlet {
 									}
 								} else {
 									registrasiService
-											.deletePendaftarans(pendaftarans); // rollback
+											.deletePendaftaran(pendaftaran); // rollback
 																				// pendaftaran
 																				// manually
 									pendaftar.setJumlahDaftar(jumlahDaftarAwal);
@@ -141,7 +143,7 @@ public class RegistrasiServlet extends HttpServlet {
 					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
-					registrasiService.deletePendaftarans(pendaftarans); // rollback
+					registrasiService.deletePendaftaran(pendaftaran); // rollback
 																		// pendaftaran
 																		// manually
 					pendaftar.setJumlahDaftar(jumlahDaftarAwal);
@@ -235,7 +237,7 @@ public class RegistrasiServlet extends HttpServlet {
 		}
 	}
 
-	// getParamUrlCetakPendaftaran
+	// getParamUrlCetakPendaftaran <list pendaftaran>
 	private String getParamUrlCetakPendaftaran(List<DtPendaftaran> pendaftarans) {
 		String url = Constanta.URL_WEB_SSCN_CETAK_REGISTRASI;
 		int i = 0;
@@ -243,6 +245,13 @@ public class RegistrasiServlet extends HttpServlet {
 			++i;
 			url += "idRegistrasi" + i + "=" + pendaftaran.getId() + "&"; //cukup make idRegistrasi1
 		}
+		return url;
+	}
+
+	// getParamUrlCetakPendaftaran <pendaftaran>
+	private String getParamUrlCetakPendaftaran(DtPendaftaran pendaftaran) {
+		String url = Constanta.URL_WEB_SSCN_CETAK_REGISTRASI;		
+		url += "idRegistrasi=" + pendaftaran.getId() + "&"; //cukup make idRegistrasi		
 		return url;
 	}
 

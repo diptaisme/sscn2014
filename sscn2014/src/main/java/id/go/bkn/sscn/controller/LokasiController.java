@@ -31,7 +31,7 @@ public class LokasiController {
 	@Inject
 	private LokasiService lokasiService;
 	
-	@RequestMapping(value = "/lokasi.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/lokasi.html", method = RequestMethod.GET)
 	public String index(ModelMap model, HttpSession session, HttpServletRequest request) {
 		DtUser user = (DtUser) session.getAttribute("userLogin");
 		if (user == null) {
@@ -76,7 +76,7 @@ public class LokasiController {
 		return "lokasimanagement";
 	}
 
-	@RequestMapping(value = "/lokasi.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/lokasi.html", method = RequestMethod.POST)
 	public String indexPost(ModelMap model, HttpSession session, HttpServletRequest request) {
 		DtUser user = (DtUser) session.getAttribute("userLogin");
 		if (user == null) {
@@ -121,7 +121,7 @@ public class LokasiController {
 		return "lokasimanagement";
 	}
 
-	@RequestMapping(value = "/findLokasiLikeByName.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/findLokasiLikeByName.html", method = RequestMethod.GET)
 	@ResponseBody
 	public String findInstansiLikeByName(
 			@RequestParam("callback") String callBack,
@@ -147,7 +147,7 @@ public class LokasiController {
 				resultMap));
 	}
 	
-	@RequestMapping(value = "/lokasiSave.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/lokasiSave.html", method = RequestMethod.POST)
 	@ResponseBody
 	public StandardJsonMessage save(@RequestParam("kode") String kode,
 			@RequestParam("nama") String name,
@@ -181,7 +181,7 @@ public class LokasiController {
 		return res;
 	}
 
-	@RequestMapping(value = "/lokasiUpdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/lokasiUpdate.html", method = RequestMethod.POST)
 	@ResponseBody
 	public StandardJsonMessage update(@RequestParam("kode") String kode,
 			@RequestParam("nama") String name, HttpSession session)
@@ -214,7 +214,7 @@ public class LokasiController {
 		return res;
 	}
 
-	@RequestMapping(value = "/lokasiDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/lokasiDelete.html", method = RequestMethod.POST)
 	@ResponseBody
 	public StandardJsonMessage delete(@RequestParam("kode") String kode,
 			HttpSession session) throws Exception {
@@ -246,7 +246,7 @@ public class LokasiController {
 		return res;
 	}
 
-	@RequestMapping(value = "/getLokasi.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/getLokasi.html", method = RequestMethod.GET)
 	@ResponseBody
 	public StandardJsonMessage getLokasi(@RequestParam("kode") String kode,
 			HttpSession session) throws Exception {

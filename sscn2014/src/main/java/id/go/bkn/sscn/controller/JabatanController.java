@@ -23,7 +23,7 @@ public class JabatanController {
 	@Inject
 	private JabatanService jabatanService;
 
-	@RequestMapping(value = "/findJabatanLikeByName.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/findJabatanLikeByName.html", method = RequestMethod.GET)
 	@ResponseBody
 	public String findInstansiLikeByName(
 			@RequestParam("callback") String callBack,
