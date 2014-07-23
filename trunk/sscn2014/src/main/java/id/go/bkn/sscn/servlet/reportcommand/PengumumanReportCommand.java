@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
 public class PengumumanReportCommand extends ReportCommand {
 
 	/**
-	 * 
+	 * pengumumanReportCommand
 	 */
 	private static final long serialVersionUID = -9108544678866277629L;
 

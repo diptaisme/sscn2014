@@ -1,5 +1,7 @@
 package id.go.bkn.sscn.servlet.test;
 
+import id.go.bkn.sscn.manager.Constanta;
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -35,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 			session.removeAttribute("isLogin");
 		}
 		session.invalidate();
-		String page = "/WEB-INF/jsp/index.jsp";
+		String page = Constanta.JSP_FOLDER+"index.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(page);
 		rd.forward(request, response);
 	}
@@ -53,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("isLogin", true);
 			}
 
-			String page = "/WEB-INF/jsp/index.jsp";
+			String page = Constanta.JSP_FOLDER+"index.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
 		} catch (Exception e) {
