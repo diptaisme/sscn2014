@@ -22,6 +22,7 @@ import com.google.common.cache.CacheBuilder;
  */
 public class LoadSalt implements Filter {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {

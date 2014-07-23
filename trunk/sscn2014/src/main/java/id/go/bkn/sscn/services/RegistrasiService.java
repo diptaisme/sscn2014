@@ -43,6 +43,8 @@ public interface RegistrasiService {
 	List<DtPendaftaran> getPendaftaransByNoRegistrasi(String noRegister);
 
 	boolean deletePendaftarans(List<DtPendaftaran> pendaftarans);
+	
+	boolean deletePendaftaran(DtPendaftaran pendaftaran);
 
 	TabelPendaftar updatePendaftar(TabelPendaftar pendaftar);
 

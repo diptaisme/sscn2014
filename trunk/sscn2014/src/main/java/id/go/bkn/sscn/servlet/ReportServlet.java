@@ -43,6 +43,7 @@ public class ReportServlet extends HttpServlet {
 		        .getRequiredWebApplicationContext(this.getServletContext()));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {		
@@ -74,7 +75,6 @@ public class ReportServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 	        throws ServletException, IOException {
-		//doPost(req, resp);
 		printIllegalAkses(resp);
 	}
 

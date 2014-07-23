@@ -1,5 +1,6 @@
 package id.go.bkn.sscn.servlet;
 
+import id.go.bkn.sscn.manager.Constanta;
 import id.go.bkn.sscn.manager.DBManager;
 
 import java.io.IOException;
@@ -38,6 +39,7 @@ public class PrintServlet extends HttpServlet {
 		try {
 			connection = DBManager.getConnection();
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			System.out.println("ex :" + ex.getMessage());
 			connection = null;
 		}
@@ -68,7 +70,7 @@ public class PrintServlet extends HttpServlet {
 			mapParamater.put("INSTANSI_KODE", instansi);
 			byteStream = JasperRunManager.runReportToPdf(
 					getServletContext().getRealPath(
-							"/WEB-INF/reports/rptPengumumanInstansi.jasper"),
+							Constanta.PATH_REPORT_PENGUMUMAN_INSTANSI),
 					mapParamater, connection);
 
 			OutputStream outStream = response.getOutputStream();
@@ -96,6 +98,7 @@ public class PrintServlet extends HttpServlet {
 				connection.close();
 			}
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			System.out.println("ex :" + ex.getMessage());
 		}
 

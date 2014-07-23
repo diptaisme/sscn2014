@@ -47,7 +47,7 @@ public class VerifikasiController {
 	@Inject
 	private PersyaratanService persyaratanServices;
 
-	@RequestMapping(value = "/verifikasi.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/verifikasi.html", method = RequestMethod.GET)
 	public String index(HttpServletRequest request, ModelMap model, HttpSession session) {
 		DtUser userLogin = (DtUser) session.getAttribute("userLogin");
 		if (userLogin == null) {
@@ -90,7 +90,7 @@ public class VerifikasiController {
 		return "verifikasi";
 	}
 	
-	@RequestMapping(value = "/verifikasi.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/verifikasi.html", method = RequestMethod.POST)
 	public String indexPost(HttpServletRequest request, ModelMap model, HttpSession session) {
 		DtUser userLogin = (DtUser) session.getAttribute("userLogin");
 		if (userLogin == null) {
@@ -164,7 +164,7 @@ public class VerifikasiController {
 		return "verifikasi";
 	}
 
-	@RequestMapping(value = "/verifikasiSave.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/verifikasiSave.html", method = RequestMethod.POST)
 	@ResponseBody
 	public StandardJsonMessage save(HttpServletRequest request, HttpSession session)
 			throws Exception {
@@ -240,7 +240,7 @@ public class VerifikasiController {
 		}
 	}
 	
-	@RequestMapping(value = "/getPendaftaran.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPendaftaran.html", method = RequestMethod.GET)
 	@ResponseBody
 	public StandardJsonMessage getUser(
 			@RequestParam("id") String id, HttpSession session)

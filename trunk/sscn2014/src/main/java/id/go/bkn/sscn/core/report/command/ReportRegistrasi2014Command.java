@@ -31,10 +31,10 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 
 	@Inject
 	private RefPendidikanDao refPendidikanDao;
-	
+
 	@Inject
 	private RegistrasiService registrasiService;
-	
+
 	@Inject
 	private PersyaratanService persyaratanService;
 	/**
@@ -46,40 +46,48 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		String formId= request.getParameter("formID"); 
-		if ( formId != null) {
+		String formId = request.getParameter("formID");
+		if (formId != null) {
 			// check form id dari form Pendaftaran web SSCN
-			if (formId.substring(0, formId.length()-1).equals("3206378601185")) {
+			if (formId.substring(0, formId.length() - 1)
+					.equals("3206378601185")) {
 				try {
-//					DtPendaftaran pendaftaran = registrasiService
-//							.getPendaftaranById(request.getParameter("idRegistrasi"));
+					// DtPendaftaran pendaftaran = registrasiService
+					// .getPendaftaranById(request.getParameter("idRegistrasi"));
 					HttpSession session = request.getSession();
 					TabelPendaftar pendaftar = null;
-					if (session.getAttribute("userLogin") != null) {						
-						pendaftar = (TabelPendaftar) session.getAttribute("userLogin");
+					if (session.getAttribute("userLogin") != null) {
+						pendaftar = (TabelPendaftar) session
+								.getAttribute("userLogin");
 					}
-					List<DtPendaftaran> listPendafatans = registrasiService.getPendaftaranByUserId(pendaftar);
-					
+					List<DtPendaftaran> listPendafatans = registrasiService
+							.getPendaftaranByUserId(pendaftar);
+
 					if (listPendafatans == null || listPendafatans.size() == 0) {
 						cetakRegistrasiGagal(response);
 					} else {
 						// generate pdf :)
 						try {
-							Map<String, Object> mapParamater = generateParameterToReport(listPendafatans);
 							DtPendaftaran pendaftaran = listPendafatans.get(0);
-								
+							Map<String, Object> mapParamater = generateParameterToReport(pendaftaran);
+
 							String baseDir = getBaseDirectory(request);
 							String fileName = baseDir
 									+ GeneralReportUtil.getRptRegistrasi2014();
 
-							List<DtPersyaratan> listPersyaratans = persyaratanService.findByProperty("refInstansi.kode", pendaftaran.getFormasi().getRefInstansi().getKode(), null, null);
-							Object[] arrResult = listPersyaratans.toArray();							
-							
-							InputStream logo = loadDefaultLogo(request);							
-							mapParamater.put("LOGO",logo);
-							
-							this.generalPDFReports(arrResult,
-									request, response, mapParamater, fileName);
+							List<DtPersyaratan> listPersyaratans = persyaratanService
+									.findByProperty(
+											"refInstansi.kode",
+											pendaftaran.getFormasi()
+													.getRefInstansi().getKode(),
+											null, null);
+							Object[] arrResult = listPersyaratans.toArray();
+
+							InputStream logo = loadDefaultLogo(request);
+							mapParamater.put("LOGO", logo);
+
+							this.generalPDFReports(arrResult, request,
+									response, mapParamater, fileName);
 						} catch (Exception ex) {
 							ex.printStackTrace();
 							cetakRegistrasiGagal(response);
@@ -99,7 +107,7 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 	}
 
 	private void cetakRegistrasiGagal(HttpServletResponse response) {
-		PrintWriter out = null; 
+		PrintWriter out = null;
 		try {
 			response.setContentType("text/html");
 			out = response.getWriter();
@@ -107,13 +115,13 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 					+ "</HEAD><BODY>Maaf proses cetak registrasi gagal. Klik <a href='"
 					+ Constanta.URL_WEB_SSCN
 					+ "'>link ini </a> untuk kembali</BODY></HTML>");
-			
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			if (out != null){
+			if (out != null) {
 				out.close();
-			}			
+			}
 		}
 	}
 
@@ -130,9 +138,9 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			if (out != null){
+			if (out != null) {
 				out.close();
-			}			
+			}
 		}
 	}
 
@@ -144,8 +152,7 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 	}
 
 	private Map<String, Object> generateParameterToReport(
-			List<DtPendaftaran> listPendafatans) {
-		DtPendaftaran pendaftaran = listPendafatans.get(0); //get ke 0 untuk informasi yang umum
+			DtPendaftaran pendaftaran) {
 		Map<String, Object> mapParamater = new HashMap<String, Object>();
 		mapParamater.put("NO_REGISTRASI", pendaftaran.getNoRegister());
 		mapParamater.put("NAMA", pendaftaran.getNama());
@@ -154,46 +161,55 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 		String tglLahir = formatDateTglLahir.format(pendaftaran.getTglLahir());
 		mapParamater.put("TTL", tempatLahir + " / " + tglLahir);
 		mapParamater.put("NIK", pendaftaran.getNoNik());
-		mapParamater.put("UNIVERSITAS", pendaftaran.getLembaga());		
+		mapParamater.put("UNIVERSITAS", pendaftaran.getLembaga());
 		String pendidikan = refPendidikanDao
-					.findByProperty("kode", pendaftaran.getPendidikan(),
-							null).get(0).getNama();
+				.findByProperty("kode", pendaftaran.getPendidikan(), null)
+				.get(0).getNama();
 		mapParamater.put("PENDIDIKAN", pendidikan);
 		mapParamater.put("NO_IJAZAH", pendaftaran.getNoIjazah());
 		mapParamater.put("AKREDITAS", pendaftaran.getAkreditasi());
-		
+
 		mapParamater.put("INSTANSI", pendaftaran.getFormasi().getRefInstansi()
 				.getNama());
 		Locale id = new Locale("in", "ID");
-		
-		
-		//JABATAN1
-		SimpleDateFormat formatDateTglDaftar = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", id);
-		String tglDaftar1= formatDateTglDaftar.format(pendaftaran.getTglCreated());
+
+		// JABATAN1
+		SimpleDateFormat formatDateTglDaftar = new SimpleDateFormat(
+				"dd-MM-yyyy HH:mm:ss", id);
+		String tglDaftar1 = formatDateTglDaftar.format(pendaftaran
+				.getTglCreated());
 		mapParamater.put("JABATAN1", pendaftaran.getFormasi().getRefJabatan()
-				.getNama()+" ("+tglDaftar1+") ");
+				.getNama()
+				+ " (" + tglDaftar1 + ") ");
 		mapParamater.put("JABATAN2", "");
 		mapParamater.put("JABATAN3", "");
-		if(listPendafatans.size()==2){
-			//JABATAN2		
-			DtPendaftaran pendaftaran2 = listPendafatans.get(1);
-			String tglDaftar2= formatDateTglDaftar.format(pendaftaran2.getTglCreated());
-			mapParamater.put("JABATAN2", pendaftaran2.getFormasi().getRefJabatan()
-					.getNama()+" ("+tglDaftar2+") ");
+		if (pendaftaran.getFormasi2() != null) {
+			// JABATAN2
+			String tglDaftar2 = formatDateTglDaftar.format(pendaftaran
+					.getTglCreated());
+			mapParamater.put("JABATAN2", pendaftaran.getFormasi2()
+					.getRefJabatan().getNama()
+					+ " (" + tglDaftar2 + ") ");
 		}
-		if(listPendafatans.size()==3){
-			//JABATAN2		
-			DtPendaftaran pendaftaran2 = listPendafatans.get(1);
-			String tglDaftar2= formatDateTglDaftar.format(pendaftaran2.getTglCreated());
-			mapParamater.put("JABATAN2", pendaftaran2.getFormasi().getRefJabatan()
-					.getNama()+" ("+tglDaftar2+") ");
-			//JABATAN3		
-			DtPendaftaran pendaftaran3 = listPendafatans.get(2);
-			String tglDaftar3= formatDateTglDaftar.format(pendaftaran3.getTglCreated());
-			mapParamater.put("JABATAN3", pendaftaran3.getFormasi().getRefJabatan()
-					.getNama()+" ("+tglDaftar3+") ");
+		if (pendaftaran.getFormasi3() != null
+				&& pendaftaran.getFormasi2() == null) {
+			// JABATAN3
+			String tglDaftar3 = formatDateTglDaftar.format(pendaftaran
+					.getTglCreated());
+			mapParamater.put("JABATAN2", pendaftaran.getFormasi3()
+					.getRefJabatan().getNama()
+					+ " (" + tglDaftar3 + ") ");
 		}
-		
+		if (pendaftaran.getFormasi3() != null
+				&& pendaftaran.getFormasi2() != null) {
+			// JABATAN3
+			String tglDaftar3 = formatDateTglDaftar.format(pendaftaran
+					.getTglCreated());
+			mapParamater.put("JABATAN3", pendaftaran.getFormasi3()
+					.getRefJabatan().getNama()
+					+ " (" + tglDaftar3 + ") ");
+		}
+
 		return mapParamater;
 	}
 

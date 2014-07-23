@@ -22,7 +22,7 @@ public class PendidikanController {
 	@Inject
 	private PendidikanService pendidikanService;
 
-	@RequestMapping(value = "/findPendidikanLikeByName.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/findPendidikanLikeByName.html", method = RequestMethod.GET)
 	@ResponseBody
 	public String findPendidikanLikeByName(
 			@RequestParam("callback") String callBack,

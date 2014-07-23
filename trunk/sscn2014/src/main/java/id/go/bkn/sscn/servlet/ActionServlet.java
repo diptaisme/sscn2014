@@ -35,7 +35,7 @@ public class ActionServlet extends HttpServlet {
 		String page = request.getParameter("page");
 		if (page.equals("index") || page.equals("login")
 				|| page.equals("logout")) {
-			page = "/WEB-INF/jsp/" + page + ".jsp";
+			page = Constanta.JSP_FOLDER + page + ".jsp";
 			try {
 				RequestDispatcher rd = request.getRequestDispatcher(page);
 				rd.forward(request, response);
