@@ -144,7 +144,7 @@
 		}
 		var param = $('#instansi').val();
 		var param2 = $('#pendidikan').val();
-		var url = 'cb_lokasi_by_instansi_pendidikan.do?instansi=' + param+ ' &pendidikan='+param2;
+		var url = 'cb_lokasi_by_instansi_pendidikan.html?instansi=' + param+ ' &pendidikan='+param2;
 		$.ajax({
 			url : url,
 			dataType : "jsonp",
@@ -180,7 +180,7 @@
 	function getPendidikan() {
 		$("#imgLoadingPendidikan").show();
 		var param = $('#instansi').val();
-		var url = 'cb_pendidikan_by_instansi.do?instansi='
+		var url = 'cb_pendidikan_by_instansi.html?instansi='
 				+ param;
 
 		$.ajax({
@@ -225,7 +225,7 @@
 		var param2 = $('#lokasi_kerja1').val();
 		var param3 = $('#pendidikan').val();
 
-		var url = 'cb_jabatan_by_instansi_lokasi_pendidikan.do?instansi='
+		var url = 'cb_jabatan_by_instansi_lokasi_pendidikan.html?instansi='
 				+ param + '&lokasi=' + param2 + '&pendidikan=' + param3;
 		$.ajax({
 			url : url,
