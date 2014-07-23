@@ -37,7 +37,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>sscn2014</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ActionServlet</servlet-name>
@@ -45,7 +45,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ActionServlet</servlet-name>
-		<url-pattern>/ActionServlet</url-pattern>
+		<url-pattern>/page</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
@@ -53,7 +53,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/LoginServlet</url-pattern>
+		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>TestServlet</servlet-name>
@@ -61,7 +61,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TestServlet</servlet-name>
-		<url-pattern>/TestServlet</url-pattern>
+		<url-pattern>/test</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ReportServlet</servlet-name>
@@ -69,7 +69,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ReportServlet</servlet-name>
-		<url-pattern>/ReportServlet</url-pattern>
+		<url-pattern>/report</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>PrintServlet</servlet-name>
@@ -89,19 +89,19 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>PrintServlet</servlet-name>
-		<url-pattern>/PrintServlet</url-pattern>
+		<url-pattern>/print</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RegistrasiServlet</servlet-name>
-		<url-pattern>/RegistrasiServlet</url-pattern>
+		<url-pattern>/registrasi</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>HasilServlet</servlet-name>
-		<url-pattern>/HasilServlet</url-pattern>
+		<url-pattern>/hasil</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>EmailServlet</servlet-name>
-		<url-pattern>/EmailServlet</url-pattern>
+		<url-pattern>/email</url-pattern>
 	</servlet-mapping>
 	<filter>
 		<filter-name>hibernateFilter</filter-name>
@@ -128,7 +128,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>validateSalt</filter-name>
-		<url-pattern>/RegistrasiServlet</url-pattern>
+		<url-pattern>/registrasi</url-pattern>
 	</filter-mapping>
 	<error-page>
 		<error-code>404</error-code>
