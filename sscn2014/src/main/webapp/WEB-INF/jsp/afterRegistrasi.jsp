@@ -5,13 +5,13 @@
 <c:set var="userLogin" value="${sessionScope.userLogin}" />
 <c:choose>
     <c:when test="${sessionScope.userLogin == null}">
-        <c:redirect url="ActionServlet?page=login" />
+        <c:redirect url="page?page=login" />
     </c:when>
 </c:choose>	
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Seleksi CPNS 2013</title>
+<title>Seleksi CPNS 2014</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <script type="text/javascript">
@@ -58,7 +58,7 @@ body {
 		anda lamar. <br> Silahkan melakukan Cetak Nomor Pendaftaran pada
 		tombol dibawah ini.	</p>
 	<p align="center">
-	<form action="ReportServlet" method="post" target="_blank"
+	<form action="report" method="post" target="_blank"
 		name="formCetakRegistrasi" id="formCetakRegistrasi">
 		<div align="center">
 		  <input type="hidden" name="idRegistrasi" value="${idRegistrasi}" /> 

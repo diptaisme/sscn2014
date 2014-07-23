@@ -6,7 +6,7 @@
 <c:choose>
 	<c:when test="${userLogin != null}">		
 		<%
-		    String redirectURL = "ActionServlet?page=index";
+		    String redirectURL = "page?page=index";
 		    response.sendRedirect(redirectURL);
 		%>
 	</c:when>
@@ -30,7 +30,7 @@
 				$(this).bind('contextmenu',function(e){
 							e.preventDefault();
 						});
-				});
+				});				
 	</script>		
 <!--[if lt IE 8]>
    <div style=' clear: both; text-align:center; position: relative;'>
@@ -59,9 +59,9 @@
 			<marquee>Untuk tampilan terbaik diharapkan menggunakan browser <b>Mozilla Firefox 3, Safari, Google Chrome</b> atau diatasnya</marquee>
             <nav>
                 <ul class="sf-menu">                    
-                    <li><a href="ActionServlet?page=index">BERANDA</a></li>                    
-                    <li><a href="ActionServlet?page=contacts">KONTAK</a></li>
-		      <li class="current"><a href="ActionServlet?page=login">LOGIN</a></li>					
+                    <li><a href="index.html">BERANDA</a></li>                    
+                    <li><a href="contacts.html">KONTAK</a></li>
+		      <li class="current"><a href="login.html">LOGIN</a></li>					
                 </ul>
             </nav>
             <div class="clear"></div>
@@ -72,11 +72,11 @@
             	<article class="a2">
                 	<div class="wrapper">                    	
 					  <div class="col-9">
-					  	<form action="processLogin.do" method="post">
+					  	<form action="process_login.html" method="post">
 								<p align="center">Username: <input type="text" name="username" id="username"></p>
 								<p align="center">Password: <input type="password" name="password" id="password"></p>
 								<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="button" value="reset" /> <input type="submit" value="submit" /></p>        
+								<input type="submit" value="LOGIN" /></p>        
         				</form>
                       </div>
 				  </div>
@@ -95,6 +95,7 @@
             	<li><a href="https://twitter.com/BKN_RI"><img src="/sscn2014/resources/images/soc-icon-1.png" alt=""></a></li>
               <li><a href="https://www.facebook.com/pages/Badan-Kepegawaian-Negara-BKN-Republik-Indonesia/383767665088202"><img src="/sscn2014/resources/images/soc-icon-2.png" alt=""></a></li>
                 <li><a href="#"><img src="/sscn2014/resources/images/soc-icon-3.png" alt=""></a></li>
+				<li><a href="http://www.quick-counter.net/" title="HTML hit counter - Quick-counter.net"><img src="http://www.quick-counter.net/aip.php?tp=bb&tz=Asia%2FJakarta" alt="HTML hit counter - Quick-counter.net" border="0" /></a></li>	
             </ul>
         </footer>
     </div>
