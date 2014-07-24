@@ -89,6 +89,9 @@ $(document).ready(
 								universitas : {
 									required : true
 								},
+								tahun_lulus: {
+									required : true
+								},
 								no_ijazah : {
 									required : true
 								},
@@ -123,7 +126,7 @@ $(document).ready(
 												'error');
 							},
 							success : function(element) {
-								element.text('OK!').addClass('valid').closest(
+								element.text('').addClass('valid').closest(
 										'.control-group').removeClass('error')
 										.addClass('success');
 							},
@@ -306,13 +309,13 @@ label.error {
                 <p>
                     <label>NIK
                     </label>
-                    <input type="number" class="form-input" maxlength="18" style="width: 170px"
+                    <input type="number" class="form-input" maxlength="18" style="width: 150px"
 														data-type="input-textbox" id="no_nik" name="no_nik" value="${userLogin.nik}"
 														title="NIK / Passport" size="18" readonly/>
                 <p>
 				<label>Nama
                   </label>
-                    <input type="text" class=" form-textbox" readonly value="${userLogin.nama}" style="width: 220px"
+                    <input type="text" class=" form-textbox" readonly value="${userLogin.nama}" style="width: 200px"
 														title="Nama Lengkap" data-type="input-textbox" id="nama"
 														name="nama" size="35" onKeyUp="caps(this)" />
 				<label>Jenis Kelamin 
@@ -334,7 +337,7 @@ label.error {
                     <label>Tempat Lahir 
                     </label>
                     <input type="text" class=" form-textbox" readonly value="${userLogin.tempatLahir}"
-														title="Tempat Lahir" data-type="input-textbox" style="width: 300px"
+														title="Tempat Lahir" data-type="input-textbox" style="width: 280px"
 														id="tempat_lahir" name="tempat_lahir" size="40"
 														onKeyUp="caps(this)" />
                     <label>Tgl.Lahir 
@@ -347,7 +350,7 @@ label.error {
                     <label>Alamat
                     </label>
                     <input
-																	title="Alamat" size="50" style="width: 500px"
+																	title="Alamat" size="50" style="width: 400px"
 																	class="form-textbox form-address-line" type="text"
 																	name="alamat" id="alamat" onKeyUp="caps(this)" />
                 </p>
@@ -355,7 +358,7 @@ label.error {
                     <label>Kota
                     </label>
                     <input
-																	title="Kota" class="form-textbox form-address-city" style="width: 400px"
+																	title="Kota" class="form-textbox form-address-city" style="width: 390px"
 																	type="text" name="kota" id="input_8_city" size="21"
 																	onKeyUp="caps(this)" />
                 </p>
@@ -363,7 +366,7 @@ label.error {
                     <label>Propinsi
                     </label>
                     <input
-																	title="Propinsi" style="width: 400px"
+																	title="Propinsi" style="width: 390px"
 																	class="form-textbox form-address-state" type="text"
 																	name="propinsi" id="input_8_state" size="22"
 																	onKeyUp="caps(this)" />
@@ -386,18 +389,27 @@ label.error {
                     <label>Email
                     </label>
                     <input type="email" class=" form-textbox validate[Email]" title="Email" id="email" name="email" size="35" 
-					style="width: 400px"/>
+					style="width: 350px"/>
                 </p>
 				<p>
                     <label>Asal Institusi Pend. 
                     </label>
                     <input type="text" class=" form-textbox" title="Institusi Pendidikan" data-type="input-textbox" id="universitas" name="universitas"
-style="width: 400px" size="50" onKeyUp="caps(this)" />
+style="width: 390px" size="50" onKeyUp="caps(this)" />
                 </p>
+				<p>
+                    <label>Tahun Lulus
+                    </label>
+				<input
+																	title="Tahun Lulus"
+																	class="form-textbox form-address-postal" type="number"
+																	name="tahun_lulus" id="tahun_lulus" size="4"
+																	maxlength="4" />
+				</p>
 				<p>
                     <label>No.Ijazah
                     </label>
-                    <input type="text" class=" form-textbox" title="No Ijazah" style="width: 300px"
+                    <input type="text" class=" form-textbox" title="No Ijazah" style="width: 280px"
 														data-type="input-textbox" id="no_ijazah" name="no_ijazah"
 														size="30" maxlength="30" />
                 </p>
