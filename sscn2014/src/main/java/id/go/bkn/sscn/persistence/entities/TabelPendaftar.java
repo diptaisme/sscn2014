@@ -129,7 +129,7 @@ public class TabelPendaftar implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_instansi", nullable = false)
+	@JoinColumn(name = "ref_instansi", nullable = false)
 	public RefInstansi getRefInstansi() {
 		return this.refInstansi;
 	}

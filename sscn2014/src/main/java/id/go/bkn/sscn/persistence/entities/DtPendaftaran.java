@@ -61,7 +61,8 @@ public class DtPendaftaran implements java.io.Serializable {
 	private String keterangan;
 	private String akreditasi;
 	private String nilaiIpk;
-
+	private int tahunLulus;
+	
 	public DtPendaftaran() {
 	}
 
@@ -402,6 +403,15 @@ public class DtPendaftaran implements java.io.Serializable {
 
 	public void setFormasi3(MFormasi formasi3) {
 		this.formasi3 = formasi3;
+	}
+	
+	@Column(name = "TAHUN_LULUS", nullable = false, length = 4)
+	public int getTahunLulus() {
+		return this.tahunLulus;
+	}
+
+	public void setTahunLulus(int tahunLulus) {
+		this.tahunLulus = tahunLulus;
 	}
 
 }
