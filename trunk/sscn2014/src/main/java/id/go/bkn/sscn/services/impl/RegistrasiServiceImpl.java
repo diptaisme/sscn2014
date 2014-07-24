@@ -181,6 +181,7 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 
 			String lembaga = request.getParameter("universitas"); // lembaga =
 																	// universitas
+			int tahunLulus = Integer.parseInt(request.getParameter("tahun_lulus"));
 			String akreditasi = request.getParameter("akreditasi");
 			String nilaiIPK = request.getParameter("nilai_ipk");
 			// memang tidak diisi
@@ -202,6 +203,7 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 					pendidikan1, lembaga, noIjazah, status, regStatus,
 					noPeserta, tglTest, lokasiTest, tglCreated, tglUpdated,
 					userValidate, tglValidate, keterangan, akreditasi, nilaiIPK);
+			pendaftaran.setTahunLulus(tahunLulus); //set tahun lulus
 			if (pendaftar != null) {
 				pendaftaran.setTabelPendaftar(pendaftar);
 			}
