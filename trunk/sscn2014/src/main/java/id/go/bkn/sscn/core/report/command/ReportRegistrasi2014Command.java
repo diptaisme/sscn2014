@@ -155,6 +155,7 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 			DtPendaftaran pendaftaran) {
 		Map<String, Object> mapParamater = new HashMap<String, Object>();
 		mapParamater.put("NO_REGISTRASI", pendaftaran.getNoRegister());
+		mapParamater.put("BARCODE", pendaftaran.getNoRegister());
 		mapParamater.put("NAMA", pendaftaran.getNama());
 		String tempatLahir = pendaftaran.getTmpLahir();
 		SimpleDateFormat formatDateTglLahir = new SimpleDateFormat("dd-MM-yyyy");

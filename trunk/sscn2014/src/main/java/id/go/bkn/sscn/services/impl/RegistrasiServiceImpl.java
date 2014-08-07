@@ -186,7 +186,7 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 			String nilaiIPK = request.getParameter("nilai_ipk");
 			// memang tidak diisi
 			Date tglTest = new Date();
-			String lokasiTest = "";
+			String lokasiTest = request.getParameter("lokasi_test");
 			Date tglCreated = new Date();
 			Date tglUpdated = new Date();
 			String userValidate = "";
