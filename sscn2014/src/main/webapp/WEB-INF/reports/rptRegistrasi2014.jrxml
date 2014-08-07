@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptRegistrasi2014" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="144"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="NO_REGISTRASI" class="java.lang.String"/>
 	<parameter name="NAMA" class="java.lang.String"/>
@@ -16,6 +16,7 @@
 	<parameter name="LOGO" class="java.io.InputStream"/>
 	<parameter name="JABATAN2" class="java.lang.String"/>
 	<parameter name="JABATAN3" class="java.lang.String"/>
+	<parameter name="BARCODE" class="java.lang.String"/>
 	<field name="syarat" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -177,13 +178,6 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="147" y="38" width="408" height="30"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" size="22" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{NO_REGISTRASI}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="147" y="68" width="408" height="25"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="15" isBold="true"/>
@@ -280,6 +274,19 @@
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{JABATAN3}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="287" y="37" width="173" height="41"/>
+				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$P{BARCODE}]]></jr:codeExpression>
+				</jr:Code128>
+			</componentElement>
+			<textField>
+				<reportElement x="147" y="38" width="247" height="30"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NO_REGISTRASI}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

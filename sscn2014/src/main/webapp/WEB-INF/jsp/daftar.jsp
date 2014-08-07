@@ -118,6 +118,10 @@ $(document).ready(
 								},
 								pendidikan : {
 									required : true
+								},
+								lokasi_test : {
+									required : true,
+									lettersonly : true
 								}
 							},
 							highlight : function(element) {
@@ -164,9 +168,9 @@ $(document).ready(
 									$("div#dialog-nama").html(data);
 									data = "TTL : " + $("input#tempat_lahir").val() + " , "+$("input#datepickerTglLahir").val();
 									$("div#dialog-ttl").html(data);
-									data = "Telpon: " + $("input#telpon").val()+ " , Email : " + $("input#email").val();			
+									data = "Telpon : " + $("input#telpon").val()+ " , Email : " + $("input#email").val();			
 									$("div#dialog-email").html(data);								
-									data = "Instansi: ${userLogin.refInstansi.nama} <BR><BR> "+								
+									data = "Instansi : ${userLogin.refInstansi.nama} <BR>Lokasi Test : "+$("input#lokasi_test").val()+" <BR><BR> "+								
 									"Pilihan 1 Lokasi : " + $("#lokasi_kerja1 option:selected").text()
 									 + " , Pendidikan : " + $("#pendidikan option:selected").text() + " , Jabatan : " + $("#jabatan1 option:selected").text();
 									$("div#dialog-formasi1").html(data);								
@@ -497,6 +501,12 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
 														<option value="">Pilih jabatan</option>
 				  </select> <img id="imgLoadingJabatan3" src="/sscn2014/resources/images/loading.png" />
                 </p>
+				<p>
+                    <label>Lokasi Test                    </label>
+                    <input type="text" class=" form-textbox" title="Lokasi Test"
+														data-type="input-textbox" id="lokasi_test"
+														name="lokasi_test" style="width: 300px" onKeyUp="caps(this)" /> <em>Pilih untuk lokasi test yang diharapkan</em>
+                </p>
 				</fieldset>
 										
 											
@@ -571,7 +581,7 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
 					<div id="dialog-email"></div>
 					<div id="dialog-formasi1"></div>
 					<div id="dialog-formasi2"></div>
-					<div id="dialog-formasi3"></div>
+					<div id="dialog-formasi3"></div>					
 					<br>
 					<p>Klik tombol Submit Form jika data anda sudah benar</p>
 					<p>Untuk kembali klik Cancel
