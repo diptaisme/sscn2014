@@ -49,7 +49,7 @@ public class ActionController {
 	public String informasi_umum(ModelMap map, ModelMap model,
 			HttpSession session) {
 		return "informasi_umum";
-	}
+	}	
 	
 	@RequestMapping(value = "/alur.html", method = RequestMethod.GET)
 	public String alur(ModelMap map, ModelMap model,
@@ -131,6 +131,12 @@ public class ActionController {
 		model.addAttribute("countFormasiInPendaftaran", countFormasiInPendaftaran);
 		
 		return "info_instansi";
+	}
+	
+	@RequestMapping(value = "/pengumuman_instansi.html", method = RequestMethod.GET)
+	public String pengumuman_instansi(ModelMap map, ModelMap model,
+			HttpSession session) {
+		return "pengumuman_instansi";
 	}
 	
 }
