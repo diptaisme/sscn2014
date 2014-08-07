@@ -318,7 +318,7 @@ label.error {
                     <input type="text" class=" form-textbox" readonly value="${userLogin.nama}" style="width: 200px"
 														title="Nama Lengkap" data-type="input-textbox" id="nama"
 														name="nama" size="35" onKeyUp="caps(this)" />
-				<label>Jenis Kelamin 
+		  <p>		<label>Jenis Kelamin 
                   </label>
                     <select id="jenis_kelamin" name="jenis_kelamin"
 														title="Jenis Kelamin">														
@@ -334,17 +334,19 @@ label.error {
 
                 </p>
                 <p>
-                    <label>Tempat Lahir 
+                    <label>Tgl.Lahir 
+                    </label>
+                    <input type="text" name="datepickerTglLahir" value="<fmt:formatDate pattern='dd-MM-yyyy' value='${userLogin.tglLahir}' />"
+														title="Tanggal Lahir" size="10" id="datepickerTglLahir"
+														readonly="readonly" /> 
+		  <p>
+		      <label>Tempat Lahir 
                     </label>
                     <input type="text" class=" form-textbox" readonly value="${userLogin.tempatLahir}"
 														title="Tempat Lahir" data-type="input-textbox" style="width: 280px"
 														id="tempat_lahir" name="tempat_lahir" size="40"
 														onKeyUp="caps(this)" />
-                    <label>Tgl.Lahir 
-                    </label>
-                    <input type="text" name="datepickerTglLahir" value="<fmt:formatDate pattern='dd-MM-yyyy' value='${userLogin.tglLahir}' />"
-														title="Tanggal Lahir" size="10" id="datepickerTglLahir"
-														readonly="readonly" /> <label> dd-mm-yyyy</label>			
+                    			
                 </p>
 				<p>
                     <label>Alamat
