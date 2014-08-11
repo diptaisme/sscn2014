@@ -276,7 +276,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{JABATAN3}]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement x="287" y="37" width="173" height="41"/>
+				<reportElement x="288" y="33" width="173" height="41"/>
 				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
 					<jr:codeExpression><![CDATA[$P{BARCODE}]]></jr:codeExpression>
 				</jr:Code128>
