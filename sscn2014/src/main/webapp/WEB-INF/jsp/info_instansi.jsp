@@ -350,9 +350,8 @@ label.error {
 						<div class="col-10">
 							<h3>MENU UTAMA</h3>
 							<ul class="list-2">
-								<li><a href="page?page=informasi_umum">INFORMASI
-										UMUM</a></li>
-								<li><a href="#">PENGUMUMAN INSTANSI</a></li>
+								<li><a href="informasi_umum.html"><img src="/sscn2014/resources/images/info.jpg" width="243" height="37" border="0" align="left"></a></img></li>
+								<li><a href="pengumuman_instansi.html"><img src="/sscn2014/resources/images/pengumuman.jpg" width="243" height="37" border="0" align="left"></a></img></li>												
 								<li><a href="#">PETUNJUK PENDAFTARAN</a></li>
 							</ul>
 
