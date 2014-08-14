@@ -309,7 +309,7 @@ public class DtPendaftaran implements java.io.Serializable {
 		this.tglTest = tglTest;
 	}
 
-	@Column(name = "LOKASI_TEST", nullable = false, length = 256)
+	@Column(name = "LOKASI_TEST", nullable = true, length = 8)
 	public String getLokasiTest() {
 		return this.lokasiTest;
 	}
