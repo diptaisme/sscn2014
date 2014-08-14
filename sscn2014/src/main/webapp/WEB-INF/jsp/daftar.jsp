@@ -120,8 +120,7 @@ $(document).ready(
 									required : true
 								},
 								lokasi_test : {
-									required : true,
-									lettersonly : true
+									required : true
 								}
 							},
 							highlight : function(element) {
@@ -170,7 +169,7 @@ $(document).ready(
 									$("div#dialog-ttl").html(data);
 									data = "Telpon : " + $("input#telpon").val()+ " , Email : " + $("input#email").val();			
 									$("div#dialog-email").html(data);								
-									data = "Instansi : ${userLogin.refInstansi.nama} <BR>Lokasi Test : "+$("input#lokasi_test").val()+" <BR><BR> "+								
+									data = "Instansi : ${userLogin.refInstansi.nama} <BR>Lokasi Test : "+ $("#lokasi_test option:selected").text()+" <BR><BR> "+								
 									"Pilihan 1 Lokasi : " + $("#lokasi_kerja1 option:selected").text()
 									 + " , Pendidikan : " + $("#pendidikan option:selected").text() + " , Jabatan : " + $("#jabatan1 option:selected").text();
 									$("div#dialog-formasi1").html(data);								
@@ -503,13 +502,14 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
                 </p>
 				<p>
                     <label>Lokasi Test                    </label>
-                    <input type="text" class=" form-textbox" title="Lokasi Test"
-														data-type="input-textbox" id="lokasi_test"
-														name="lokasi_test" style="width: 300px" onKeyUp="caps(this)" /> <em>Pilih untuk lokasi test yang diharapkan</em>
+                    <select class="form-dropdown" style="width: 500px"
+														title="Lokasi Test" id="lokasi_test" name="lokasi_test">
+														<option value="">Pilih lokasi test</option>
+				  </select> <em>Pilih untuk lokasi test yang diharapkan</em>
                 </p>
 				</fieldset>
 										
-											
+												
 											
 
 

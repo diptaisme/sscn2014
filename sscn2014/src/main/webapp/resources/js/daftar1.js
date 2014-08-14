@@ -63,6 +63,7 @@
 
 				$('#tabs').tabs();
 				getPendidikan();
+				getLokasiTest();
 			});
 
 	function caps(element) {
@@ -242,6 +243,29 @@
 				html += '</option>';
 				$('#jabatan1').html(html);
 				$("#imgLoadingJabatan1").hide();
+			}
+		});
+	}
+	
+	function getLokasiTest() {
+		var param = $('#instansi').val();
+		var url = 'cb_lokasi_test_by_instansi.html?instansi='
+				+ param;
+
+		$.ajax({
+			url : url,
+			dataType : "jsonp",
+			data : {
+				featureClass : "P"
+			},
+			success : function(data) {
+				var html = '<option value="">Pilih Lokasi Test</option>';
+				$.map(data.lokasiTests, function(item) {
+					html += '<option value="' + item.kode + '">' + item.nama
+							+ '</option>';
+				})
+				html += '</option>';
+				$('#lokasi_test').html(html);				
 			}
 		});
 	}
