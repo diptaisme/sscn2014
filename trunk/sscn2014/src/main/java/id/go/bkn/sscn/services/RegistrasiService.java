@@ -5,6 +5,7 @@ import id.go.bkn.sscn.persistence.entities.MFormasi;
 import id.go.bkn.sscn.persistence.entities.RefInstansi;
 import id.go.bkn.sscn.persistence.entities.RefJabatan;
 import id.go.bkn.sscn.persistence.entities.RefLokasi;
+import id.go.bkn.sscn.persistence.entities.RefLokasiTest;
 import id.go.bkn.sscn.persistence.entities.RefPendidikan;
 import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
 
@@ -61,4 +62,6 @@ public interface RegistrasiService {
 	List<RefLokasi> getLokasi(String instansi, String pendidikan);
 	
 	List<DtPendaftaran> getPendaftaranByUserId(TabelPendaftar pendaftar);
+	
+	List<RefLokasiTest> getLokasiTestByInstansi(String instansi);
 }

@@ -5,6 +5,7 @@ import id.go.bkn.sscn.dao.DtPendaftaranDao;
 import id.go.bkn.sscn.dao.MFormasiDao;
 import id.go.bkn.sscn.dao.RefInstansiDao;
 import id.go.bkn.sscn.dao.RefLokasiDao;
+import id.go.bkn.sscn.dao.RefLokasiTestDao;
 import id.go.bkn.sscn.dao.RefPendidikanDao;
 import id.go.bkn.sscn.dao.TabelPendaftarDao;
 import id.go.bkn.sscn.persistence.entities.DtFormasi;
@@ -13,6 +14,7 @@ import id.go.bkn.sscn.persistence.entities.MFormasi;
 import id.go.bkn.sscn.persistence.entities.RefInstansi;
 import id.go.bkn.sscn.persistence.entities.RefJabatan;
 import id.go.bkn.sscn.persistence.entities.RefLokasi;
+import id.go.bkn.sscn.persistence.entities.RefLokasiTest;
 import id.go.bkn.sscn.persistence.entities.RefPendidikan;
 import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
 import id.go.bkn.sscn.services.RegistrasiService;
@@ -50,6 +52,9 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 
 	@Inject
 	private RefPendidikanDao refPendidikanDao;
+	
+	@Inject
+	private RefLokasiTestDao refLokasiTestDao;
 
 	@Transactional(readOnly = false)
 	public DtPendaftaran insertNewRegistrasi(DtPendaftaran dtPendaftaran) {
@@ -571,6 +576,13 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public List<DtPendaftaran> getPendaftaranByUserId(TabelPendaftar pendaftar) {
 		return dtPendaftaranDao.findByProperty("tabelPendaftar", pendaftar, null);
+	}
+	
+	//get lokasi test by instansi
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public List<RefLokasiTest> getLokasiTestByInstansi(String instansi) {
+		return refLokasiTestDao.findLokasiTestByInstansi(instansi);		
 	}
 
 }

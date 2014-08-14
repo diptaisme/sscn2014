@@ -2,12 +2,14 @@ package id.go.bkn.sscn.controller;
 
 import id.go.bkn.sscn.model.json.JabatanJson;
 import id.go.bkn.sscn.model.json.LokasiJson;
+import id.go.bkn.sscn.model.json.LokasiTestJson;
 import id.go.bkn.sscn.model.json.PendidikanJson;
 import id.go.bkn.sscn.persistence.entities.DtPendaftaran;
 import id.go.bkn.sscn.persistence.entities.MFormasi;
 import id.go.bkn.sscn.persistence.entities.RefInstansi;
 import id.go.bkn.sscn.persistence.entities.RefJabatan;
 import id.go.bkn.sscn.persistence.entities.RefLokasi;
+import id.go.bkn.sscn.persistence.entities.RefLokasiTest;
 import id.go.bkn.sscn.persistence.entities.RefPendidikan;
 import id.go.bkn.sscn.services.RegistrasiService;
 
@@ -459,6 +461,29 @@ public class RegistrasiController {
 
 		return objectMapper.writeValueAsString(new JSONPObject(callBack,
 				lokasiMap));
+	}
+
+	@RequestMapping(value = "/cb_lokasi_test_by_instansi.html", method = RequestMethod.GET)
+	@ResponseBody
+	public String getLokasiTests(@RequestParam("callback") String callBack,
+			@RequestParam("instansi") String instansi) throws Exception {
+
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		List<RefLokasiTest> lokasiTests = registrasiService
+				.getLokasiTestByInstansi(instansi);
+
+		List<LokasiTestJson> newPendidikans = new ArrayList<LokasiTestJson>();
+		for (RefLokasiTest lokasiTest : lokasiTests) {
+			newPendidikans.add(new LokasiTestJson(lokasiTest.getKode(),
+					lokasiTest.getNama(), lokasiTest.getStatus(), lokasiTest
+							.getInstansi()));
+		}
+		Map<String, List<LokasiTestJson>> pendidikanMap = new HashMap<String, List<LokasiTestJson>>();
+		pendidikanMap.put("lokasiTests", newPendidikans);
+
+		return objectMapper.writeValueAsString(new JSONPObject(callBack,
+				pendidikanMap));
 	}
 
 }
