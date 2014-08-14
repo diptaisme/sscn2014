@@ -1,6 +1,7 @@
 package id.go.bkn.sscn.core.report.command;
 
 import id.go.bkn.sscn.core.report.GeneralReportUtil;
+import id.go.bkn.sscn.dao.RefLokasiTestDao;
 import id.go.bkn.sscn.dao.RefPendidikanDao;
 import id.go.bkn.sscn.manager.Constanta;
 import id.go.bkn.sscn.persistence.entities.DtPendaftaran;
@@ -37,6 +38,9 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 
 	@Inject
 	private PersyaratanService persyaratanService;
+	
+	@Inject
+	private RefLokasiTestDao refLokasiTestDao;
 	/**
 	 * serialVersionUID
 	 */
@@ -169,6 +173,12 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 		mapParamater.put("PENDIDIKAN", pendidikan);
 		mapParamater.put("NO_IJAZAH", pendaftaran.getNoIjazah());
 		mapParamater.put("AKREDITAS", pendaftaran.getAkreditasi());
+		
+		String lokasiTest="";
+		if(!pendaftaran.getLokasiTest().equalsIgnoreCase("")){
+			lokasiTest=refLokasiTestDao.findByProperty("kode", pendaftaran.getLokasiTest(), null).get(0).getNama();			
+		}
+		mapParamater.put("LOKASI_TEST", lokasiTest);
 
 		mapParamater.put("INSTANSI", pendaftaran.getFormasi().getRefInstansi()
 				.getNama());
