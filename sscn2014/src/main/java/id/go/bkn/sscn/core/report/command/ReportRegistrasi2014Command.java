@@ -166,6 +166,8 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 		String tglLahir = formatDateTglLahir.format(pendaftaran.getTglLahir());
 		mapParamater.put("TTL", tempatLahir + " / " + tglLahir);
 		mapParamater.put("NIK", pendaftaran.getNoNik());
+		String jenisKelamin = pendaftaran.getTabelPendaftar().getJenisKelamin();		
+		mapParamater.put("JENIS_KELAMIN", jenisKelamin.equalsIgnoreCase("P")?"Pria":"Wanita");
 		mapParamater.put("UNIVERSITAS", pendaftaran.getLembaga());
 		String pendidikan = refPendidikanDao
 				.findByProperty("kode", pendaftaran.getPendidikan(), null)
@@ -185,42 +187,36 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 		Locale id = new Locale("in", "ID");
 
 		// JABATAN1
-		SimpleDateFormat formatDateTglDaftar = new SimpleDateFormat(
-				"dd-MM-yyyy HH:mm:ss", id);
-		String tglDaftar1 = formatDateTglDaftar.format(pendaftaran
-				.getTglCreated());
 		mapParamater.put("JABATAN1", pendaftaran.getFormasi().getRefJabatan()
-				.getNama()
-				+ " (" + tglDaftar1 + ") ");
+				.getNama()+ " ("+pendaftaran.getFormasi().getRefLokasi().getNama()+")");
 		mapParamater.put("JABATAN2", "");
 		mapParamater.put("JABATAN3", "");
 		if (pendaftaran.getFormasi2() != null) {
-			// JABATAN2
-			String tglDaftar2 = formatDateTglDaftar.format(pendaftaran
-					.getTglCreated());
+			// JABATAN2			
 			mapParamater.put("JABATAN2", pendaftaran.getFormasi2()
 					.getRefJabatan().getNama()
-					+ " (" + tglDaftar2 + ") ");
+					+ " ("+pendaftaran.getFormasi2().getRefLokasi().getNama()+")");
 		}
 		if (pendaftaran.getFormasi3() != null
 				&& pendaftaran.getFormasi2() == null) {
-			// JABATAN3
-			String tglDaftar3 = formatDateTglDaftar.format(pendaftaran
-					.getTglCreated());
+			// JABATAN3			
 			mapParamater.put("JABATAN2", pendaftaran.getFormasi3()
 					.getRefJabatan().getNama()
-					+ " (" + tglDaftar3 + ") ");
+					+ " ("+pendaftaran.getFormasi3().getRefLokasi().getNama()+")");
 		}
 		if (pendaftaran.getFormasi3() != null
 				&& pendaftaran.getFormasi2() != null) {
-			// JABATAN3
-			String tglDaftar3 = formatDateTglDaftar.format(pendaftaran
-					.getTglCreated());
+			// JABATAN3			
 			mapParamater.put("JABATAN3", pendaftaran.getFormasi3()
 					.getRefJabatan().getNama()
-					+ " (" + tglDaftar3 + ") ");
+					+ " ("+pendaftaran.getFormasi3().getRefLokasi().getNama()+")");
 		}
 
+		SimpleDateFormat formatDateTglDaftar = new SimpleDateFormat(
+				"dd-MM-yyyy / HH:mm:ss", id);
+		String tglDaftar = formatDateTglDaftar.format(pendaftaran
+				.getTglCreated());
+		mapParamater.put("WAKTU_DAFTAR", tglDaftar);
 		return mapParamater;
 	}
 

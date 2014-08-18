@@ -477,13 +477,13 @@ public class RegistrasiController {
 		for (RefLokasiTest lokasiTest : lokasiTests) {
 			newPendidikans.add(new LokasiTestJson(lokasiTest.getKode(),
 					lokasiTest.getNama(), lokasiTest.getStatus(), lokasiTest
-							.getInstansi()));
+							.getInstansi().getKode()));
 		}
-		Map<String, List<LokasiTestJson>> pendidikanMap = new HashMap<String, List<LokasiTestJson>>();
-		pendidikanMap.put("lokasiTests", newPendidikans);
+		Map<String, List<LokasiTestJson>> lokasiTestMap = new HashMap<String, List<LokasiTestJson>>();
+		lokasiTestMap.put("lokasiTests", newPendidikans);
 
 		return objectMapper.writeValueAsString(new JSONPObject(callBack,
-				pendidikanMap));
+				lokasiTestMap));
 	}
 
 }
