@@ -213,12 +213,13 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 				pendaftaran.setTabelPendaftar(pendaftar);
 			}
 			
-			//formasi ke 2
+			RefInstansi instRefInstansi = refInstansiDao.findByProperty("kode", instansi, null).get(0);
+			//formasi ke 2			
 			String jabatan2 = request.getParameter("jabatan2");
 			String lokasiKerja2 = request.getParameter("lokasi_kerja2");
 			String pendidikan2 = request.getParameter("pendidikan");
 			if (lokasiKerja2 != null && !lokasiKerja2.equals("") && pendidikan2 != null && !pendidikan2.equals("") 
-					&& jabatan2 != null && !jabatan2.equals("")) {				
+					&& jabatan2 != null && !jabatan2.equals("") && instRefInstansi.getJumlahMaxDaftar().equalsIgnoreCase("1")) {				
 				if(propertiesMap.size() > 0){
 					propertiesMap.clear();
 				}
@@ -242,7 +243,7 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 			String lokasiKerja3 = request.getParameter("lokasi_kerja3");
 			String pendidikan3 = request.getParameter("pendidikan");
 			if (lokasiKerja3 != null && !lokasiKerja3.equals("") && pendidikan3 != null && !pendidikan3.equals("") 
-					&& jabatan3 != null && !jabatan3.equals("")) {
+					&& jabatan3 != null && !jabatan3.equals("") && instRefInstansi.getJumlahMaxDaftar().equalsIgnoreCase("1")) {
 				if(propertiesMap.size() > 0){
 					propertiesMap.clear();
 				}
