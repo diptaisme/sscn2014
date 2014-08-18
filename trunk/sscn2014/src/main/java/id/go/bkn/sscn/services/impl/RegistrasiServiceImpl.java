@@ -582,7 +582,8 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public List<RefLokasiTest> getLokasiTestByInstansi(String instansi) {
-		return refLokasiTestDao.findLokasiTestByInstansi(instansi);		
+		//return refLokasiTestDao.findLokasiTestByInstansi(instansi);
+		return refLokasiTestDao.findByProperty("instansi.kode", instansi, null);
 	}
 
 }
