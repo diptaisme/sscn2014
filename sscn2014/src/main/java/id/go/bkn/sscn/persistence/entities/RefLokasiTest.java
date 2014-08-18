@@ -4,7 +4,10 @@ package id.go.bkn.sscn.persistence.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,18 +20,18 @@ public class RefLokasiTest implements java.io.Serializable {
 	private String kode;
 	private String nama;
 	private String status;
-	private String instansi;
+	private RefInstansi instansi;
 
 	public RefLokasiTest() {
 	}
 
-	public RefLokasiTest(String kode, String instansi) {
+	public RefLokasiTest(String kode, RefInstansi instansi) {
 		this.kode = kode;
 		this.instansi = instansi;
 	}
 
 	public RefLokasiTest(String kode, String nama, String status,
-			String instansi) {
+			RefInstansi instansi) {
 		this.kode = kode;
 		this.nama = nama;
 		this.status = status;
@@ -63,12 +66,13 @@ public class RefLokasiTest implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@Column(name = "INSTANSI", nullable = false, length = 4)
-	public String getInstansi() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "INSTANSI", nullable = false)
+	public RefInstansi getInstansi() {
 		return this.instansi;
 	}
 
-	public void setInstansi(String instansi) {
+	public void setInstansi(RefInstansi instansi) {
 		this.instansi = instansi;
 	}
 
