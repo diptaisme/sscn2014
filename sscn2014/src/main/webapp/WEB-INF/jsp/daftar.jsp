@@ -136,14 +136,14 @@ $(document).ready(
 							submitHandler : function(form) {
 								//check jabatan must be unique
 								var unique = "false";
-								if ($("#jabatan2 option:selected").val() != ""){
+								if ($("#jabatan2 option:selected").val() != "" && $("#jabatan2 option:selected").val() != null){
 									var j1 = $("#jabatan1").val();
 									var j2 = $("#jabatan2").val();
 									if(j1 == j2){
 										unique = "true";
 										alert('Jabatan pilihan 1 dan 2 sama');											
 									}
-									if ($("#jabatan3 option:selected").val() != ""){
+									if ($("#jabatan3 option:selected").val() != "" && $("#jabatan3 option:selected").val() != null){
 										var j3 = $("#jabatan3").val();
 										if(j2 == j3){
 											unique = "true";
@@ -151,7 +151,7 @@ $(document).ready(
 										}	
 									}
 								}
-								if ($("#jabatan3 option:selected").val() != ""){
+								if ($("#jabatan3 option:selected").val() != "" && $("#jabatan3 option:selected").val() != null){
 									var j1 = $("#jabatan1").val();
 									var j3 = $("#jabatan3").val();
 									if(j1 == j3){
@@ -177,7 +177,7 @@ $(document).ready(
 									$("div#dialog-formasi2").html("");
 									if ($("#lokasi_kerja2 option:selected").val() != ""){
 											if ($("#pendidikan option:selected").val() != ""){
-												if ($("#jabatan2 option:selected").val() != ""){
+												if ($("#jabatan2 option:selected").val() != "" && $("#jabatan2 option:selected").val() != null){
 													data = "<BR>Pilihan 2 Lokasi : " + $("#lokasi_kerja2 option:selected").text()
 									 + " , Pendidikan : " + $("#pendidikan option:selected").text() + " , Jabatan : " + $("#jabatan2 option:selected").text();
 									$("div#dialog-formasi2").html(data);
@@ -188,7 +188,7 @@ $(document).ready(
 									$("div#dialog-formasi3").html("");
 									if ($("#lokasi_kerja3 option:selected").val() != ""){
 											if ($("#pendidikan option:selected").val() != ""){
-												if ($("#jabatan3 option:selected").val() != ""){
+												if ($("#jabatan3 option:selected").val() != "" && $("#jabatan3 option:selected").val() != null){
 													data = "<BR>Pilihan 3 Lokasi : " + $("#lokasi_kerja3 option:selected").text()
 									 + " , Pendidikan : " + $("#pendidikan option:selected").text() + " , Jabatan : " + $("#jabatan3 option:selected").text();
 									$("div#dialog-formasi3").html(data);
@@ -196,12 +196,12 @@ $(document).ready(
 											}
 									}								
 									$('#dialogKonfirmasi').dialog('open');
-								}
-								$(this).bind('contextmenu',function(e){
+								}								
+							}							
+						});
+						$(this).bind('contextmenu',function(e){
 									e.preventDefault();
 								});
-							}
-						});
 		});
 </script>
 
@@ -468,51 +468,51 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
 														<option value="">Pilih jabatan</option>
 				  </select> <img id="imgLoadingJabatan1" src="/sscn2014/resources/images/loading.png" />
                 </p>
-				<p>
-                    <label>Pilihan 2  
-                    </label>
-                    <select class="form-dropdown" style="width: 500px"
-														title="Lokasi Kerja" id="lokasi_kerja2" name="lokasi_kerja2">
-														<option value="">Pilih lokasi kerja</option>
-				  </select> <img id="imgLoadingLokasi2" src="/sscn2014/resources/images/loading.png" />
-                </p>
-				<p>
-                    <label>
-                    </label>
-                    <select class="form-dropdown" style="width: 500px"
-														title="Jabatan" id="jabatan2" name="jabatan2">
-														<option value="">Pilih jabatan</option>
-				  </select> <img id="imgLoadingJabatan2" src="/sscn2014/resources/images/loading.png" />
-                </p>
-				<p>
-                    <label>Pilihan 3  
-                    </label>
-                    <select class="form-dropdown" style="width: 500px"
-														title="Lokasi Kerja" id="lokasi_kerja3" name="lokasi_kerja3">
-														<option value="">Pilih lokasi kerja</option>
-				  </select> <img id="imgLoadingLokasi3" src="/sscn2014/resources/images/loading.png" />
-                </p>
-				<p>
-                    <label>
-                    </label>
-                    <select class="form-dropdown" style="width: 500px"
-														title="Jabatan" id="jabatan3" name="jabatan3">
-														<option value="">Pilih jabatan</option>
-				  </select> <img id="imgLoadingJabatan3" src="/sscn2014/resources/images/loading.png" />
-                </p>
+				
+				<c:choose>
+					<c:when test="${userLogin.refInstansi.jumlahMaxDaftar == '1'}">
+						<p>
+							<label>Pilihan 2  
+							</label>
+							<select class="form-dropdown" style="width: 500px"
+																title="Lokasi Kerja" id="lokasi_kerja2" name="lokasi_kerja2">
+																<option value="">Pilih lokasi kerja</option>
+						  </select> <img id="imgLoadingLokasi2" src="/sscn2014/resources/images/loading.png" />
+						</p>
+						<p>
+		                    <label>
+		                    </label>
+		                    <select class="form-dropdown" style="width: 500px"
+																title="Jabatan" id="jabatan2" name="jabatan2">
+																<option value="">Pilih jabatan</option>
+						  </select> <img id="imgLoadingJabatan2" src="/sscn2014/resources/images/loading.png" />
+						</p>
+						<p>
+		                    <label>Pilihan 3  
+		                    </label>
+		                    <select class="form-dropdown" style="width: 500px"
+																title="Lokasi Kerja" id="lokasi_kerja3" name="lokasi_kerja3">
+																<option value="">Pilih lokasi kerja</option>
+						  </select> <img id="imgLoadingLokasi3" src="/sscn2014/resources/images/loading.png" />
+		                </p>
+						<p>
+		                    <label>
+		                    </label>
+		                    <select class="form-dropdown" style="width: 500px"
+																title="Jabatan" id="jabatan3" name="jabatan3">
+																<option value="">Pilih jabatan</option>
+						  </select> <img id="imgLoadingJabatan3" src="/sscn2014/resources/images/loading.png" />
+		                </p>
+					</c:when>
+				</c:choose>
 				<p>
                     <label>Lokasi Test                    </label>
                     <select class="form-dropdown" style="width: 500px"
 														title="Lokasi Test" id="lokasi_test" name="lokasi_test">
 														<option value="">Pilih lokasi test</option>
-				  </select> <em>Pilih untuk lokasi test yang diharapkan</em>
+				  </select>
                 </p>
 				</fieldset>
-										
-												
-											
-
-
 											<table width="570" border="2">
 											<tr>
 												<th width="70" height="76" valign="middle" scope="col">
@@ -555,7 +555,6 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
 				
 		</div>
 			</div>	
-			</section>
 			<!-- Footer -->
 			<footer>
 				<div class="copyright style2">Hak Cipta © 2014 Badan
@@ -587,7 +586,6 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
 					<p>Untuk kembali klik Cancel
 				<p>
 			</div>
-	</div>
 	</div>
 </body>
 </html>

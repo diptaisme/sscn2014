@@ -173,7 +173,7 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 				.findByProperty("kode", pendaftaran.getPendidikan(), null)
 				.get(0).getNama();
 		mapParamater.put("PENDIDIKAN", pendidikan);
-		mapParamater.put("NO_IJAZAH", pendaftaran.getNoIjazah());
+		mapParamater.put("NO_IJAZAH", pendaftaran.getNoIjazah() + " / "+ pendaftaran.getTahunLulus());
 		mapParamater.put("AKREDITAS", pendaftaran.getAkreditasi());
 		
 		String lokasiTest="";

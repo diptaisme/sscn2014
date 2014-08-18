@@ -107,8 +107,7 @@
 											  <input
 												type="hidden" name="typeReport" value="rptRegistrasi2014" /> 
 											  <input
-												type="submit" value="Cetak Nomor Pendaftaran"
-												class="form-submit-button style2" /> 
+												type="submit" value="Cetak Nomor Pendaftaran"/> 
 										</form>  
 							    </c:when>
 							</c:choose>							

@@ -26,6 +26,7 @@ public class RefInstansi implements java.io.Serializable {
 	private String kode;
 	private String nama;
 	private String status;
+	private String jumlahMaxDaftar;
 	private Set<DtPengumuman> dtPengumumans = new HashSet<DtPengumuman>(0);
 	private Set<MFormasi> MFormasis = new HashSet<MFormasi>(0);
 	private Set<DtUser> dtUsers = new HashSet<DtUser>(0);
@@ -34,10 +35,11 @@ public class RefInstansi implements java.io.Serializable {
 	public RefInstansi() {
 	}
 
-	public RefInstansi(String kode, String nama, String status) {
+	public RefInstansi(String kode, String nama, String status, String jumlahMaxDaftar) {
 		this.kode = kode;
 		this.nama = nama;
 		this.status = status;
+		this.jumlahMaxDaftar = jumlahMaxDaftar;
 	}
 
 	public RefInstansi(String kode, String nama, String status,
@@ -78,6 +80,15 @@ public class RefInstansi implements java.io.Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	@Column(name = "JUMLAH_MAX_DAFTAR", nullable = false, length = 1)
+	public String getJumlahMaxDaftar() {
+		return this.jumlahMaxDaftar;
+	}
+
+	public void setJumlahMaxDaftar(String jumlahMaxDaftar) {
+		this.jumlahMaxDaftar = jumlahMaxDaftar;
 	}
 
 	@JsonIgnore
