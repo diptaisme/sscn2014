@@ -27,6 +27,7 @@ public class RefInstansi implements java.io.Serializable {
 	private String nama;
 	private String status;
 	private String jumlahMaxDaftar;
+	private String pilihanLokasiTest;
 	private Set<DtPengumuman> dtPengumumans = new HashSet<DtPengumuman>(0);
 	private Set<MFormasi> MFormasis = new HashSet<MFormasi>(0);
 	private Set<DtUser> dtUsers = new HashSet<DtUser>(0);
@@ -35,11 +36,12 @@ public class RefInstansi implements java.io.Serializable {
 	public RefInstansi() {
 	}
 
-	public RefInstansi(String kode, String nama, String status, String jumlahMaxDaftar) {
+	public RefInstansi(String kode, String nama, String status, String jumlahMaxDaftar, String pilihanLokasiTest) {
 		this.kode = kode;
 		this.nama = nama;
 		this.status = status;
 		this.jumlahMaxDaftar = jumlahMaxDaftar;
+		this.pilihanLokasiTest = pilihanLokasiTest;
 	}
 
 	public RefInstansi(String kode, String nama, String status,
@@ -91,6 +93,16 @@ public class RefInstansi implements java.io.Serializable {
 		this.jumlahMaxDaftar = jumlahMaxDaftar;
 	}
 
+	
+	@Column(name = "PILIHAN_LOKASI_TEST", nullable = false, length = 1)
+	public String getPilihanLokasiTest() {
+		return this.pilihanLokasiTest;
+	}
+
+	public void setPilihanLokasiTest(String pilihanLokasiTest) {
+		this.pilihanLokasiTest = pilihanLokasiTest;
+	}
+	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "refInstansi")
 	public Set<DtPengumuman> getDtPengumumans() {

@@ -102,7 +102,7 @@ public class RegistrasiServlet extends HttpServlet {
 							String jabatan2=request.getParameter("jabatan2");
 							String jabatan3=request.getParameter("jabatan3");
 							if (!instansi.getJumlahMaxDaftar()
-									.equalsIgnoreCase("1") && (jabatan2!=null || jabatan3 != null)) {
+									.equalsIgnoreCase("3") && (jabatan2!=null || jabatan3 != null)) {
 								cetakJumlahMaksimalPendaftaranInstansi(response);
 							} else {
 								// cek jumlah daftarnya user

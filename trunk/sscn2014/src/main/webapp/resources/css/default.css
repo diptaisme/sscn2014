@@ -108,7 +108,7 @@ form.register .infobox{
 }
 form.register legend
 {
-    color: #abda0f;
+    color: #0033FF;
     padding:2px;
     margin-left: 14px;
     font-weight:bold;
@@ -185,7 +185,7 @@ form.register input[type=password]
 }
 .button
 {
-    background: #abda0f url(../img/overlay.png) repeat-x;
+    background: #0033FF url(../img/overlay.png) repeat-x;
     padding: 8px 10px 8px;
     color: #fff;
     text-decoration: none;
