@@ -139,24 +139,35 @@ $(document).ready(
 								if ($("#jabatan2 option:selected").val() != "" && $("#jabatan2 option:selected").val() != null){
 									var j1 = $("#jabatan1").val();
 									var j2 = $("#jabatan2").val();
+									var lk1 = $("#lokasi_kerja1").val();
+									var lk2 = $("#lokasi_kerja2").val();
 									if(j1 == j2){
-										unique = "true";
-										alert('Jabatan pilihan 1 dan 2 sama');											
+										if(lk1 == lk2){
+											unique = "true";
+											alert('Jabatan pilihan 1 dan 2 sama');										
+										}
 									}
 									if ($("#jabatan3 option:selected").val() != "" && $("#jabatan3 option:selected").val() != null){
 										var j3 = $("#jabatan3").val();
+										var lk3 = $("#lokasi_kerja3").val();
 										if(j2 == j3){
-											unique = "true";
-											alert('Jabatan pilihan 2 dan 3 sama');
+											if(lk2 == lk3){
+												unique = "true";
+												alert('Jabatan pilihan 2 dan 3 sama');
+											}
 										}	
 									}
 								}
 								if ($("#jabatan3 option:selected").val() != "" && $("#jabatan3 option:selected").val() != null){
 									var j1 = $("#jabatan1").val();
 									var j3 = $("#jabatan3").val();
+									var lk1 = $("#lokasi_kerja1").val();
+									var lk3 = $("#lokasi_kerja3").val();
 									if(j1 == j3){
-										unique = "true";
-										alert('Jabatan pilihan 1 dan 3 sama');
+										if(lk1 == lk3){
+											unique = "true";
+											alert('Jabatan pilihan 1 dan 3 sama');
+										}
 									}
 								}
 							
@@ -297,7 +308,7 @@ label.error {
 							<ul class="list-2">
 							<li><a href="informasi_umum.html"><img src="/sscn2014/resources/images/info.jpg" width="243" height="37" border="0" align="left"></a></img></li>
 							<li><a href="pengumuman_instansi.html"><img src="/sscn2014/resources/images/pengumuman.jpg" width="243" height="37" border="0" align="left"></a></img></li>																							
-                            <li><a href="#"><img src="/sscn2014/resources/images/petunjuk.jpg" width="243" height="37" border="0" align="left"></a></img></li>
+                            <li><a href="petunjuk.html"><img src="/sscn2014/resources/images/petunjuk.jpg" width="243" height="37" border="0" align="left"></a></img></li>
 							</ul>
 						</div>
 			<div class="col-9">
@@ -355,7 +366,7 @@ label.error {
                     <label>Alamat
                     </label>
                     <input
-																	title="Alamat" size="50" style="width: 400px"
+																	title="Alamat" size="50" style="width: 450px"
 																	class="form-textbox form-address-line" type="text"
 																	name="alamat" id="alamat" onKeyUp="caps(this)" />
                 </p>
@@ -423,7 +434,7 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
                     <input type="text" class=" form-textbox" title="Akreditas"
 														data-type="input-textbox" id="akreditasi" maxlength="1"
 														name="akreditasi" size="1" onKeyUp="caps(this)" /> <em>contoh
-														A / B / - (untuk Universitas Negeri)</em>
+														A / B / C / - (untuk Universitas Negeri)</em>
                 </p>
 				<p>
                     <label>Nilai IPK 
@@ -446,7 +457,7 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
                 <p>
                     <label>Pendidikan
                     </label>
-                    <select class="form-dropdown" style="width: 500px"
+                    <select class="form-dropdown" style="width: 450px"
 														title="Kualifikasi Pendidikan" id="pendidikan"
 														name="pendidikan">
 														<option value="">Pilih Pendidikan</option>
@@ -455,7 +466,7 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
 				<p>
                     <label>Pilihan 1  *
                     </label>
-                    <select class="form-dropdown" style="width: 500px"
+                    <select class="form-dropdown" style="width: 450px"
 														title="Lokasi Kerja" id="lokasi_kerja1" name="lokasi_kerja1">
 														<option value="">Pilih lokasi kerja</option>
 				  </select> <img id="imgLoadingLokasi1" src="/sscn2014/resources/images/loading.png" />
@@ -463,18 +474,18 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
 				<p>
                     <label>
                     </label>
-                    <select class="form-dropdown" style="width: 500px"
+                    <select class="form-dropdown" style="width: 450px"
 														title="Jabatan" id="jabatan1" name="jabatan1">
 														<option value="">Pilih jabatan</option>
 				  </select> <img id="imgLoadingJabatan1" src="/sscn2014/resources/images/loading.png" />
                 </p>
 				
 				<c:choose>
-					<c:when test="${userLogin.refInstansi.jumlahMaxDaftar == '1'}">
+					<c:when test="${userLogin.refInstansi.jumlahMaxDaftar == '3'}">
 						<p>
 							<label>Pilihan 2  
 							</label>
-							<select class="form-dropdown" style="width: 500px"
+							<select class="form-dropdown" style="width: 450px"
 																title="Lokasi Kerja" id="lokasi_kerja2" name="lokasi_kerja2">
 																<option value="">Pilih lokasi kerja</option>
 						  </select> <img id="imgLoadingLokasi2" src="/sscn2014/resources/images/loading.png" />
@@ -482,7 +493,7 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
 						<p>
 		                    <label>
 		                    </label>
-		                    <select class="form-dropdown" style="width: 500px"
+		                    <select class="form-dropdown" style="width: 450px"
 																title="Jabatan" id="jabatan2" name="jabatan2">
 																<option value="">Pilih jabatan</option>
 						  </select> <img id="imgLoadingJabatan2" src="/sscn2014/resources/images/loading.png" />
@@ -490,7 +501,7 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
 						<p>
 		                    <label>Pilihan 3  
 		                    </label>
-		                    <select class="form-dropdown" style="width: 500px"
+		                    <select class="form-dropdown" style="width: 450px"
 																title="Lokasi Kerja" id="lokasi_kerja3" name="lokasi_kerja3">
 																<option value="">Pilih lokasi kerja</option>
 						  </select> <img id="imgLoadingLokasi3" src="/sscn2014/resources/images/loading.png" />
@@ -498,20 +509,33 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
 						<p>
 		                    <label>
 		                    </label>
-		                    <select class="form-dropdown" style="width: 500px"
+		                    <select class="form-dropdown" style="width: 450px"
 																title="Jabatan" id="jabatan3" name="jabatan3">
 																<option value="">Pilih jabatan</option>
 						  </select> <img id="imgLoadingJabatan3" src="/sscn2014/resources/images/loading.png" />
 		                </p>
 					</c:when>
 				</c:choose>
-				<p>
-                    <label>Lokasi Test                    </label>
-                    <select class="form-dropdown" style="width: 500px"
-														title="Lokasi Test" id="lokasi_test" name="lokasi_test">
-														<option value="">Pilih lokasi test</option>
-				  </select>
-                </p>
+				<c:choose>
+					<c:when test="${userLogin.refInstansi.pilihanLokasiTest == '1'}">
+						<p>
+		                    <label>Lokasi Test                    </label>
+		                    <select class="form-dropdown" style="width: 450px"
+																title="Lokasi Test" id="lokasi_test" name="lokasi_test">
+																<option value="">Pilih lokasi test</option>
+						  </select>
+		                </p>
+					</c:when>
+					<c:otherwise>
+						<p>
+		                    <label>Lokasi Test                    </label>
+		                    <select class="form-dropdown" style="width: 450px" disabled
+																title="Lokasi Test" id="lokasi_test" name="lokasi_test">
+																<option value="">Pilih lokasi test</option>
+						  </select>
+		                </p>
+					</c:otherwise>
+				</c:choose>
 				</fieldset>
 											<table width="570" border="2">
 											<tr>

@@ -29,7 +29,7 @@
 	<script src="js/html5.js"></script>
 	<link rel="stylesheet" href="css/ie.css"> 
 <![endif]-->
-<style type="text/css">
+<style type="text/css">pe
 <!--
 .style1 {color: #CC0000}
 .style2 {color: #FFFFFF}
@@ -77,7 +77,7 @@
                             <ul class="list-2">
                             	<li><a href="informasi_umum.html"><img src="/sscn2014/resources/images/info.jpg" width="243" height="37" border="0" align="left"></a></img></li>
 					<li><a href="pengumuman_instansi.html"><img src="/sscn2014/resources/images/pengumuman.jpg" width="243" height="37" border="0" align="left"></a></img></li>												
-                                	<li><a href="#"><img src="/sscn2014/resources/images/petunjuk.jpg" width="243" height="37" border="0" align="left"></a></img></li>
+                                	<li><a href="petunjuk.html"><img src="/sscn2014/resources/images/petunjuk.jpg" width="243" height="37" border="0" align="left"></a></img></li>
                             </ul>
                             
                         </div>

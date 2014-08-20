@@ -78,6 +78,7 @@
 								<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<input type="submit" value="LOGIN" /></p>        
         				</form>
+			<p align="center">Jika belum memiliki username dan password silahkan terlebih dahulu mendaftar di alamat <a href="https://panselnas.menpan.go.id"</a> https://panselnas.menpan.go.id </p>
                       </div>
 				  </div>
                 </article>
