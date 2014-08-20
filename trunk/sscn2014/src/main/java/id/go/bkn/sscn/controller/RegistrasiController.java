@@ -1,5 +1,7 @@
 package id.go.bkn.sscn.controller;
 
+import id.go.bkn.sscn.dao.RefPendidikanDao;
+import id.go.bkn.sscn.manager.Constanta;
 import id.go.bkn.sscn.model.json.JabatanJson;
 import id.go.bkn.sscn.model.json.LokasiJson;
 import id.go.bkn.sscn.model.json.LokasiTestJson;
@@ -41,6 +43,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RegistrasiController {
 	@Inject
 	private RegistrasiService registrasiService;
+
+	@Inject
+	private RefPendidikanDao refPendidikanDao;
 
 	// belum selesai
 	@RequestMapping(value = "/registrasi.html", method = RequestMethod.POST)
@@ -380,6 +385,8 @@ public class RegistrasiController {
 			@RequestParam("lokasi") String lokasi,
 			@RequestParam("pendidikan") String pendidikan) throws Exception {
 
+		RefPendidikan pendidikanChoose = refPendidikanDao.findByProperty(
+				"kode", pendidikan, null).get(0);
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<RefJabatan> jabatans = registrasiService.getJabatan(instansi,
 				lokasi, pendidikan);
@@ -387,6 +394,27 @@ public class RegistrasiController {
 		for (RefJabatan jabatan : jabatans) {
 			newJabatans.add(new JabatanJson(jabatan.getKode(), jabatan
 					.getNama()));
+		}
+
+		List<RefJabatan> jabatanPendidikanUmum = null;
+		// D3
+		if (pendidikanChoose.getTingkat().equalsIgnoreCase("20")) {
+			jabatanPendidikanUmum = registrasiService.getJabatan(instansi,
+					lokasi, Constanta.D3SEMUAJURUSAN[0]);
+		}
+		// D4 atau S1
+		else if (pendidikanChoose.getTingkat().equalsIgnoreCase("30")) {
+			jabatanPendidikanUmum = registrasiService.getJabatan(instansi,
+					lokasi, Constanta.D4SEMUAJURUSAN[0]);
+			jabatanPendidikanUmum.addAll(registrasiService.getJabatan(instansi,
+					lokasi, Constanta.S1SEMUAJURUSAN[0]));
+		}
+
+		if (jabatanPendidikanUmum != null && jabatanPendidikanUmum.size() > 0) {
+			for (RefJabatan jabatan : jabatanPendidikanUmum) {
+				newJabatans.add(new JabatanJson(jabatan.getKode(), jabatan
+						.getNama()));
+			}
 		}
 
 		Map<String, List<JabatanJson>> jabatanMap = new HashMap<String, List<JabatanJson>>();
@@ -428,6 +456,16 @@ public class RegistrasiController {
 			newPendidikans.add(new PendidikanJson(pendidikan.getKode(),
 					pendidikan.getNama(), pendidikan.getTingkat()));
 		}
+		// add pendidikan untuk D-3 SEMUA JURUSAN
+		newPendidikans.add(new PendidikanJson(Constanta.D3SEMUAJURUSAN[0],
+				Constanta.D3SEMUAJURUSAN[1], Constanta.D3SEMUAJURUSAN[2]));
+		// add pendidikan untuk D-4 SEMUA JURUSAN
+		newPendidikans.add(new PendidikanJson(Constanta.D4SEMUAJURUSAN[0],
+				Constanta.D4SEMUAJURUSAN[1], Constanta.D4SEMUAJURUSAN[2]));
+		// add pendidikan untuk S-1 SEMUA JURUSAN
+		newPendidikans.add(new PendidikanJson(Constanta.S1SEMUAJURUSAN[0],
+				Constanta.S1SEMUAJURUSAN[1], Constanta.S1SEMUAJURUSAN[2]));
+
 		Map<String, List<PendidikanJson>> pendidikanMap = new HashMap<String, List<PendidikanJson>>();
 		pendidikanMap.put("pendidikans", newPendidikans);
 

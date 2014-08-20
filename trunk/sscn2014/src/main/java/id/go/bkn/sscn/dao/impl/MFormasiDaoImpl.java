@@ -34,11 +34,12 @@ public class MFormasiDaoImpl extends CoreDaoImpl<MFormasi> implements
 		 */
 
 		StringBuilder sbFind = new StringBuilder(
-				"SELECT model FROM MFormasi as model, DtFormasi as detail ");
+				"SELECT model FROM MFormasi as model left join fetch model.refJabatan, DtFormasi as detail ");
 		sbFind.append("WHERE model.id = detail.formasi.id ");
 		sbFind.append("AND model.refInstansi.kode = :instansi ");
 		sbFind.append("AND model.refLokasi.kode = :lokasi ");
 		sbFind.append("AND detail.pendidikan.kode = :pendidikan ");
+		sbFind.append("ORDER BY model.refJabatan.nama ");
 
 		Query query = createQuery(sbFind);
 		query.setParameter("instansi", instansi);
@@ -47,13 +48,12 @@ public class MFormasiDaoImpl extends CoreDaoImpl<MFormasi> implements
 
 		return doQuery(query, null);
 	}
-	
+
 	public List<MFormasi> findByInstansiLokasiJabatan(String instansi,
 			String lokasi, String jabatan) {
 		/*
-		 * SELECT m.jabatan FROM m_formasi m 
-		 * WHERE m.instansi = '4011' AND m.lokasi = '1234' AND
-		 * m.jabatan = '2110303';
+		 * SELECT m.jabatan FROM m_formasi m WHERE m.instansi = '4011' AND
+		 * m.lokasi = '1234' AND m.jabatan = '2110303';
 		 */
 
 		StringBuilder sbFind = new StringBuilder(
@@ -70,22 +70,21 @@ public class MFormasiDaoImpl extends CoreDaoImpl<MFormasi> implements
 
 		return doQuery(query, null);
 	}
-	
+
 	public List<MFormasi> findByInstansiPendidikan(String instansi,
 			String pendidikan) {
 		/*
-		SELECT LOKASI FROM M_FORMASI f INNER JOIN DT_FORMASI df
-		ON df.formasi = f.id
-		WHERE df.pendidikan = '2110303' AND f.instansi = '4011';
+		 * SELECT LOKASI FROM M_FORMASI f INNER JOIN DT_FORMASI df ON df.formasi
+		 * = f.id WHERE df.pendidikan = '2110303' AND f.instansi = '4011';
 		 */
 
 		StringBuilder sbFind = new StringBuilder(
-				"SELECT model FROM MFormasi as model, DtFormasi as detail ");
+				"SELECT model FROM MFormasi as model left join fetch model.refLokasi, DtFormasi as detail ");
 		sbFind.append("WHERE model.id = detail.formasi.id ");
-		sbFind.append("AND model.refInstansi.kode = :instansi ");		
+		sbFind.append("AND model.refInstansi.kode = :instansi ");
 		sbFind.append("AND detail.pendidikan.kode = :pendidikan ");
 		sbFind.append("ORDER BY model.refLokasi.nama ");
-		
+
 		Query query = createQuery(sbFind);
 		query.setParameter("instansi", instansi);
 		query.setParameter("pendidikan", pendidikan);

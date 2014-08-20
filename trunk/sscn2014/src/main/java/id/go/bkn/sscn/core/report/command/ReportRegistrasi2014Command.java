@@ -38,7 +38,7 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 
 	@Inject
 	private PersyaratanService persyaratanService;
-	
+
 	@Inject
 	private RefLokasiTestDao refLokasiTestDao;
 	/**
@@ -166,19 +166,27 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 		String tglLahir = formatDateTglLahir.format(pendaftaran.getTglLahir());
 		mapParamater.put("TTL", tempatLahir + " / " + tglLahir);
 		mapParamater.put("NIK", pendaftaran.getNoNik());
-		String jenisKelamin = pendaftaran.getTabelPendaftar().getJenisKelamin();		
-		mapParamater.put("JENIS_KELAMIN", jenisKelamin.equalsIgnoreCase("P")?"Pria":"Wanita");
+		String jenisKelamin = pendaftaran.getTabelPendaftar().getJenisKelamin();
+		mapParamater.put("JENIS_KELAMIN",
+				jenisKelamin.equalsIgnoreCase("P") ? "Pria" : "Wanita");
 		mapParamater.put("UNIVERSITAS", pendaftaran.getLembaga());
 		String pendidikan = refPendidikanDao
 				.findByProperty("kode", pendaftaran.getPendidikan(), null)
 				.get(0).getNama();
 		mapParamater.put("PENDIDIKAN", pendidikan);
-		mapParamater.put("NO_IJAZAH", pendaftaran.getNoIjazah() + " / "+ pendaftaran.getTahunLulus());
+		mapParamater.put("NO_IJAZAH", pendaftaran.getNoIjazah() + " / "
+				+ pendaftaran.getTahunLulus());
 		mapParamater.put("AKREDITAS", pendaftaran.getAkreditasi());
-		
-		String lokasiTest="";
-		if(!pendaftaran.getLokasiTest().equalsIgnoreCase("")){
-			lokasiTest=refLokasiTestDao.findByProperty("kode", pendaftaran.getLokasiTest(), null).get(0).getNama();			
+
+		String lokasiTest = "";
+		if (pendaftaran.getLokasiTest() != null) {
+			if (!pendaftaran.getLokasiTest().equalsIgnoreCase("")) {
+				lokasiTest = refLokasiTestDao
+						.findByProperty("kode", pendaftaran.getLokasiTest(),
+								null).get(0).getNama();
+			} else {
+				lokasiTest = "";
+			}
 		}
 		mapParamater.put("LOKASI_TEST", lokasiTest);
 
@@ -188,28 +196,37 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 
 		// JABATAN1
 		mapParamater.put("JABATAN1", pendaftaran.getFormasi().getRefJabatan()
-				.getNama()+ " ("+pendaftaran.getFormasi().getRefLokasi().getNama()+")");
+				.getNama()
+				+ " ("
+				+ pendaftaran.getFormasi().getRefLokasi().getNama()
+				+ ")");
 		mapParamater.put("JABATAN2", "");
 		mapParamater.put("JABATAN3", "");
 		if (pendaftaran.getFormasi2() != null) {
-			// JABATAN2			
+			// JABATAN2
 			mapParamater.put("JABATAN2", pendaftaran.getFormasi2()
 					.getRefJabatan().getNama()
-					+ " ("+pendaftaran.getFormasi2().getRefLokasi().getNama()+")");
+					+ " ("
+					+ pendaftaran.getFormasi2().getRefLokasi().getNama()
+					+ ")");
 		}
 		if (pendaftaran.getFormasi3() != null
 				&& pendaftaran.getFormasi2() == null) {
-			// JABATAN3			
+			// JABATAN3
 			mapParamater.put("JABATAN2", pendaftaran.getFormasi3()
 					.getRefJabatan().getNama()
-					+ " ("+pendaftaran.getFormasi3().getRefLokasi().getNama()+")");
+					+ " ("
+					+ pendaftaran.getFormasi3().getRefLokasi().getNama()
+					+ ")");
 		}
 		if (pendaftaran.getFormasi3() != null
 				&& pendaftaran.getFormasi2() != null) {
-			// JABATAN3			
+			// JABATAN3
 			mapParamater.put("JABATAN3", pendaftaran.getFormasi3()
 					.getRefJabatan().getNama()
-					+ " ("+pendaftaran.getFormasi3().getRefLokasi().getNama()+")");
+					+ " ("
+					+ pendaftaran.getFormasi3().getRefLokasi().getNama()
+					+ ")");
 		}
 
 		SimpleDateFormat formatDateTglDaftar = new SimpleDateFormat(
