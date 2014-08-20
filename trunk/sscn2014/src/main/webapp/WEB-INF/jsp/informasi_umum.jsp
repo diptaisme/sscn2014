@@ -76,33 +76,32 @@
                             <ul class="list-2">
 					<li><a href="peraturan.html"><img src="/sscn2014/resources/images/peraturan.jpg" width="243" height="37" border="0" align="left"></a></img></li>
 					<li><a href="alur.html"><img src="/sscn2014/resources/images/alur.jpg" width="243" height="37" border="0" align="left"></a></img></li>								
-                    <li><a href="#"><img src="/sscn2014/resources/images/jadwal.jpg" width="243" height="37" border="0" align="left"></a></img></li>
+                    <li><a href="calendar.html"><img src="/sscn2014/resources/images/jadwal.jpg" width="243" height="37" border="0" align="left"></a></img></li>
                             </ul>                            
                         </div>
 			   		<div class="col-9">
                         	<h3>Proses PENDAFTARAN </h3>
-                            <p align="justify">Tahun 2014 ini, pemerintah melakukan rekrutmen CPNS melalui 5 jalur, yakni jalur pelamar umum, honorer kategori 2, formasi khusus untuk dokter, seleksi untuk tenaga ahli tertentu yang tidak ada di lingkungan PNS, dan seleksi calon siswa ikatan dinas.</p>
-                            <p align="justify">Untuk pelamar umum dan tenaga honorer kategori 2 (TH2), dilakukan seleksi melalui tes kompetensi dasar (TKD) dan tes kompetensi bidang (TKB). Pelaksanaan tes untuk pelamar umum menggunakan sistem kombinasi, LJK dan Computer Assisted Test (CAT).</p>
+                            <p align="justify">Tahun 2014 ini, Pemerintah melakukan rekrutmen CPNS melalui jalur pelamar umum yang dibuka melalui formasi umum dan formasi khusus. Formasi umum dibuka berdasarkan analisis kebutuhan setiap instansi yang diajukan ke BKN dan Kementerian PAN dan RB untuk dianalisa dan dikeluarkan formasi yang disetujui untuk diadakan rekrutmen. Sedangkan formasi khusus dibuka untuk Putra-putri Papua, Para Atlet Berprestasi, Lulusan Perguruan Tinggi Negeri dengan Prestasi Terbaik, Instruktur (Sarjana Mengajar daerah Terpencil, Terbelakang, Terluar (SM3T)), Penyandang Cacat, Mahasiswa Tugas Belajar terbaik yang dibiayai Pemerintah Daerah.</p>
+                            <p align="justify">Untuk pelamar umum tersebut dilakukan seleksi Tes Kompetensi Dasar (TKD) dengan menggunakan sistem seleksi Computer Assisted Test (CAT). Namun beberapa instansi menerapkan saringan kedua dengan melakukan Tes Kompetensi Bidang (TKB) baik dengan tes psikologi, tes wawancara maupun tes tertulis.</p>
                             <p align="justify">Pelaksanaan tes pelamar umum tidak dipungut biaya apapun dari mulai pendaftaran online, verifikasi berkas, pelaksanaan ujian hingga pengumuman kelulusan.</p>
               <article class="content-box">
             	<div style="width:850px;height:550px;line-height:3em;overflow:scroll;padding:0px; background-color:#E6E6E6">			
 		<ol style="list-style-type: decimal;padding-left: 20px;	line-height: 1.54em; font-size:13px">
 		<h3>1. PERSYARATAN PENDAFTARAN</h3>
-              <p>Kementerian/Lembaga non Kementerian, Pemerintah Daerah Propinsi/Kabupaten/Kota tertentu, membuka kesempatan penerimaan Calon Pegawai Negeri Sipil (CPNS) Tahun 2013 untuk mengisi lowongan formasi dengan kualifikasi pendidikan tertentu. Seluruh calon peserta test CPNS 2013 diharapkan melakukan pendaftaran secara online dengan ketentuan sebagai berikut;</p>
+              <p>Kementerian/Lembaga non Kementerian, Pemerintah Daerah Propinsi/Kabupaten/Kota tertentu, membuka kesempatan penerimaan Calon Pegawai Negeri Sipil (CPNS) Tahun 2014 untuk mengisi lowongan formasi dengan kualifikasi pendidikan tertentu. Seluruh calon peserta test CPNS 2014 diharapkan melakukan pendaftaran secara online dengan ketentuan sebagai berikut;</p>
               <p><b>UMUM</b></p>
               <ul style="list-style-type: decimal;padding-left: 20px;	line-height: 1.54em;">
                 <li> Warga Negara Indonesia yang memiliki kualifikasi pendidikan (jenjang dan jurusan) sesuai dengan formasi yang dibutuhkan;</li>
-                <li>Pria dan Wanita dengan usia minimal 18 (delapan belas) tahun dan maksimal 35 (tiga puluh tahun) pada tanggal 01 Oktober 2013. 
-                  Catt : usia maksimal secara umum adalah 35 tahun, namun setiap instansi mempunyai kewenangan untuk menetapkan batasan usia maksimal yang akan diterima;</li>
-                <li>Berijazah, lulusan Perguruan Tinggi Negeri atau Perguruan Tinggi Swasta yang telah terakredirasi oleh Badan Akreditasi Nasional Perguruan Tinggi (BANPT) minimal B atau Perguruan Tinggi Luar Negeri yang telah mendapat pengesahan dari Kementerian Pendidikan dan Kebudayaan. Surat Keterangan Lulus / Ijazah sementara tidak berlaku;</li>
+                <li>Pria dan Wanita dengan usia minimal 18 (delapan belas) tahun dan maksimal 35 (tiga puluh lima) tahun pada tanggal 01 September 2014. Catt : usia maksimal secara umum adalah 35 tahun, namun setiap instansi mempunyai kewenangan untuk menetapkan batasan usia maksimal yang akan diterima;</li>
+                <li>3.	Berijazah, lulusan Perguruan Tinggi Negeri atau Perguruan Tinggi Swasta yang telah terakredirasi oleh Badan Akreditasi Nasional Perguruan Tinggi (BAN-PT) minimal C atau Perguruan Tinggi Luar Negeri yang telah mendapat pengesahan dari Kementerian Pendidikan dan Kebudayaan. Surat Keterangan Lulus / Ijazah sementara tidak berlaku;</li>
                 <li>Sehat jasmani dan rohani; </li>
                 <li>Tidak terikat hubungan kerja/ikatan dinas dengan Instansi Pemerintah atau Badan Swasta lainnya;</li>
                 <li>Tidak terlibat langsung atau tidak langsung dalam kegiatan organisasi yang bertentangan dengan Pancasila, Undang-Undang Dasar 1945, Negara dan Pemerintah (PUNP);</li>
                 <li>Tidak pernah tersangkut perkara pidana atau kasus narkoba;</li>
-                <li>Tidak pernah diberhentikan dengan hormat tidak atas permintaan sendiri atau tidak dengan hormat sebagai Pegawan Negeri Sipil atau diberhentikan tidak dengan hormat sebagai pegawai swasta;</li>
-                <li>Calon pelamar di seluruh Indonesia dapat melakukan pendaftaran secara online ke alamat website <b>http://sscn.bkn.go.id/</b>;</li>
+                <li>Tidak pernah diberhentikan dengan hormat tidak atas permintaan sendiri atau tidak dengan hormat sebagai Pegawai Negeri Sipil atau diberhentikan tidak dengan hormat sebagai pegawai swasta;</li>
+                <li>Calon pelamar di seluruh Indonesia dapat melakukan pendaftaran secara online ke alamat website Panselnas di: <b>https://panselnas.menpan.go.id</b> untuk mendapatkan username dan password yang kemudian digunakan untuk log in ke SSCN di: <b>http://sscn.bkn.go.id/</b>;</li>
                 <li>
-                Setelah mengisi form registrasi melalui website pada point 1 tersebut diatas maka pelamar dapat mencetak tanda bukti pendaftaran.
+                Setelah mengisi form registrasi melalui website pada SSCN maka pelamar dapat mencetak tanda bukti pendaftaran.
                 <ul style="list-style-type: lower-alpha;padding-left: 20px;	line-height: 1.54em;">
                   <li>Calon Pelamar Instansi Pemerintah Pusat Kementerian/Lembaga/Badan:</li>
                   <ul style="list-style-type: lower-roman;padding-left: 20px;	line-height: 1.54em;">
@@ -121,37 +120,38 @@
                   </ul>
                   </li>
                 </ul>
-                <li>Pendaftaran secara online dimulai pada tanggal 1 - 20 September 2013 jam 24.00 waktu setempat.</li>
-                <li>Verifikasi berkas lamaran lengkap di masing-masing instansi dimulai pada tanggal 1 - 20 September 2013, jam 08.00 - 16.00 waktu setempat.</li>
-                <li>Pelamar hanya dapat mendaftar pada satu formasi.</li>
+                <li>Pendaftaran secara online dimulai pada tanggal 20 Agustus - 3 September 2014 jam 24.00 waktu setempat.</li>
+		  <li>Verifikasi berkas lamaran lengkap di masing-masing instansi dimulai pada tanggal 23 Agustus - 5 September 2014, jam 08.00 - 16.00 waktu setempat.</li>
+	         <li>Pelamar hanya dapat mendaftar pada 1(satu) instansi.</li>	
                 <li>Lowongan Formasi dan kualifikasi pendidikan serta persyaratan tambahan lainnya dapat dilihat pada panduan pendaftaran masing-masing jalur penerimaan setiap instansi pada link <b>Pengumuman Pendaftaran.</b></li>
               </ul>
 			  <br/>
               <p><b>KHUSUS :</b></p>
               <ul style="list-style-type: decimal;padding-left: 20px;	line-height: 1.54em;">
-              <li>Telah terdaftar sebagai Tenaga Pencari Kerja pada Bursa Kesempatan Kerja Kantor Dinas Tenaga Kerja dan Transmigrasi;</li>
               <li>Membuat surat lamaran yang dibuat dengan tulisan tangan sendiri, tinta hitam dengan melampirkan :</li>
               <ul style="list-style-type: lower-alpha;padding-left: 20px;	line-height: 1.54em;">
                 <li>Daftar Riwayat Hidup (DRH) meliputi pendidikan formal dan informal serta pengalaman. Khusus pendidikan formal harus dituliskan dari mulai Sekolah Dasar sampai dengan pendidikan terakhir, nama lembaga pendidikan, tahun lulus pendidikan dan nilai rata-rata ijazah atau IPK;</li>
-                <li>Fotocopy legalisir Surat Keterangan Catatan Kepolisian (SKCK) untuk melamar pekerjaan dari Kantor Kepolisian setempat yang masih berlaku sebanyak 1 (satu) lembar;</li>
-                <li>Fotocopy legalisir Surat Keterangan Berbadan Sehat dari dokter Puskesmas/Rumah Sakit Pemerintah yang masih berlaku pada saat pendaftaran;</li>
                 <li>Fotocopy Ijazah / STTB  terakhir yang disahkan dan dilegalisir oleh pejabat yang berwenang : Rektor/Dekan/Ketua/Direktur dengan stempel basah (bukan stempel foto copy);</li>
                 <li>Transkrip nilai akademik yang dilegalisir oleh Dekan Fakultas bagi Perguruan Tinggi Swasta sesuai peraturan pemerintah;</li>
                 <li>Fotocopy Kartu Tanda Penduduk (KTP) yang masih berlaku pada saat pendaftaran 1 (satu) lembar. </li>
+		  <li>Pas foto berwarna 4x6 : 3 lembar</li>
               </ul>
 			  </ul>
 
 			 <br/>
 			<h3>2. PANDUAN PENDAFTARAN</h3>
-			<p>Proses pendaftaran CALON PEGAWAI NEGERI SIPIL (CPNS) Tahun Anggaran 2013 terdiri dari :</p>
+			<p>Proses pendaftaran CALON PEGAWAI NEGERI SIPIL (CPNS) Tahun Anggaran 2014 terdiri dari :</p>
 			<ul style="list-style-type: decimal;padding-left: 20px;	line-height: 1.54em;">
-				<li>Membuat <b>pendaftaran</b></li>
-				 <ul style="list-style-type: lower-alpha;padding-left: 20px;	line-height: 1.54em;">
-					<li>Klik link Buat Pendaftaran untuk membuat pendaftaran baru.</li>
+				<li>Masuk ke portal Panselnas di <b>http://panselnas.menpan.go.id</b> untuk melakukan pendaftaran dengan memasukkan Nomor Induk Kependudukan (NIK), tanggal lahir, instansi yang dipilih dan e-mail.</li>
+				<li>Log in ke http://sscn.bkn.go.id dengan mengisi username & password yang sudah dikirim via e-mail.</li> 
+					<ul style="list-style-type: lower-alpha;padding-left: 20px;	line-height: 1.54em;">
+					<li>Klik DAFTAR untuk mengisi formulir pendaftaran.</li>
 					<li>Isi formulir registrasi yang muncul.</li>
 					<li>Pastikan isian data pribadi pada form registrasi sesuai dengan KTP.</li>
-					<li>Pastikan isian formasi dan pendidikan yang dilamar sesuai dengan kualifikasi pendidikan yang dimiliki.</li>
-					<li>Klik tombol Kirim Pendaftaran untuk memproses pendaftaran dan no registrasi pendaftaran.</li>
+					<li>Pastikan isian jabatan sesuai dengan kualifikasi pendidikan.</li>
+					<li>Klik check box mengenai kebenaran data yang telah dimasukkan</li>
+					<li>Masukkan kode captcha yang tertera.</li>
+					<li>Klik tombol Daftar untuk memproses pendaftaran dan mendapatkan nomor registrasi.</li>
 					<li>Cetak tanda bukti pendaftaran.</li>
 					<ul style="list-style-type: square;padding-left: 20px;	line-height: 1.54em;">
 						<li>Tanda bukti pendaftaran berupa file dalam format PDF yang dapat disimpan di flashdisk dan dapat dicetak ditempat lain.</li>
@@ -161,17 +161,11 @@
 				<li>Melakukan <b>verifikasi dokumen</b></li>
 				<ul style="list-style-type: square;padding-left: 20px;	line-height: 1.54em;">
 					<li>Verifikasi dokumen dilakukan oleh Panitia Penerimaan CPNS yang ada pada masing-masing instansi yang dilamar.</li>
-					<li>Dokumen lamaran agar dibawa oleh pelamar yang bersangkutan.</li> 
+					<li>Instansi menentukan apakah dokumen lamaran dibawa oleh pelamar yang bersangkutan atau dikirim melalui Pos Indonesia.</li> 
 					<li>Verifikasi dokumen tersebut untuk memastikan kesesuaian data pelamar pada isian formulir pendaftaran dan pilihan formasi serta pendidikan apakah telah terisi dengan data yang benar.</li>
 				</ul>
-				<li>Mengikuti ujian seleksi masuk  pada waktu yang telah ditentukan.</li>
-				<ul style="list-style-type: square;padding-left: 20px;	line-height: 1.54em;">
-					<li>Jadwal ujian seleksi CPNS dapat dilihat pada link Jadwal Pelaksanaan Seleksi CPNS.</li>
-				</ul>
+				<li>Mengikuti ujian seleksi pada waktu yang telah ditentukan.</li>
 				<li>Setelah mengikuti ujian seleksi masuk, Anda dapat melihat hasil seleksi pada tanggal pengumuman.</li>
-				<ul style="list-style-type: square;padding-left: 20px;	line-height: 1.54em;">
-					<li>Hasil seleksi ujian dapat dilihat pada link Hasil Seleksi CPNS Nasional dengan memasukkan no peserta ujian.</li>
-				</ul>
 			</ul>
 			<br/>
 			<h3>3. PELAKSANAAN UJIAN</h3>
@@ -192,26 +186,7 @@
 							<li>Peserta hanya diperbolehkan membawa kartu peserta ujian ke dalam ruangan ujian.</li>
 							<li>Jika ada peserta yang diketahui melakukan tindakan curang yang merugikan peserta lain maka akan di diskualifikasikan dan dinyatakan gugur sebagai peserta ujian.</li>
 						</ul>
-					</ul>
-					<li>Test dengan menggunakan Lembar Jawaban Komputer (LJK)</li>
-					<ul style="list-style-type: lower-alpha;padding-left: 20px;	line-height: 1.54em;">
-						<li>Pra Test</li>
-						<ul style="list-style-type: lower-roman;padding-left: 20px;	line-height: 1.54em;">
-							<li>Peserta ujian agar sudah mengetahui kapan jadwal (tanggal dan jam) serta lokasi ujiannya masing-masing.</li>
-							<li>Peserta ujian mempersiapkan alat tulis yang akan digunakan untuk ujian seperti pensil 2B, penghapus (pensil yang akan digunakan untuk pengisian LJK harus yang berkualitas baik agar tidak merugikan diri sendiri dengan tidak ter-scan-nya jawaban pada LJK karena kualitas pensil yang kurang baik.</li>
-							<li>Peserta ujian agar datang minimal 30 menit sebelum ujian dimulai.</li>
-						</ul>
-						<li>Pelaksanaan Test</li>
-						<ul style="list-style-type: lower-roman;padding-left: 20px;	line-height: 1.54em;">
-							<li>5 menit persiapan peserta memasuki ruangan test dengan posisi duduk yang tidak ditentukan oleh panitia.</li>
-							<li>10 menit pembagian LJK dan soal oleh panitia.</li>
-							<li>10 menit pengarahan tata cara ujian menggunakan LJK oleh panitia pelaksanaan ujian.</li>
-							<li>120 menit pelaksanaan ujian.</li>
-							<li>Dilarang membawa peralatan elektronis ke dalam ruangan test. </li>
-							<li>Peserta hanya diperbolehkan membawa kartu peserta ujian, serta peralatan tulis (pensil dan penghapus) ke dalam ruangan ujian.</li>
-							<li>Jika ada peserta yang diketahui melakukan tindakan curang yang merugikan peserta lain maka akan di diskualifikasikan dan dinyatakan gugur sebagai peserta ujian.</li>
-
-						</ul>
+					</ul>						
 					</ul>
 				</ul>
 			<br/>
