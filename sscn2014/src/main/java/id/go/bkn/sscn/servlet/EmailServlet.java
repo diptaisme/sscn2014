@@ -78,10 +78,16 @@ public class EmailServlet extends HttpServlet {
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(TO));
 			message.setSubject(SUBJECT);
+			String nama = request.getParameter("nama");
+			String telpon = request.getParameter("telpon");
+			String email = request.getParameter("email");
+			String pesan = request.getParameter("pesan");			
+			
 			message.setText("Dear Administrator," + "\n\n Nama : "
-					+ request.getParameter("nama") + "\n\n Email : "
-					+ request.getParameter("email") + "\n\n Pesan : "
-					+ request.getParameter("pesan"));
+					+ nama + "\n\n Telpon : "
+					+ telpon + "\n\n Email : "
+					+ email + "\n\n Pesan : "
+					+ pesan);
 
 			Transport.send(message);
 

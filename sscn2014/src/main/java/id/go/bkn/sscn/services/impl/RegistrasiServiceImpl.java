@@ -1,5 +1,6 @@
 package id.go.bkn.sscn.services.impl;
 
+import id.go.bkn.sscn.core.persistence.tools.QueryOrder;
 import id.go.bkn.sscn.dao.DtFormasiDao;
 import id.go.bkn.sscn.dao.DtPendaftaranDao;
 import id.go.bkn.sscn.dao.MFormasiDao;
@@ -52,7 +53,7 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 
 	@Inject
 	private RefPendidikanDao refPendidikanDao;
-	
+
 	@Inject
 	private RefLokasiTestDao refLokasiTestDao;
 
@@ -161,12 +162,12 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 			// String pendidikan = refPendidikanDao
 			// .findByProperty("kode", request.getParameter("pendidikan"),
 			// null).get(0).getNama();
-			
-			MFormasi mFormasi1 = null; 
+
+			MFormasi mFormasi1 = null;
 			MFormasi mFormasi2 = null;
 			MFormasi mFormasi3 = null;
-			
-			//formasi 1
+
+			// formasi 1
 			HashMap<String, String> propertiesMap = new HashMap<String, String>();
 			propertiesMap.put("refInstansi.kode", instansi);
 			propertiesMap.put("refLokasi.kode", lokasiKerja1);
@@ -177,8 +178,8 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 				return null;
 			} else {
 				mFormasi1 = listFormasi.get(0);
-			}			
-			
+			}
+
 			String noIjazah = request.getParameter("no_ijazah");
 			String jnsKelamin = request.getParameter("jenis_kelamin");
 			String status = ""; // status
@@ -186,7 +187,8 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 
 			String lembaga = request.getParameter("universitas"); // lembaga =
 																	// universitas
-			int tahunLulus = Integer.parseInt(request.getParameter("tahun_lulus"));
+			int tahunLulus = Integer.parseInt(request
+					.getParameter("tahun_lulus"));
 			String akreditasi = request.getParameter("akreditasi");
 			String nilaiIPK = request.getParameter("nilai_ipk");
 			// memang tidak diisi
@@ -208,57 +210,70 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 					pendidikan1, lembaga, noIjazah, status, regStatus,
 					noPeserta, tglTest, lokasiTest, tglCreated, tglUpdated,
 					userValidate, tglValidate, keterangan, akreditasi, nilaiIPK);
-			pendaftaran.setTahunLulus(tahunLulus); //set tahun lulus
+			pendaftaran.setTahunLulus(tahunLulus); // set tahun lulus
 			if (pendaftar != null) {
 				pendaftaran.setTabelPendaftar(pendaftar);
 			}
-			
-			RefInstansi instRefInstansi = refInstansiDao.findByProperty("kode", instansi, null).get(0);
-			//formasi ke 2			
+
+			RefInstansi instRefInstansi = refInstansiDao.findByProperty("kode",
+					instansi, null).get(0);
+			// formasi ke 2
 			String jabatan2 = request.getParameter("jabatan2");
 			String lokasiKerja2 = request.getParameter("lokasi_kerja2");
 			String pendidikan2 = request.getParameter("pendidikan");
-			if (lokasiKerja2 != null && !lokasiKerja2.equals("") && pendidikan2 != null && !pendidikan2.equals("") 
-					&& jabatan2 != null && !jabatan2.equals("") && instRefInstansi.getJumlahMaxDaftar().equalsIgnoreCase("1")) {				
-				if(propertiesMap.size() > 0){
+			if (lokasiKerja2 != null
+					&& !lokasiKerja2.equals("")
+					&& pendidikan2 != null
+					&& !pendidikan2.equals("")
+					&& jabatan2 != null
+					&& !jabatan2.equals("")
+					&& instRefInstansi.getJumlahMaxDaftar().equalsIgnoreCase(
+							"3")) {
+				if (propertiesMap.size() > 0) {
 					propertiesMap.clear();
 				}
 				propertiesMap.put("refInstansi.kode", instansi);
 				propertiesMap.put("refLokasi.kode", lokasiKerja2);
 				propertiesMap.put("refJabatan.kode", jabatan2);
-				listFormasi = mFormasiDao.findByMapOfProperties(
-						propertiesMap, null, null);
+				listFormasi = mFormasiDao.findByMapOfProperties(propertiesMap,
+						null, null);
 				if (listFormasi == null || listFormasi.size() == 0) {
 					return null;
 				} else {
-					mFormasi2 = listFormasi.get(0);					
+					mFormasi2 = listFormasi.get(0);
 					if (pendaftar != null) {
 						pendaftaran.setFormasi2(mFormasi2);
-					} 					
+					}
 				}
-			}		
-			
-			//formasi ke 3
+			}
+
+			// formasi ke 3
 			String jabatan3 = request.getParameter("jabatan3");
 			String lokasiKerja3 = request.getParameter("lokasi_kerja3");
 			String pendidikan3 = request.getParameter("pendidikan");
-			if (lokasiKerja3 != null && !lokasiKerja3.equals("") && pendidikan3 != null && !pendidikan3.equals("") 
-					&& jabatan3 != null && !jabatan3.equals("") && instRefInstansi.getJumlahMaxDaftar().equalsIgnoreCase("1")) {
-				if(propertiesMap.size() > 0){
+			if (lokasiKerja3 != null
+					&& !lokasiKerja3.equals("")
+					&& pendidikan3 != null
+					&& !pendidikan3.equals("")
+					&& jabatan3 != null
+					&& !jabatan3.equals("")
+					&& instRefInstansi.getJumlahMaxDaftar().equalsIgnoreCase(
+							"3")) {
+				if (propertiesMap.size() > 0) {
 					propertiesMap.clear();
 				}
 				propertiesMap.put("refInstansi.kode", instansi);
 				propertiesMap.put("refLokasi.kode", lokasiKerja3);
 				propertiesMap.put("refJabatan.kode", jabatan3);
-				listFormasi = mFormasiDao.findByMapOfProperties(
-						propertiesMap, null, null);
+				listFormasi = mFormasiDao.findByMapOfProperties(propertiesMap,
+						null, null);
 				if (listFormasi == null || listFormasi.size() == 0) {
 					return null;
 				} else {
-					mFormasi3 = listFormasi.get(0);					
+					mFormasi3 = listFormasi.get(0);
 					if (pendaftar != null) {
 						pendaftaran.setFormasi3(mFormasi3);
-					} 					
+					}
 				}
 			}
 			pendaftaran = dtPendaftaranDao.insert(pendaftaran);
@@ -279,16 +294,17 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public DtPendaftaran getPendaftaranById(String id) {
 		return dtPendaftaranDao.findById(Long.parseLong(id));
 	}
-	
+
 	@Override
 	public List<DtPendaftaran> getPendaftaransByNoRegistrasi(String noRegister) {
 		return dtPendaftaranDao.findByProperty("noRegister", noRegister, null);
 	}
+
 	// tanpa tingkat pendidikan dulu
 	// private String generateNoRegistrasi(String kodeInstansi, String
 	// tingkatPendidikan, String kodeJabatan){
@@ -339,8 +355,8 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 		}
 		return listJabatan;
 	}
-	
-	//return list of pendaftaran
+
+	// return list of pendaftaran
 	@Override
 	@Transactional(readOnly = false)
 	public List<DtPendaftaran> insertPendaftarans(HttpServletRequest request,
@@ -369,12 +385,12 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 			// String pendidikan = refPendidikanDao
 			// .findByProperty("kode", request.getParameter("pendidikan"),
 			// null).get(0).getNama();
-			
-			MFormasi mFormasi1 = null; 
+
+			MFormasi mFormasi1 = null;
 			MFormasi mFormasi2 = null;
 			MFormasi mFormasi3 = null;
-			
-			//formasi 1
+
+			// formasi 1
 			HashMap<String, String> propertiesMap = new HashMap<String, String>();
 			propertiesMap.put("refInstansi.kode", instansi);
 			propertiesMap.put("refLokasi.kode", lokasiKerja1);
@@ -385,8 +401,8 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 				return null;
 			} else {
 				mFormasi1 = listFormasi.get(0);
-			}			
-			
+			}
+
 			String noIjazah = request.getParameter("no_ijazah");
 			String jnsKelamin = request.getParameter("jenis_kelamin");
 			String status = ""; // status
@@ -415,85 +431,89 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 					pendidikan1, lembaga, noIjazah, status, regStatus,
 					noPeserta, tglTest, lokasiTest, tglCreated, tglUpdated,
 					userValidate, tglValidate, keterangan, akreditasi, nilaiIPK);
-			DtPendaftaran pendaftaran2=null;
-			DtPendaftaran pendaftaran3=null;
+			DtPendaftaran pendaftaran2 = null;
+			DtPendaftaran pendaftaran3 = null;
 			if (pendaftar != null) {
 				pendaftaran1.setTabelPendaftar(pendaftar);
-			} 
-			
+			}
+
 			pendaftaran1 = dtPendaftaranDao.insert(pendaftaran1);
-			
-			//formasi ke 2
+
+			// formasi ke 2
 			String jabatan2 = request.getParameter("jabatan2");
 			String lokasiKerja2 = request.getParameter("lokasi_kerja2");
 			String pendidikan2 = request.getParameter("pendidikan");
-			if (lokasiKerja2 != null && !lokasiKerja2.equals("") && pendidikan2 != null && !pendidikan2.equals("") 
-					&& jabatan2 != null && !jabatan2.equals("")) {				
-				if(propertiesMap.size() > 0){
+			if (lokasiKerja2 != null && !lokasiKerja2.equals("")
+					&& pendidikan2 != null && !pendidikan2.equals("")
+					&& jabatan2 != null && !jabatan2.equals("")) {
+				if (propertiesMap.size() > 0) {
 					propertiesMap.clear();
 				}
 				propertiesMap.put("refInstansi.kode", instansi);
 				propertiesMap.put("refLokasi.kode", lokasiKerja2);
 				propertiesMap.put("refJabatan.kode", jabatan2);
-				listFormasi = mFormasiDao.findByMapOfProperties(
-						propertiesMap, null, null);
+				listFormasi = mFormasiDao.findByMapOfProperties(propertiesMap,
+						null, null);
 				if (listFormasi == null || listFormasi.size() == 0) {
 					return null;
 				} else {
 					mFormasi2 = listFormasi.get(0);
 					pendaftaran2 = new DtPendaftaran(mFormasi2, noNik,
-							noRegister, nama, tempatLahir, tglLahir, jnsKelamin,
-							alamat, kodePos, propinsi, kota, telpon, email,
-							pendidikan1, lembaga, noIjazah, status, regStatus,
-							noPeserta, tglTest, lokasiTest, tglCreated, tglUpdated,
-							userValidate, tglValidate, keterangan, akreditasi, nilaiIPK);
+							noRegister, nama, tempatLahir, tglLahir,
+							jnsKelamin, alamat, kodePos, propinsi, kota,
+							telpon, email, pendidikan1, lembaga, noIjazah,
+							status, regStatus, noPeserta, tglTest, lokasiTest,
+							tglCreated, tglUpdated, userValidate, tglValidate,
+							keterangan, akreditasi, nilaiIPK);
 					if (pendaftar != null) {
 						pendaftaran2.setTabelPendaftar(pendaftar);
-					} 					
+					}
 					pendaftaran2 = dtPendaftaranDao.insert(pendaftaran2);
 				}
-			}		
-			
-			//formasi ke 3
+			}
+
+			// formasi ke 3
 			String jabatan3 = request.getParameter("jabatan3");
 			String lokasiKerja3 = request.getParameter("lokasi_kerja3");
 			String pendidikan3 = request.getParameter("pendidikan");
-			if (lokasiKerja3 != null && !lokasiKerja3.equals("") && pendidikan3 != null && !pendidikan3.equals("") 
+			if (lokasiKerja3 != null && !lokasiKerja3.equals("")
+					&& pendidikan3 != null && !pendidikan3.equals("")
 					&& jabatan3 != null && !jabatan3.equals("")) {
-				if(propertiesMap.size() > 0){
+				if (propertiesMap.size() > 0) {
 					propertiesMap.clear();
 				}
 				propertiesMap.put("refInstansi.kode", instansi);
 				propertiesMap.put("refLokasi.kode", lokasiKerja3);
 				propertiesMap.put("refJabatan.kode", jabatan3);
-				listFormasi = mFormasiDao.findByMapOfProperties(
-						propertiesMap, null, null);
+				listFormasi = mFormasiDao.findByMapOfProperties(propertiesMap,
+						null, null);
 				if (listFormasi == null || listFormasi.size() == 0) {
 					return null;
 				} else {
 					mFormasi3 = listFormasi.get(0);
 					pendaftaran3 = new DtPendaftaran(mFormasi3, noNik,
-							noRegister, nama, tempatLahir, tglLahir, jnsKelamin,
-							alamat, kodePos, propinsi, kota, telpon, email,
-							pendidikan1, lembaga, noIjazah, status, regStatus,
-							noPeserta, tglTest, lokasiTest, tglCreated, tglUpdated,
-							userValidate, tglValidate, keterangan, akreditasi, nilaiIPK);
+							noRegister, nama, tempatLahir, tglLahir,
+							jnsKelamin, alamat, kodePos, propinsi, kota,
+							telpon, email, pendidikan1, lembaga, noIjazah,
+							status, regStatus, noPeserta, tglTest, lokasiTest,
+							tglCreated, tglUpdated, userValidate, tglValidate,
+							keterangan, akreditasi, nilaiIPK);
 					if (pendaftar != null) {
 						pendaftaran3.setTabelPendaftar(pendaftar);
-					} 					
+					}
 					pendaftaran3 = dtPendaftaranDao.insert(pendaftaran3);
 				}
 			}
-			
+
 			List<DtPendaftaran> listPendaftarans = new ArrayList<DtPendaftaran>();
 			listPendaftarans.add(pendaftaran1);
-			if(pendaftaran2!=null){
+			if (pendaftaran2 != null) {
 				listPendaftarans.add(pendaftaran2);
 			}
-			if(pendaftaran3!=null){
+			if (pendaftaran3 != null) {
 				listPendaftarans.add(pendaftaran3);
 			}
-			
+
 			return listPendaftarans;
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -503,67 +523,69 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public boolean deletePendaftarans(List<DtPendaftaran> pendaftarans){
+	public boolean deletePendaftarans(List<DtPendaftaran> pendaftarans) {
 		return dtPendaftaranDao.removeBulk(pendaftarans);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = false)
-	public boolean deletePendaftaran(DtPendaftaran pendaftaran){
+	public boolean deletePendaftaran(DtPendaftaran pendaftaran) {
 		return dtPendaftaranDao.remove(pendaftaran);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = false)
-	public TabelPendaftar updatePendaftar(TabelPendaftar pendaftar){
+	public TabelPendaftar updatePendaftar(TabelPendaftar pendaftar) {
 		return tabelPendaftarDao.update(pendaftar);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public List<DtPendaftaran> getPendaftaransByUser(Integer idUser) {
 		List<String> leftJoinFetchColumns = new ArrayList<String>();
 		leftJoinFetchColumns.add("tabelPendaftar");
-		return dtPendaftaranDao.findByProperty("tabelPendaftar.id", idUser, leftJoinFetchColumns, null, null, null);
+		return dtPendaftaranDao.findByProperty("tabelPendaftar.id", idUser,
+				leftJoinFetchColumns, null, null, null);
 	}
 
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-	public RefInstansi getInstansibyId(String id) {		
+	public RefInstansi getInstansibyId(String id) {
 		return refInstansiDao.findByProperty("kode", id, null).get(0);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-	public MFormasi getFormasi(String instansi, String lokasi,
-			String jabatan) {
+	public MFormasi getFormasi(String instansi, String lokasi, String jabatan) {
 
-		List<MFormasi> listFormasi = mFormasiDao
-				.findByInstansiLokasiJabatan(instansi, lokasi, jabatan);		
+		List<MFormasi> listFormasi = mFormasiDao.findByInstansiLokasiJabatan(
+				instansi, lokasi, jabatan);
 
-		if(listFormasi.size() > 0) {
+		if (listFormasi.size() > 0) {
 			return listFormasi.get(0);
 		}
 		return null;
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public int countFormasiInPendaftaran(MFormasi formasi) {
-		int count = dtPendaftaranDao.countByProperty("formasi.id", formasi.getId());
+		int count = dtPendaftaranDao.countByProperty("formasi.id",
+				formasi.getId());
 		return count;
 	}
 
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public List<RefPendidikan> getPendidikanByInstansi(String instansi) {
-		return refPendidikanDao.findPendidikanByInstansi(instansi);		
+		return refPendidikanDao.findPendidikanByInstansi(instansi);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public List<RefLokasi> getLokasi(String instansi, String pendidikan) {
-		List<MFormasi> listFormasi = mFormasiDao.findByInstansiPendidikan(instansi, pendidikan);		
+		List<MFormasi> listFormasi = mFormasiDao.findByInstansiPendidikan(
+				instansi, pendidikan);
 		List<RefLokasi> listLokasi = new ArrayList<RefLokasi>();
 
 		for (MFormasi formasi : listFormasi) {
@@ -571,20 +593,25 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 		}
 		return listLokasi;
 	}
-	
-	//get pendaftaran by id pendfatar
+
+	// get pendaftaran by id pendfatar
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public List<DtPendaftaran> getPendaftaranByUserId(TabelPendaftar pendaftar) {
-		return dtPendaftaranDao.findByProperty("tabelPendaftar", pendaftar, null);
+		return dtPendaftaranDao.findByProperty("tabelPendaftar", pendaftar,
+				null);
 	}
-	
-	//get lokasi test by instansi
+
+	// get lokasi test by instansi
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public List<RefLokasiTest> getLokasiTestByInstansi(String instansi) {
-		//return refLokasiTestDao.findLokasiTestByInstansi(instansi);
-		return refLokasiTestDao.findByProperty("instansi.kode", instansi, null);
+		// return refLokasiTestDao.findLokasiTestByInstansi(instansi);
+		List<QueryOrder> orders = new ArrayList<QueryOrder>();
+		orders.add(new QueryOrder("nama"));
+		return refLokasiTestDao.findByProperty("instansi.kode", instansi, null,
+				orders, null, null);
+
 	}
 
 }
