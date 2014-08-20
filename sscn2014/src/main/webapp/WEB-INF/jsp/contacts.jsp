@@ -18,6 +18,14 @@
     <script src="/sscn2014/resources/js/jquery.easing.1.3.js"></script>
     <script src="/sscn2014/resources/js/tms-0.4.1.js"></script>
     <script src="/sscn2014/resources/js/slider.js"></script>
+	<script type="text/javascript">
+		$(document).ready(	
+			function() {
+				$(this).bind('contextmenu',function(e){
+							e.preventDefault();
+						});
+				});				
+	</script>		
 <!--[if lt IE 8]>
    <div style=' clear: both; text-align:center; position: relative;'>
      <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -90,19 +98,19 @@
                         </div>
                         <div class="col-12">
                         	<h3>hubungi kami </h3>
-                            <form id="contact-form" method="post">
+                            <form id="contact-form" method="post" action="email">
                               <fieldset>
                                 <label class="name">
-                                    <input type="text" value="Your Name" onFocus="if(this.value=='Your Name'){this.value=''}" onBlur="if(this.value==''){this.value='Your Name'}">
+                                    <input id="nama" name="nama" type="text" value="Your Name" onFocus="if(this.value=='Your Name'){this.value=''}" onBlur="if(this.value==''){this.value='Your Name'}">
                                 </label>
                                 <label class="phone">
-                                    <input type="text" value="Telephone" onFocus="if(this.value=='Telephone'){this.value=''}" onBlur="if(this.value==''){this.value='Telephone'}">
+                                    <input id="telpon" name="telpon" type="text" value="Telephone" onFocus="if(this.value=='Telephone'){this.value=''}" onBlur="if(this.value==''){this.value='Telephone'}">
                                 </label>
                                 <label class="email">
-                                  <input type="email" value="Email" onFocus="if(this.value=='Email'){this.value=''}" onBlur="if(this.value==''){this.value='Email'}">
+                                  <input id="email" name="email" type="email" value="Email" onFocus="if(this.value=='Email'){this.value=''}" onBlur="if(this.value==''){this.value='Email'}">
                                 </label>
                                 <label class="message">
-                                  <textarea onFocus="if(this.value=='Message'){this.value=''}" onBlur="if(this.value==''){this.value='Message'}">Message</textarea>
+                                  <textarea id="pesan" name="pesan" onFocus="if(this.value=='Message'){this.value=''}" onBlur="if(this.value==''){this.value='Message'}">Message</textarea>
                                 </label>
                                 <div class="btns">
                                     <a class="button" onClick="document.getElementById('contact-form').reset()">Clear</a>

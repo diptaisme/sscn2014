@@ -76,7 +76,7 @@
                             <ul class="list-2">
 					<li><a href="peraturan.html"><img src="/sscn2014/resources/images/peraturan.jpg" width="243" height="37" border="0" align="left"></a></img></li>
 					<li><a href="alur.html"><img src="/sscn2014/resources/images/alur.jpg" width="243" height="37" border="0" align="left"></a></img></li>								
-                    <li><a href="calendar.html"><img src="/sscn2014/resources/images/jadwal.jpg" width="243" height="37" border="0" align="left"></a></img></li>
+                    <li><a href="#"><img src="/sscn2014/resources/images/jadwal.jpg" width="243" height="37" border="0" align="left"></a></img></li>
                             </ul>                            
                         </div>
 			   		<div class="col-9">
