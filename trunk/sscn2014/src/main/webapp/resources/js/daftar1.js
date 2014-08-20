@@ -259,7 +259,7 @@
 				featureClass : "P"
 			},
 			success : function(data) {
-				var html = '<option value="">Pilih Lokasi Test</option>';
+				var html = '<option value="">Default</option>';
 				$.map(data.lokasiTests, function(item) {
 					html += '<option value="' + item.kode + '">' + item.nama
 							+ '</option>';
