@@ -139,4 +139,10 @@ public class ActionController {
 		return "pengumuman_instansi";
 	}
 	
+	@RequestMapping(value = "/petunjuk.html", method = RequestMethod.GET)
+	public String petunjuk(ModelMap map, ModelMap model,
+			HttpSession session) {
+		return "petunjuk";
+	}
+	
 }
