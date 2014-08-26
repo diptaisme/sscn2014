@@ -82,7 +82,7 @@ public class TabelPendaftar implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "NIK", length = 25)
+	@Column(name = "NIK", length = 18, unique = true, nullable = false)
 	public String getNik() {
 		return this.nik;
 	}
