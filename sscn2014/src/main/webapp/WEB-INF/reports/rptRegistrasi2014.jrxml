@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptRegistrasi2014" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="518"/>
+	<property name="ireport.y" value="574"/>
 	<parameter name="NO_REGISTRASI" class="java.lang.String"/>
 	<parameter name="NAMA" class="java.lang.String"/>
 	<parameter name="TTL" class="java.lang.String"/>
@@ -300,7 +300,7 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="437" y="79" width="90" height="111"/>
+				<reportElement x="437" y="101" width="90" height="111"/>
 				<box>
 					<pen lineWidth="0.75"/>
 					<topPen lineWidth="0.75"/>
@@ -380,7 +380,7 @@
 				</graphicElement>
 			</line>
 			<componentElement>
-				<reportElement x="440" y="15" width="115" height="53"/>
+				<reportElement x="440" y="39" width="115" height="53"/>
 				<jr:Codabar xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
 					<jr:codeExpression><![CDATA[$P{BARCODE}]]></jr:codeExpression>
 				</jr:Codabar>
@@ -415,11 +415,11 @@
 				<text><![CDATA["Demikian data pribadi ini saya buat dengan sebenarnya dan bila ternyata isian yang dibuat tidak benar, saya bersedia menanggung akibat hukum yang ditimbulkannya"]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="52" width="269" height="20"/>
+				<reportElement x="1" y="52" width="227" height="20"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
-				<text><![CDATA[Hasil Verifikasi  :  [   ]   Lulus      [   ]   Tidak Lulus]]></text>
+				<text><![CDATA[Hasil Verifikasi  :  [   ] Lulus      [   ] Tidak Lulus]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="1" y="72" width="87" height="17"/>
@@ -429,46 +429,67 @@
 				<text><![CDATA[Keterangan       :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="87" y="72" width="183" height="17"/>
+				<reportElement x="87" y="72" width="141" height="17"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
-				<text><![CDATA[....................................................]]></text>
+				<text><![CDATA[...........................................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="87" y="89" width="183" height="17"/>
+				<reportElement x="87" y="89" width="141" height="17"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
-				<text><![CDATA[....................................................]]></text>
+				<text><![CDATA[...........................................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="87" y="106" width="183" height="17"/>
+				<reportElement x="87" y="106" width="141" height="17"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
-				<text><![CDATA[....................................................]]></text>
+				<text><![CDATA[...........................................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="372" y="50" width="183" height="20"/>
+				<reportElement x="236" y="50" width="148" height="20"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
-				<text><![CDATA[Tanggal Verifikasi : .......................]]></text>
+				<text><![CDATA[Tanggal Verifikasi : ..............]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="373" y="122" width="182" height="20"/>
+				<reportElement x="237" y="122" width="147" height="20"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
 				<text><![CDATA[Nama : .................................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="373" y="70" width="183" height="17"/>
+				<reportElement x="237" y="70" width="147" height="17"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
 				<text><![CDATA[Petugas Verifikator Berkas,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="50" width="166" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Tanggal Verifikasi Online : .........]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="70" width="155" height="17"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Petugas Verifikator Online,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="122" width="155" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Nama : .................................]]></text>
 			</staticText>
 		</band>
 	</summary>
