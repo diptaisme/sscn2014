@@ -6,6 +6,7 @@ import id.go.bkn.sscn.dao.RefPendidikanDao;
 import id.go.bkn.sscn.manager.Constanta;
 import id.go.bkn.sscn.persistence.entities.DtPendaftaran;
 import id.go.bkn.sscn.persistence.entities.DtPersyaratan;
+import id.go.bkn.sscn.persistence.entities.RefLokasiTest;
 import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
 import id.go.bkn.sscn.services.PersyaratanService;
 import id.go.bkn.sscn.services.RegistrasiService;
@@ -166,7 +167,7 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 		String tglLahir = formatDateTglLahir.format(pendaftaran.getTglLahir());
 		mapParamater.put("TTL", tempatLahir + " / " + tglLahir);
 		mapParamater.put("NIK", pendaftaran.getNoNik());
-		String jenisKelamin = pendaftaran.getTabelPendaftar().getJenisKelamin();
+		String jenisKelamin = pendaftaran.getJnsKelamin();
 		mapParamater.put("JENIS_KELAMIN",
 				jenisKelamin.equalsIgnoreCase("P") ? "Pria" : "Wanita");
 		mapParamater.put("UNIVERSITAS", pendaftaran.getLembaga());
@@ -181,9 +182,13 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 		String lokasiTest = "";
 		if (pendaftaran.getLokasiTest() != null) {
 			if (!pendaftaran.getLokasiTest().equalsIgnoreCase("")) {
-				lokasiTest = refLokasiTestDao
+				List<RefLokasiTest> objLokasitests = refLokasiTestDao
 						.findByProperty("kode", pendaftaran.getLokasiTest(),
-								null).get(0).getNama();
+								null); 
+				if(objLokasitests!=null & objLokasitests.size() > 0){
+					lokasiTest = objLokasitests.get(0).getNama();
+				}
+				
 			} else {
 				lokasiTest = "";
 			}
