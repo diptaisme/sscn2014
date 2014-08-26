@@ -1,0 +1,62 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<select class="form-dropdown" style="width: 250px" title="Instansi"
+	id="instansi" name="instansiValue">
+	<option value="">Pilih instansi</option>
+	<option value="4018">ARSIP NASIONAL REPUBLIK INDONESIA</option>
+	<option value="4011">BADAN KEPEGAWAIAN NEGARA</option>                
+	<option value="4051">BADAN NASIONAL PENEMPATAN DAN PERLINDUNGAN TENAGA KERJA INDONESIA</option> 
+	<option value="4062">BADAN PENGAWAS PEMILIHAN UMUM</option>                                    
+	<option value="4023">BADAN PENGAWASAN KEUANGAN DAN PEMBANGUNAN</option>                        
+	<option value="4053">BADAN SAR NASIONAL</option>                                                
+	<option value="4027">BADAN STANDARDISASI NASIONAL</option>                                      
+ 	<option value="3012">KEMENTERIAN AGAMA</option>                                                 
+ 	<option value="1030">KEMENTERIAN KOORDINATOR BIDANG KESEJAHTERAAN RAKYAT</option>               
+ 	<option value="2010">KEMENTERIAN KOPERASI DAN UKM</option>                                      
+ 	<option value="3022">KEMENTERIAN PARIWISATA DAN EKONOMI KREATIF</option>                        
+	<option value="4001">KEMENTERIAN SEKRETARIAT NEGARA</option>                                    
+ 	<option value="5112">PEMERINTAH KAB. ACEH BARAT DAYA</option>                                   
+ 	<option value="5116">PEMERINTAH KAB. ACEH JAYA</option>                                         
+ 	<option value="5105">PEMERINTAH KAB. ACEH SELATAN</option>                                      
+ 	<option value="5114">PEMERINTAH KAB. ACEH TAMIANG</option>                                      
+ 	<option value="6101">PEMERINTAH KAB. BOGOR</option>                                             
+ 	<option value="5411">PEMERINTAH KAB. DHARMASRAYA</option>                                       
+ 	<option value="7707">PEMERINTAH KAB. FLORES TIMUR</option>                                      
+ 	<option value="7505">PEMERINTAH KAB. KARANG ASEM</option>                                       
+ 	<option value="8105">PEMERINTAH KAB. KEP. ANAMBAS</option>                                      
+ 	<option value="5604">PEMERINTAH KAB. LAHAT</option>                                             
+ 	<option value="7608">PEMERINTAH KAB. LOMBOK UTARA</option>                                      
+ 	<option value="6905">PEMERINTAH KAB. MALINAU</option>                                           
+ 	<option value="7802">PEMERINTAH KAB. MALUKU TENGGARA</option>                                   
+ 	<option value="5603">PEMERINTAH KAB. MUARA ENIM</option>                                        
+ 	<option value="5605">PEMERINTAH KAB. MUSI RAWAS</option>                                        
+ 	<option value="5610">PEMERINTAH KAB. OGAN ILIR</option>                      
+ 	<option value="5606">PEMERINTAH KAB. OGAN KOMERING ILIR</option>             
+ 	<option value="5608">PEMERINTAH KAB. OGAN KOMERING ULU TIMUR</option>      
+ 	<option value="5609">PEMERINTAH KAB. OGAN KOMERING ULU SELATAN</option>      
+ 	<option value="5402">PEMERINTAH KAB. PASAMAN</option>                        
+ 	<option value="5805">PEMERINTAH KAB. SELUMA</option>                         
+ 	<option value="6401">PEMERINTAH KAB. SEMARANG</option>                       
+ 	<option value="5309">PEMERINTAH KAB. SIAK</option>                           
+ 	<option value="5410">PEMERINTAH KAB. SOLOK SELATAN</option>                  
+ 	<option value="7607">PEMERINTAH KAB. SUMBAWA BARAT</option>                  
+ 	<option value="6802">PEMERINTAH KAB. TANAH LAUT</option>                     
+ 	<option value="6972">PEMERINTAH KOTA BALIKPAPAN</option>                     
+ 	<option value="6871">PEMERINTAH KOTA BANJARMASIN</option>                    
+ 	<option value="6973">PEMERINTAH KOTA BONTANG</option>                        
+ 	<option value="6176">PEMERINTAH KOTA DEPOK</option>                          
+ 	<option value="5675">PEMERINTAH KOTA PAGAR ALAM</option>                     
+ 	<option value="5371">PEMERINTAH KOTA PEKANBARU</option>                      
+ 	<option value="5100">PEMERINTAH PROVINSI ACEH</option>                       
+ 	<option value="5800">PEMERINTAH PROVINSI BENGKULU</option>                   
+ 	<option value="7800">PEMERINTAH PROVINSI MALUKU</option>                     
+ 	<option value="7600">PEMERINTAH PROVINSI NTB</option>                        
+ 	<option value="7700">PEMERINTAH PROVINSI NTT</option>                        
+ 	<option value="8300">PEMERINTAH PROVINSI SULAWESI BARAT</option>             
+ 	<option value="5400">PEMERINTAH PROVINSI SUMATERA BARAT</option>             
+	<option value="4025">PERPUSTAKAAN NASIONAL RI</option>                       
+	<option value="4055">PUSAT PELAPORAN DAN ANALISIS TRANSAKSI KEUANGAN</option>
+	<option value="4006">SEKRETARIAT JENDERAL DPR</option>
+	<option value="4036">SEKRETARIAT KABINET</option>
+</select>
