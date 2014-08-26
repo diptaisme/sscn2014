@@ -44,7 +44,7 @@ public interface RegistrasiService {
 	List<DtPendaftaran> getPendaftaransByNoRegistrasi(String noRegister);
 
 	boolean deletePendaftarans(List<DtPendaftaran> pendaftarans);
-	
+
 	boolean deletePendaftaran(DtPendaftaran pendaftaran);
 
 	TabelPendaftar updatePendaftar(TabelPendaftar pendaftar);
@@ -58,10 +58,11 @@ public interface RegistrasiService {
 	int countFormasiInPendaftaran(MFormasi formasi);
 
 	List<RefPendidikan> getPendidikanByInstansi(String instansi);
-	
+
 	List<RefLokasi> getLokasi(String instansi, String pendidikan);
-	
+
 	List<DtPendaftaran> getPendaftaranByUserId(TabelPendaftar pendaftar);
-	
+
 	List<RefLokasiTest> getLokasiTestByInstansi(String instansi);
+	
 }
