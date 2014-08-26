@@ -10,6 +10,7 @@ import java.util.Arrays;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -159,6 +160,26 @@ public class PasswordUtil implements Serializable {
 	 */
 	private String byteToBase64(byte[] data) {
 		// remove the crlf on last character on string.
-		return base64.encodeToString(data).trim();		
+		return base64.encodeToString(data).trim();
+	}
+
+	/**
+	 * checks the password is equals using DigestUtils.
+	 * 
+	 * @param password
+	 *            .
+	 * @param hash
+	 *            .
+	 * @return true, if is password equal
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @author Roberto
+	 */
+	public boolean isPasswordEqualUsingMessageDigest(String password,
+			String hash) throws IOException, DecoderException {
+		if (password == null || hash == null) {
+			throw new IllegalArgumentException("Please fill the parameter");
+		}
+		return (DigestUtils.md5Hex(password).equals(hash));
 	}
 }
