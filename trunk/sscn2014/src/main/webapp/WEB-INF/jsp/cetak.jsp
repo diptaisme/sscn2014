@@ -43,6 +43,22 @@
 .style2 {color: #FFFFFF}
 -->
 </style>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push([ '_setAccount', 'UA-44204367-1' ]);
+	_gaq.push([ '_trackPageview' ]);
+
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+				: 'http://www')
+				+ '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>
 </head>
 <body>
 <div class="main-indents">
@@ -56,21 +72,21 @@
                     <li><a href="index.html">BERANDA</a></li>                    
                     <li><a href="contacts.html">KONTAK</a></li>
                    <c:choose>
-						<c:when test="${userLogin != null}">
-							<c:choose>
-								<c:when test="${userLogin.jumlahDaftar == 0}">
-									<li><a href="daftar.html">DAFTAR</a></li>
-								</c:when>
-								<c:otherwise>									
-									<li><a href="cetak.html">CETAK</a></li>
-								</c:otherwise>
-							</c:choose>									
-							<li><a href="logout.html">LOGOUT</a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="login.html">LOGIN</a></li>
-						</c:otherwise>
-					</c:choose>
+							<c:when test="${userLogin != null}">
+								<c:choose>
+									<c:when test="${userLogin.jumlahDaftar == 0 && userLogin.refInstansi.status == '1'}">
+										<li><a href="daftar.html">DAFTAR</a></li>
+									</c:when>
+									<c:when test="${userLogin.jumlahDaftar != 0}">
+										<li><a href="cetak.html">CETAK</a></li>
+									</c:when>
+								</c:choose>									
+								<li><a href="logout.html">LOGOUT</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="login.html">LOGIN</a></li>
+							</c:otherwise>
+						</c:choose>
                 </ul>
             </nav>
             <div class="clear"></div>
@@ -84,7 +100,7 @@
                         	<h3>INFORMASI UMUM </h3>
                             <ul class="list-2">
                                 <li><a href="informasi_umum.html"><img src="/sscn2014/resources/images/info.jpg" width="243" height="37" border="0" align="left"></a></img></li>
-					<li><a href="pengumuman_instansi.html"><img src="/sscn2014/resources/images/pengumuman.jpg" width="243" height="37" border="0" align="left"></a></img></li>																								
+					<li><a href="pengumuman_instansi_home.html"><img src="/sscn2014/resources/images/pengumuman.jpg" width="243" height="37" border="0" align="left"></a></img></li>																								
                                 	<li><a href="#"><img src="/sscn2014/resources/images/petunjuk.jpg" width="243" height="37" border="0" align="left"></a></img></li>
                             </ul>
                             
@@ -107,7 +123,7 @@
 											  <input
 												type="hidden" name="typeReport" value="rptRegistrasi2014" /> 
 											  <input
-												type="submit" value="Cetak Nomor Pendaftaran"/> 
+												type="submit" value="Cetak Nomor Pendaftaran" title = "Cetak Nomor Pendaftaran"/> 
 										</form>  
 							    </c:when>
 							</c:choose>							

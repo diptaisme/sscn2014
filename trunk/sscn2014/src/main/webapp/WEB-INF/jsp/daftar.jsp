@@ -281,12 +281,12 @@ label.error {
 						<c:choose>
 							<c:when test="${userLogin != null}">
 								<c:choose>
-									<c:when test="${userLogin.jumlahDaftar == 0}">
-									<li><a href="daftar.html">DAFTAR</a></li>
-								</c:when>
-								<c:otherwise>									
-									<li><a href="cetak.html">CETAK</a></li>
-								</c:otherwise>
+									<c:when test="${userLogin.jumlahDaftar == 0 && userLogin.refInstansi.status == '1'}">
+										<li><a href="daftar.html">DAFTAR</a></li>
+									</c:when>
+									<c:when test="${userLogin.jumlahDaftar != 0}">
+										<li><a href="cetak.html">CETAK</a></li>
+									</c:when>
 								</c:choose>									
 								<li><a href="logout.html">LOGOUT</a></li>
 							</c:when>
@@ -307,7 +307,7 @@ label.error {
 							<h3>MENU UTAMA</h3>
 							<ul class="list-2">
 							<li><a href="informasi_umum.html"><img src="/sscn2014/resources/images/info.jpg" width="243" height="37" border="0" align="left"></a></img></li>
-							<li><a href="pengumuman_instansi.html"><img src="/sscn2014/resources/images/pengumuman.jpg" width="243" height="37" border="0" align="left"></a></img></li>																							
+							<li><a href="pengumuman_instansi_home.html"><img src="/sscn2014/resources/images/pengumuman.jpg" width="243" height="37" border="0" align="left"></a></img></li>																							
                             <li><a href="petunjuk.html"><img src="/sscn2014/resources/images/petunjuk.jpg" width="243" height="37" border="0" align="left"></a></img></li>
 							</ul>
 						</div>
@@ -340,8 +340,12 @@ label.error {
 														    <c:when test="${userLogin.jenisKelamin == 'P'}">
 																<option value="P" selected>Pria</option>
 														    </c:when>
-															<c:otherwise>
+															<c:when test="${userLogin.jenisKelamin == 'W'}">
 																<option value="W" selected>Wanita</option>
+														    </c:when>
+															<c:otherwise>
+																<option value="P">Pria</option>
+																<option value="W">Wanita</option>
 														    </c:otherwise>
 														</c:choose>														
 				  </select>
@@ -405,7 +409,7 @@ label.error {
                     <label>Email
                     </label>
                     <input type="email" class=" form-textbox validate[Email]" title="Email" id="email" name="email" size="35" 
-					style="width: 350px"/>
+					style="width: 350px" value='${userLogin.email}' readonly/>
                 </p>
 				<p>
                     <label>Asal Institusi Pend. 

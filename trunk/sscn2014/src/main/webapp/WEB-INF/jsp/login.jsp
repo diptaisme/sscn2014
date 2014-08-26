@@ -19,14 +19,37 @@
     <meta name="keywords" content="seleksi,cpns,2014">
     <meta name="author" content="HerieSharkfins">
     <link rel="stylesheet" href="/sscn2014/resources/css/style.css">
+	<link rel="stylesheet"
+	href="/sscn2014/resources/js/jquery-ui-1.8.16/themes/base/jquery-ui.css" type="text/css" />
     <script src="/sscn2014/resources/js/jquery-1.7.1.min.js"></script>
-    <script src="/sscn2014/resources/js/superfish.js"></script>
-    <script src="/sscn2014/resources/js/jquery.easing.1.3.js"></script>
-    <script src="/sscn2014/resources/js/tms-0.4.1.js"></script>
-    <script src="/sscn2014/resources/js/slider.js"></script>
+	<script type="text/javascript" src="/sscn2014/resources/js/jquery.validate.js"></script>
 	<script type="text/javascript">
 		$(document).ready(	
 			function() {
+				$('#formLogin').validate(
+						{
+							rules : {								
+								password : {
+									required : true
+								},
+								username : {
+									required : true
+								}
+							},
+							highlight : function(element) {
+								$(element).closest('.control-group')
+										.removeClass('success').addClass(
+												'error');
+							},
+							success : function(element) {
+								element.text('').addClass('valid').closest(
+										'.control-group').removeClass('error')
+										.addClass('success');
+							},
+							submitHandler: function(form) {
+								form.submit();
+							}							
+				});													
 				$(this).bind('contextmenu',function(e){
 							e.preventDefault();
 						});
@@ -48,6 +71,39 @@
 .style1 {color: #CC0000}
 .style2 {color: #FFFFFF}
 -->
+</style>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push([ '_setAccount', 'UA-44204367-1' ]);
+	_gaq.push([ '_trackPageview' ]);
+
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+				: 'http://www')
+				+ '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<style>
+/*css validation*/
+label.valid {
+	width: 24px;
+	height: 24px;
+	/*background: url(/sscn2014/resources/assets/img/valid.png) center center no-repeat;*/
+	display: inline-block;
+	text-indent: -9999px;
+}
+
+label.error {
+	font-weight: bold;
+	color: red;
+	padding: 2px 8px;
+	margin-top: 2px;
+}
 </style>
 </head>
 <body>
@@ -72,11 +128,17 @@
             	<article class="a2">
                 	<div class="wrapper">                    	
 					  <div class="col-9">
-					  	<form action="process_login.html" method="post">
-								<p align="center">Username: <input type="text" name="username" id="username"></p>
-								<p align="center">Password: <input type="password" name="password" id="password"></p>
+					  	<form action="process_login.html" method="post" id="formLogin" name="formLogin">
+								<p align="center"><B>Username:</B> <input type="text" name="username" id="username"></p>
+								<p align="center"><B>Password:</B> <input type="password" name="password" id="password"></p>
 								<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="submit" value="LOGIN" /></p>        
+								<input type="submit" value="LOGIN" />
+								<c:choose>
+									<c:when test="${pesan != null}">
+										<span style="color:red">&nbsp;&nbsp;&nbsp; ${pesan}</span>
+									</c:when>
+								</c:choose>
+								</p>        
         				</form>
 			<p align="center">Jika belum memiliki username dan password silahkan terlebih dahulu mendaftar di alamat <a href="https://panselnas.menpan.go.id"</a> https://panselnas.menpan.go.id </p>
                       </div>

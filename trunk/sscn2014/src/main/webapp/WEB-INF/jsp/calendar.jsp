@@ -50,21 +50,21 @@
                     <li><a href="index.html">BERANDA</a></li>                    
                     <li><a href="contacts.html">KONTAK</a></li>
                     <c:choose>
-						<c:when test="${userLogin != null}">
-							<c:choose>
-								<c:when test="${userLogin.jumlahDaftar == 0}">
-									<li><a href="daftar.html">DAFTAR</a></li>
-								</c:when>
-								<c:otherwise>									
-									<li><a href="cetak.html">CETAK</a></li>
-								</c:otherwise>
-							</c:choose>									
-							<li><a href="logout.html">LOGOUT</a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="login.html">LOGIN</a></li>
-						</c:otherwise>
-					</c:choose>
+							<c:when test="${userLogin != null}">
+								<c:choose>
+									<c:when test="${userLogin.jumlahDaftar == 0 && userLogin.refInstansi.status == '1'}">
+										<li><a href="daftar.html">DAFTAR</a></li>
+									</c:when>
+									<c:when test="${userLogin.jumlahDaftar != 0}">
+										<li><a href="cetak.html">CETAK</a></li>
+									</c:when>
+								</c:choose>									
+								<li><a href="logout.html">LOGOUT</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="login.html">LOGIN</a></li>
+							</c:otherwise>
+						</c:choose>
                 </ul>
             </nav>
             <div class="clear"></div>

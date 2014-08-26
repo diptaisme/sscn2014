@@ -29,6 +29,22 @@
 	<script src="js/html5.js"></script>
 	<link rel="stylesheet" href="/sscn2014/resources/css/ie.css"> 
 <![endif]-->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push([ '_setAccount', 'UA-44204367-1' ]);
+	_gaq.push([ '_trackPageview' ]);
+
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+				: 'http://www')
+				+ '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>
 <style type="text/css">
 <!--
 .style2 {color: #FFFFFF}
@@ -47,21 +63,21 @@
                     <li><a href="index.html">BERANDA</a></li>                    
                     <li><a href="contacts.html">KONTAK</a></li>
                    <c:choose>
-						<c:when test="${userLogin != null}">
-							<c:choose>
-								<c:when test="${userLogin.jumlahDaftar == 0}">
-									<li><a href="daftar.html">DAFTAR</a></li>
-								</c:when>
-								<c:otherwise>									
-									<li><a href="cetak.html">CETAK</a></li>
-								</c:otherwise>
-							</c:choose>									
-							<li><a href="logout.html">LOGOUT</a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="login.html">LOGIN</a></li>
-						</c:otherwise>
-					</c:choose>
+							<c:when test="${userLogin != null}">
+								<c:choose>
+									<c:when test="${userLogin.jumlahDaftar == 0 && userLogin.refInstansi.status == '1'}">
+										<li><a href="daftar.html">DAFTAR</a></li>
+									</c:when>
+									<c:when test="${userLogin.jumlahDaftar != 0}">
+										<li><a href="cetak.html">CETAK</a></li>
+									</c:when>
+								</c:choose>									
+								<li><a href="logout.html">LOGOUT</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="login.html">LOGIN</a></li>
+							</c:otherwise>
+						</c:choose>
                 </ul>
             </nav>
             <div class="clear"></div>
@@ -82,7 +98,8 @@
                         </div>
 					  <div class="col-9">
                         	<h3>ALUR MEKANISME PENDAFTARAN CPNS 2014 </h3>
-                            <p align="justify"><img src="/sscn2014/resources/images/alur1.png" width="612" height="810"></p>
+                            <p align="justify"><img src="/sscn2014/resources/images/alur1.jpg" width="800" height="599"></p>
+				<p align="justify"><img src="/sscn2014/resources/images/alur2.jpg" width="800" height="599"></p>
                       </div>
 				  </div>
                 </article>
@@ -91,7 +108,7 @@
       </section>
         <!-- Footer -->
         <footer>
-            <div class="copyright"><span class="style2">Hak Cipta  �  2014 Badan Kepegawaian Negara. Semua Hak Dilindungi.</span></a></div>
+            <div class="copyright"><span class="style2">Hak Cipta  ©  2014 Badan Kepegawaian Negara. Semua Hak Dilindungi.</span></a></div>
             <ul class="social-list">
             	<li><a href="https://twitter.com/BKN_RI"><img src="/sscn2014/resources/images/soc-icon-1.png" alt=""></a></li>
               <li><a href="https://www.facebook.com/pages/Badan-Kepegawaian-Negara-BKN-Republik-Indonesia/383767665088202"><img src="/sscn2014/resources/images/soc-icon-2.png" alt=""></a></li>
