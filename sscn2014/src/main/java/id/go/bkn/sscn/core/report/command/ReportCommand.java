@@ -486,10 +486,11 @@ public abstract class ReportCommand implements Serializable {
 	 * @return void
 	 * @throws ServletException
 	 *             the servlet exception
+	 * @throws IOException 
 	 * 
 	 */
 	public abstract void execute(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException;
+			HttpServletResponse response) throws ServletException, IOException;
 
 	/**
 	 * Sets the output filename.
