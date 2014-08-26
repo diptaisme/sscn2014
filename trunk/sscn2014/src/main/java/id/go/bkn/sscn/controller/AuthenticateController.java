@@ -4,6 +4,7 @@ import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
 import id.go.bkn.sscn.services.AuthenticateService;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -20,8 +21,11 @@ public class AuthenticateController {
 	@RequestMapping(value = "/process_login.html", method = RequestMethod.POST)
 	public String login(ModelMap map, HttpSession session,
 			@RequestParam("username") String username,
-			@RequestParam("password") String password) {
-
+			@RequestParam("password") String password,
+			HttpServletRequest request) {
+		// print IP address login action
+		System.out.println("request.getRemoteAddr() login= "
+				+ request.getRemoteAddr());
 		try {
 			TabelPendaftar pendaftar = authenticateService.login(username,
 					password);
