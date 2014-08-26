@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperRunManager;
 
-
 /**
  * Servlet implementation class PrintServlet
  */
@@ -64,27 +63,31 @@ public class PrintServlet extends HttpServlet {
 
 		byte[] byteStream;
 		String instansi = request.getParameter("instansi");
-		System.out.println("ins "+instansi);
+		System.out.println("pengumuman instansi " + instansi);
+		OutputStream outStream = null;
 		try {
 			Map<String, Object> mapParamater = new HashMap<String, Object>();
 			mapParamater.put("INSTANSI_KODE", instansi);
-			byteStream = JasperRunManager.runReportToPdf(
-					getServletContext().getRealPath(
-							Constanta.PATH_REPORT_PENGUMUMAN_INSTANSI),
+			byteStream = JasperRunManager.runReportToPdf(getServletContext()
+					.getRealPath(Constanta.PATH_REPORT_PENGUMUMAN_INSTANSI),
 					mapParamater, connection);
 
-			OutputStream outStream = response.getOutputStream();
+			outStream = response.getOutputStream();
 			response.setHeader("Content-Disposition",
 					"attachment, filename=PengumumuanInstansi.pdf");
 			response.setContentType("application/pdf");
 			response.setContentLength(byteStream.length);
 			outStream.write(byteStream, 0, byteStream.length);
 			outStream.flush();
-		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			if (outStream != null) {
+				outStream.close();
+			}
+		} finally {
+			if (outStream != null) {
+				outStream.close();
+			}
 		}
 
 	}
