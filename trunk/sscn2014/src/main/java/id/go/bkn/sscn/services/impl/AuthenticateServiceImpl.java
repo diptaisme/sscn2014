@@ -1,5 +1,6 @@
 package id.go.bkn.sscn.services.impl;
 
+import id.go.bkn.sscn.core.util.PasswordUtil;
 import id.go.bkn.sscn.dao.TabelPendaftarDao;
 import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
 import id.go.bkn.sscn.services.AuthenticateService;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("AuthenticateService")
 public class AuthenticateServiceImpl implements AuthenticateService {
 
+	private String SALT = "casn2014";
 	@Inject
 	private TabelPendaftarDao tabelPendaftarDao;
 
@@ -24,30 +26,28 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 		TabelPendaftar result = new TabelPendaftar();
 		Boolean isValid = false;
 		if (username == null || password == null) {
-			throw new IllegalArgumentException("Gagal Login");
+			// throw new IllegalArgumentException("Gagal Login");
+			System.out.println("Gagal Login Illegal Parameter: " + username);
+			return null;
 		}
 		List<TabelPendaftar> listUsers = tabelPendaftarDao.findByProperty(
 				"idLogin", username, null);
 		if (listUsers.isEmpty()) {
-			//throw exception untuk pendaftar yang tidak ditemukan
-			throw new IllegalArgumentException("User tidak ditemukan");
+			// throw new IllegalArgumentException("User tidak ditemukan");
+			System.out.println("User tidak ditemukan : " + username);
+			return null;
 		}
 		result = listUsers.get(0);
 
-		// PasswordUtil passwordUtil = new PasswordUtil();
-		// try {
-		isValid = password.equals(result.getPassword());
-		//
-		// } catch (IOException e) {
-		// System.out.println("IO exception " + e.getMessage());
-		// return null;
-		// } catch (DecoderException e) {
-		// System.out.println("Decoder exception = " + e.getMessage());
-		// return null;
-		// } catch (Exception e) {
-		// System.out.println("Exception = " + e.getMessage());
-		// return null;
-		// }
+		PasswordUtil passwordUtil = new PasswordUtil();
+		try {
+			isValid = passwordUtil.isPasswordEqualUsingMessageDigest(password + SALT,
+					result.getPassword());
+
+		} catch (Exception e) {
+			System.out.println("Exception Login = " + e.getMessage());
+			return null;
+		}
 
 		if (!isValid) {
 			return null;

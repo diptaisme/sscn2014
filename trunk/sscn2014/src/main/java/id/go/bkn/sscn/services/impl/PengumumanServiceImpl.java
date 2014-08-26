@@ -44,10 +44,40 @@ public class PengumumanServiceImpl implements PengumumanService {
 	public void insertPengumuman(DtPengumuman dtPengumuman) {
 		dtPengumumanDao.insert(dtPengumuman);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-	public List<DtPengumuman> findByProperty(String name, String value, int...idx){
-		return dtPengumumanDao.findByProperty(name,value,idx);
+	public List<DtPengumuman> findByProperty(String name, String value,
+			int... idx) {
+		return dtPengumumanDao.findByProperty(name, value, idx);
 	}
+
+	// get pengumuman instansi pusat
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public List<DtPengumuman> getPengumumanInstansiPusat() {
+		return dtPengumumanDao.getPengumumanInstansiPusat();
+	}
+
+	// get pengumuman instansi propinsi
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public List<DtPengumuman> getPengumumanInstansiPropinsi() {
+		return dtPengumumanDao.getPengumumanInstansiPropinsi();
+	}
+
+	// get pengumuman instansi kota
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public List<DtPengumuman> getPengumumanInstansiKota() {
+		return dtPengumumanDao.getPengumumanInstansiKota();
+	}
+
+	// get pengumuman instansi pusat
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public List<DtPengumuman> getPengumumanInstansiKabupaten() {
+		return dtPengumumanDao.getPengumumanInstansiKabupaten();
+	}
+
 }

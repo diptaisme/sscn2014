@@ -611,7 +611,5 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 		orders.add(new QueryOrder("nama"));
 		return refLokasiTestDao.findByProperty("instansi.kode", instansi, null,
 				orders, null, null);
-
 	}
-
 }
