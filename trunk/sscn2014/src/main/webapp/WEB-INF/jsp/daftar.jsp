@@ -329,7 +329,7 @@ label.error {
                 <p>
 				<label>Nama
                   </label>
-                    <input type="text" class=" form-textbox" readonly value="${userLogin.nama}" style="width: 200px"
+                    <input type="text" class=" form-textbox" readonly value="${userLogin.nama}" style="width: 290px"
 														title="Nama Lengkap" data-type="input-textbox" id="nama"
 														name="nama" size="35" onKeyUp="caps(this)" />
 		  <p>		<label>Jenis Kelamin 
