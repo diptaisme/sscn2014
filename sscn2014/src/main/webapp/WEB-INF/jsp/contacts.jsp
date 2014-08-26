@@ -18,14 +18,6 @@
     <script src="/sscn2014/resources/js/jquery.easing.1.3.js"></script>
     <script src="/sscn2014/resources/js/tms-0.4.1.js"></script>
     <script src="/sscn2014/resources/js/slider.js"></script>
-	<script type="text/javascript">
-		$(document).ready(	
-			function() {
-				$(this).bind('contextmenu',function(e){
-							e.preventDefault();
-						});
-				});				
-	</script>		
 <!--[if lt IE 8]>
    <div style=' clear: both; text-align:center; position: relative;'>
      <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -42,6 +34,22 @@
 .style1 {color: #FFFFFF}
 -->
 </style>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push([ '_setAccount', 'UA-44204367-1' ]);
+	_gaq.push([ '_trackPageview' ]);
+
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+				: 'http://www')
+				+ '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>
 </head>
 <body>
 <div class="main-indents">
@@ -55,21 +63,21 @@
                     <li><a href="index.html">BERANDA</a></li>                    
                     <li class="current"><a href="contacts.html">KONTAK</a></li>
                     <c:choose>
-						<c:when test="${userLogin != null}">
-							<c:choose>
-								<c:when test="${userLogin.jumlahDaftar == 0}">
-									<li><a href="daftar.html">DAFTAR</a></li>
-								</c:when>
-								<c:otherwise>									
-									<li><a href="cetak.html">CETAK</a></li>
-								</c:otherwise>
-							</c:choose>									
-							<li><a href="logout.html">LOGOUT</a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="login.html">LOGIN</a></li>
-						</c:otherwise>
-					</c:choose>
+							<c:when test="${userLogin != null}">
+								<c:choose>
+									<c:when test="${userLogin.jumlahDaftar == 0 && userLogin.refInstansi.status == '1'}">
+										<li><a href="daftar.html">DAFTAR</a></li>
+									</c:when>
+									<c:when test="${userLogin.jumlahDaftar != 0}">
+										<li><a href="cetak.html">CETAK</a></li>
+									</c:when>
+								</c:choose>									
+								<li><a href="logout.html">LOGOUT</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="login.html">LOGIN</a></li>
+							</c:otherwise>
+						</c:choose>
                 </ul>
             </nav>
             <div class="clear"></div>
@@ -91,26 +99,26 @@
                                 	<p>JL. letjen sutoyo no. 12 - jakarta timur </p>
                             	</div>
                                 <div class="extra-wrap">
-                                	<div class="dd">E-mail: <a href="#">adminsscn@bkn.go.id</a></div>
-                                    <div class="dd">twitter:  <a href="#">@skypename</a></div>
+                                	<div class="dd">E-mail: <a href="#">satgassscn@bkn.go.id</a></div>
+                                    <div class="dd">twitter:  <a href="#">@BKN_RI</a></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12">
                         	<h3>hubungi kami </h3>
-                            <form id="contact-form" method="post" action="email">
+                            <form id="contact-form" method="post">
                               <fieldset>
                                 <label class="name">
-                                    <input id="nama" name="nama" type="text" value="Your Name" onFocus="if(this.value=='Your Name'){this.value=''}" onBlur="if(this.value==''){this.value='Your Name'}">
+                                    <input type="text" value="Your Name" onFocus="if(this.value=='Your Name'){this.value=''}" onBlur="if(this.value==''){this.value='Your Name'}">
                                 </label>
                                 <label class="phone">
-                                    <input id="telpon" name="telpon" type="text" value="Telephone" onFocus="if(this.value=='Telephone'){this.value=''}" onBlur="if(this.value==''){this.value='Telephone'}">
+                                    <input type="text" value="Telephone" onFocus="if(this.value=='Telephone'){this.value=''}" onBlur="if(this.value==''){this.value='Telephone'}">
                                 </label>
                                 <label class="email">
-                                  <input id="email" name="email" type="email" value="Email" onFocus="if(this.value=='Email'){this.value=''}" onBlur="if(this.value==''){this.value='Email'}">
+                                  <input type="email" value="Email" onFocus="if(this.value=='Email'){this.value=''}" onBlur="if(this.value==''){this.value='Email'}">
                                 </label>
                                 <label class="message">
-                                  <textarea id="pesan" name="pesan" onFocus="if(this.value=='Message'){this.value=''}" onBlur="if(this.value==''){this.value='Message'}">Message</textarea>
+                                  <textarea onFocus="if(this.value=='Message'){this.value=''}" onBlur="if(this.value==''){this.value='Message'}">Message</textarea>
                                 </label>
                                 <div class="btns">
                                     <a class="button" onClick="document.getElementById('contact-form').reset()">Clear</a>
@@ -125,7 +133,7 @@
       </section>
         <!-- Footer -->
         <footer>
-            <div class="copyright"><span class="style1">Hak Cipta  �  2014 Badan Kepegawaian Negara. Semua Hak Dilindungi.</span></a></div>
+            <div class="copyright"><span class="style1">Hak Cipta  ©  2014 Badan Kepegawaian Negara. Semua Hak Dilindungi.</span></a></div>
             <ul class="social-list">
             	<li><a href="https://twitter.com/BKN_RI"><img src="/sscn2014/resources/images/soc-icon-1.png" alt=""></a></li>
               <li><a href="https://www.facebook.com/pages/Badan-Kepegawaian-Negara-BKN-Republik-Indonesia/383767665088202"><img src="/sscn2014/resources/images/soc-icon-2.png" alt=""></a></li>
