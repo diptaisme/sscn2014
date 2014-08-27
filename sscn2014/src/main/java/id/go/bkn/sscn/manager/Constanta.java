@@ -12,8 +12,8 @@ public class Constanta {
 	public final static String PRIVATE_KEY_RECAPTCHA = "6LcqAfUSAAAAAG_dwyg4dKwEL3RbTaAWK3CzBkWw";
 	public final static String PUBLIC_KEY_RECAPTCHA = "6LcqAfUSAAAAAJSKj6Z98v7_T4lBwGOHLpNgrPzQ";
 
-	public final static String DB_CATALOG = "dbseleksicpns";
-	public final static String JSP_FOLDER = "/WEB-INF/jsp/";
+	public final static String DB_CATALOG = "asn2014";
+	public final static String JSP_FOLDER = "/WEB-INF/jspROOT/";
 
 	public final static String PATH_REPORT_PENGUMUMAN_INSTANSI = "/WEB-INF/reports/rptPengumumanInstansi.jasper";
 
