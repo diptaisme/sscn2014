@@ -511,14 +511,14 @@ public class RegistrasiController {
 		List<RefLokasiTest> lokasiTests = registrasiService
 				.getLokasiTestByInstansi(instansi);
 
-		List<LokasiTestJson> newPendidikans = new ArrayList<LokasiTestJson>();
+		List<LokasiTestJson> newLokasiTests = new ArrayList<LokasiTestJson>();
 		for (RefLokasiTest lokasiTest : lokasiTests) {
-			newPendidikans.add(new LokasiTestJson(lokasiTest.getKode(),
+			newLokasiTests.add(new LokasiTestJson(lokasiTest.getKode(),
 					lokasiTest.getNama(), lokasiTest.getStatus(), lokasiTest
 							.getInstansi().getKode()));
 		}
 		Map<String, List<LokasiTestJson>> lokasiTestMap = new HashMap<String, List<LokasiTestJson>>();
-		lokasiTestMap.put("lokasiTests", newPendidikans);
+		lokasiTestMap.put("lokasiTests", newLokasiTests);
 
 		return objectMapper.writeValueAsString(new JSONPObject(callBack,
 				lokasiTestMap));
