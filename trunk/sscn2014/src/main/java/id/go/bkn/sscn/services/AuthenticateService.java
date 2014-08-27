@@ -1,7 +1,7 @@
 package id.go.bkn.sscn.services;
 
-import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
+import java.util.Map;
 
 public interface AuthenticateService {
-	TabelPendaftar login(String username, String password);
+	Map<String, Object> login(String username, String password) ;
 }
