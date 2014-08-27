@@ -21,6 +21,9 @@ public class PengumumanServiceImpl implements PengumumanService {
 	@Inject
 	private RefInstansiDao refInstansiDao;
 
+	/*@Inject
+	private PeriodeDaftarDao periodeDaftarDao;*/
+
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public List<DtPengumuman> getPengumuman(int... idx) {
@@ -79,5 +82,14 @@ public class PengumumanServiceImpl implements PengumumanService {
 	public List<DtPengumuman> getPengumumanInstansiKabupaten() {
 		return dtPengumumanDao.getPengumumanInstansiKabupaten();
 	}
+
+	// get periode daftar instansi
+	/*
+	 * @Override
+	 * 
+	 * @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	 * public List<PeriodeDaftar> getAllPeriodeDaftar() { return
+	 * periodeDaftarDao.findAllPeriodeDaftar(); }
+	 */
 
 }
