@@ -3,6 +3,8 @@ package id.go.bkn.sscn.controller;
 import id.go.bkn.sscn.persistence.entities.TabelPendaftar;
 import id.go.bkn.sscn.services.AuthenticateService;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AuthenticateController {
+	private String PESAN = "PESAN";
+	private String RESULT = "RESULT";
+
 	@Inject
 	private AuthenticateService authenticateService;
 
@@ -24,11 +29,16 @@ public class AuthenticateController {
 			@RequestParam("password") String password,
 			HttpServletRequest request) {
 		// print IP address login action
-		System.out.println("request.getRemoteAddr() login= "
-				+ request.getRemoteAddr());
+		System.out.println("[LOGIN] request.getRemoteAddr()= "
+				+ request.getRemoteAddr()+" - USERNAME = "+username);
 		try {
-			TabelPendaftar pendaftar = authenticateService.login(username,
+			Map<String, Object> result = authenticateService.login(username,
 					password);
+			TabelPendaftar pendaftar = null;
+			if (result.get(RESULT) != null) {
+				pendaftar = (TabelPendaftar) result.get(RESULT);
+			}
+
 			if (pendaftar != null) {
 				if (session.getAttribute("userLogin") != null) {
 					session.removeAttribute("userLogin");
@@ -36,14 +46,12 @@ public class AuthenticateController {
 				session.setAttribute("userLogin", pendaftar);
 				return "index";
 			} else {
-				map.addAttribute("pesan",
-						"Login anda gagal, silahkan ulangi kembali");
+				map.addAttribute("pesan", result.get(PESAN));
 				return "login";
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			map.addAttribute("pesan",
-					"Login anda gagal, silahkan ulangi kembali");
+			map.addAttribute("pesan", "Terjadi Kesalahan: " + ex.getMessage());
 			return "login";
 		}
 	}

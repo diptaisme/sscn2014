@@ -59,10 +59,10 @@ public class ActionController {
 		return "alur";
 	}
 
-	@RequestMapping(value = "/calendar.html", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/calendar.html", method = RequestMethod.GET)
 	public String calendar(ModelMap map, ModelMap model, HttpSession session) {
 		return "calendar";
-	}
+	}*/
 
 	@RequestMapping(value = "/index.html", method = RequestMethod.GET)
 	public String index(ModelMap map, ModelMap model, HttpSession session) {
@@ -159,6 +159,15 @@ public class ActionController {
 		model.addAttribute("listPengumumanKabupaten",
 				pengumumanService.getPengumumanInstansiKabupaten());*/
 		return "pengumuman_instansi_home";
+	}
+
+	@RequestMapping(value = "/calendar.html", method = RequestMethod.GET)
+	public String calendar(ModelMap map, ModelMap model,
+			HttpSession session) {
+
+		/*model.addAttribute("listPeriodeDaftar",
+				pengumumanService.getPengumumanInstansiPusat());*/		
+		return "calendar";
 	}
 
 }
