@@ -27,4 +27,7 @@ public interface PengumumanService {
 
 	// get pengumuman instansi pusat
 	List<DtPengumuman> getPengumumanInstansiKabupaten();
+
+	// get periode daftar instansi
+	/* List<PeriodeDaftar> getAllPeriodeDaftar(); */
 }
