@@ -39,7 +39,7 @@ public class ValidateSalt implements Filter {
 		} else {
 			// Otherwise we throw an exception aborting the request flow
 			throw new ServletException(
-					"Potential CSRF detected!! Inform a scary sysadmin ASAP.");
+					"Potential CSRF detected from you!!");
 		}
 	}
 
