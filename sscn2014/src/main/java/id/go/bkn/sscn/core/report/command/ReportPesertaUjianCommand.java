@@ -1,6 +1,7 @@
 package id.go.bkn.sscn.core.report.command;
 
 import id.go.bkn.sscn.core.report.GeneralReportUtil;
+import id.go.bkn.sscn.dao.RefLokasiTestDao;
 import id.go.bkn.sscn.dao.RefPendidikanDao;
 import id.go.bkn.sscn.manager.Constanta;
 import id.go.bkn.sscn.persistence.entities.DtPendaftaran;
@@ -21,16 +22,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-
 @Component("ReportPesertaUjianCommand")
 public class ReportPesertaUjianCommand extends ReportCommand {
 
 	@Inject
 	private RegistrasiService registrasiService;
-	
+
 	@Inject
 	private RefPendidikanDao refPendidikanDao;
 
+	@Inject
+	private RefLokasiTestDao refLokasiTestDao;
 	/**
 	 * serialVersionUID
 	 */
@@ -46,6 +48,7 @@ public class ReportPesertaUjianCommand extends ReportCommand {
 		try {
 			// 14636
 			String noPendaftaran = request.getParameter("no_pendaftaran");
+
 			DtPendaftaran pendaftaran = registrasiService
 					.getPendaftaranByNoRegistrasi(noPendaftaran);
 
@@ -62,9 +65,9 @@ public class ReportPesertaUjianCommand extends ReportCommand {
 
 					InputStream logo = loadDefaultLogo(request);
 					InputStream logo2 = loadDefaultLogo(request);
-					mapParamater.put("LOGO",logo);
-					mapParamater.put("LOGO2",logo2);
-					Object[] arrResult = new Object[]{new Object()};
+					mapParamater.put("LOGO", logo);
+					mapParamater.put("LOGO2", logo2);
+					Object[] arrResult = new Object[] { new Object() };
 					this.generalPDFReports(arrResult, request, response,
 							mapParamater, fileName);
 				} catch (Exception ex) {
@@ -93,13 +96,27 @@ public class ReportPesertaUjianCommand extends ReportCommand {
 			PrintWriter out = response.getWriter();
 			out.println("<HTML><HEAD><TITLE>SSCN Server</TITLE>"
 					+ "</HEAD><BODY>Maaf proses cetak kartu peserta ujian gagal. Klik <a href='"
-					+ Constanta.URL_WEB_SSCN
+					+ Constanta.URL_WEB_SSCN_SERVER
 					+ "'>link ini </a> untuk kembali</BODY></HTML>");
 			out.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}	
+	}
+
+	private void cetakNotAksesRegistrasi(HttpServletResponse response) {
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.println("<HTML><HEAD><TITLE>SSCN Server</TITLE>"
+					+ "</HEAD><BODY>Maaf anda tidak dapat mengakses halaman ini. Klik <a href='"
+					+ Constanta.URL_WEB_SSCN_SERVER
+					+ "'>link ini </a> untuk kembali</BODY></HTML>");
+			out.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	@Override
 	protected byte[] generateXls(Object[] pMyData, Map<String, Object> myMap)
@@ -117,7 +134,8 @@ public class ReportPesertaUjianCommand extends ReportCommand {
 				+ noPeserta.substring(4, 5) + "-" + noPeserta.substring(5, 10)
 				+ "-" + noPeserta.substring(10, 11);
 		mapParamater.put("NOMOR_PESERTA", formattedNoPeserta);
-
+		mapParamater.put("BARCODE", pendaftaran.getNoPeserta());
+		mapParamater.put("NIK", pendaftaran.getNoNik());
 		mapParamater.put("NAMA", pendaftaran.getNama());
 		mapParamater.put("JENIS_KELAMIN",
 				(pendaftaran.getJnsKelamin()).equals("P") ? "Pria" : "Wanita");
@@ -127,14 +145,61 @@ public class ReportPesertaUjianCommand extends ReportCommand {
 		mapParamater.put("TTL", tempatLahir + " / " + tglLahir);
 
 		String kodePendidikan = pendaftaran.getPendidikan();
-		RefPendidikan refPendidikan = refPendidikanDao.findByProperty("kode", kodePendidikan, null).get(0);		
-		mapParamater.put("PENDIDIKAN", refPendidikan.getKode() + " - "+refPendidikan.getNama());
-		mapParamater.put("JABATAN", pendaftaran.getFormasi().getRefJabatan().getKode() +" - "+pendaftaran.getFormasi().getRefJabatan()
-				.getNama());
+		RefPendidikan refPendidikan = refPendidikanDao.findByProperty("kode",
+				kodePendidikan, null).get(0);
+		mapParamater.put("PENDIDIKAN", refPendidikan.getKode() + " - "
+				+ refPendidikan.getNama());
+
+		// JABATAN1
+		mapParamater.put("JABATAN1", pendaftaran.getFormasi().getRefJabatan()
+				.getNama()
+				+ " ("
+				+ pendaftaran.getFormasi().getRefLokasi().getNama()
+				+ ")");
+		mapParamater.put("JABATAN2", "");
+		mapParamater.put("JABATAN3", "");
+		if (pendaftaran.getFormasi2() != null) {
+			// JABATAN2
+			mapParamater.put("JABATAN2", pendaftaran.getFormasi2()
+					.getRefJabatan().getNama()
+					+ " ("
+					+ pendaftaran.getFormasi2().getRefLokasi().getNama()
+					+ ")");
+		}
+		if (pendaftaran.getFormasi3() != null
+				&& pendaftaran.getFormasi2() == null) {
+			// JABATAN3
+			mapParamater.put("JABATAN2", pendaftaran.getFormasi3()
+					.getRefJabatan().getNama()
+					+ " ("
+					+ pendaftaran.getFormasi3().getRefLokasi().getNama()
+					+ ")");
+		}
+		if (pendaftaran.getFormasi3() != null
+				&& pendaftaran.getFormasi2() != null) {
+			// JABATAN3
+			mapParamater.put("JABATAN3", pendaftaran.getFormasi3()
+					.getRefJabatan().getNama()
+					+ " ("
+					+ pendaftaran.getFormasi3().getRefLokasi().getNama()
+					+ ")");
+		}
+
 		mapParamater.put("LOKASI", pendaftaran.getFormasi().getRefLokasi()
 				.getNama());
 		mapParamater.put("INSTANSI", pendaftaran.getFormasi().getRefInstansi()
 				.getNama());
+		String lokasiTest = "";
+		if (pendaftaran.getLokasiTest() != null) {
+			if (!pendaftaran.getLokasiTest().equalsIgnoreCase("")) {
+				lokasiTest = refLokasiTestDao
+						.findByProperty("kode", pendaftaran.getLokasiTest(),
+								null).get(0).getNama();
+			} else {
+				lokasiTest = "";
+			}
+		}
+		mapParamater.put("LOKASI_TEST", lokasiTest);
 
 		return mapParamater;
 	}
