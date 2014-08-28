@@ -405,7 +405,7 @@ label.error {
                     <label>Email
                     </label>
                     <input type="email" class=" form-textbox validate[Email]" title="Email" id="email" name="email" size="35" 
-					style="width: 350px"/>
+					style="width: 350px" value='${userLogin.email}' readonly/>
                 </p>
 				<p>
                     <label>Asal Institusi Pend. 
