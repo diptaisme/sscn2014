@@ -1,5 +1,6 @@
 package id.go.bkn.sscn.servlet;
 
+import id.go.bkn.sscn.core.report.exception.InvalidRegistrasiException;
 import id.go.bkn.sscn.manager.Constanta;
 import id.go.bkn.sscn.persistence.entities.DtPendaftaran;
 import id.go.bkn.sscn.persistence.entities.RefInstansi;
@@ -98,13 +99,52 @@ public class RegistrasiServlet extends HttpServlet {
 							cetakRegistrasiGagal(response, instansi.getNama());
 						} else {
 							// kondisi apakah instansi memperbolehkan daftar
-							// lebih dari 1 jabatan
-							String jabatan2=request.getParameter("jabatan2");
-							String jabatan3=request.getParameter("jabatan3");
+							// lebih dari 1 jabatan							
+							String jabatan2 = request.getParameter("jabatan2");
+							String jabatan3 = request.getParameter("jabatan3");
 							if (!instansi.getJumlahMaxDaftar()
-									.equalsIgnoreCase("3") && (jabatan2!=null || jabatan3 != null)) {
+									.equalsIgnoreCase("3")
+									&& (jabatan2 != null || jabatan3 != null)) {
 								cetakJumlahMaksimalPendaftaranInstansi(response);
 							} else {
+								String jabatan1 = request
+										.getParameter("jabatan1");
+								String lokasiKerja1 = request.getParameter("lokasi_kerja1");
+								String lokasiKerja2 = request.getParameter("lokasi_kerja2");
+								String lokasiKerja3 = request.getParameter("lokasi_kerja3");
+								if(jabatan1.equalsIgnoreCase("")){
+									jabatan1 = null;
+								}
+								if(jabatan2.equalsIgnoreCase("")){
+									jabatan2 = null;
+								}
+								if(jabatan3.equalsIgnoreCase("")){
+									jabatan3 = null;
+								}
+								
+								if(lokasiKerja1.equalsIgnoreCase("")){
+									lokasiKerja1 = null;
+								}
+								if(lokasiKerja2.equalsIgnoreCase("")){
+									lokasiKerja2 = null;
+								}
+								if(lokasiKerja3.equalsIgnoreCase("")){
+									lokasiKerja3 = null;
+								}
+								
+								if (jabatan2 != null && lokasiKerja2 != null
+										&& jabatan1.equals(jabatan2) && lokasiKerja1.equals(lokasiKerja2)) {
+									throw new InvalidRegistrasiException("Ada jabatan dan lokasi kerja yang sama dipilih");
+								}
+								if (jabatan3 != null && lokasiKerja3 != null
+										&& jabatan1.equals(jabatan3) && lokasiKerja1.equals(lokasiKerja3)) {
+									throw new InvalidRegistrasiException("Ada jabatan dan lokasi kerja yang sama dipilih");
+								}
+								if (jabatan2 != null && jabatan3 !=null && lokasiKerja2 != null && lokasiKerja3 != null
+										&& jabatan2.equals(jabatan3) && lokasiKerja2.equals(lokasiKerja3)) {	
+									throw new InvalidRegistrasiException("Ada jabatan dan lokasi kerja yang sama dipilih");
+								}
+								
 								// cek jumlah daftarnya user
 								if (pendaftar.getJumlahDaftar() == 0) { // sekali
 																		// daftar
@@ -161,7 +201,12 @@ public class RegistrasiServlet extends HttpServlet {
 
 						}
 					}
-				} catch (Exception ex) {
+				} 
+				catch (InvalidRegistrasiException ex) {
+					ex.printStackTrace();					
+					cetakRegistrasiGagalKarenaAdaJabatanYangSama(response);
+				}
+				catch (Exception ex) {
 					ex.printStackTrace();
 					registrasiService.deletePendaftaran(pendaftaran); // rollback
 																		// pendaftaran
@@ -259,6 +304,19 @@ public class RegistrasiServlet extends HttpServlet {
 		}
 	}
 
+	private void cetakRegistrasiGagalKarenaAdaJabatanYangSama(HttpServletResponse response) {
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.println("<HTML><HEAD><TITLE>SSCN</TITLE>"
+					+ "</HEAD><BODY>Maaf proses registrasi gagal. Karena anda memilih JABATAN dan LOKASI KERJA yang sama atau fungsi javascript pada browser anda matikan. <BR> Klik <a href='"
+					+ Constanta.URL_WEB_SSCN
+					+ "'>link ini </a> untuk kembali</BODY></HTML>");
+			out.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 	private void cetakJumlahMaksimalPendaftaranInstansi(
 			HttpServletResponse response) {
 		try {
