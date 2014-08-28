@@ -169,5 +169,24 @@ public class ActionController {
 				pengumumanService.getPengumumanInstansiPusat());*/		
 		return "calendar";
 	}
+	
+	@RequestMapping(value = "/cetak_peserta.html", method = RequestMethod.GET)
+	public String cetak_peserta(ModelMap map, ModelMap model, HttpSession session) {
+		TabelPendaftar user = (TabelPendaftar) session
+				.getAttribute("userLogin");
+		if (user == null) {
+			return "login";
+		}
+		if (user.getJumlahDaftar() == 0) {
+			return "halamanyangsalah";
+		}
+		List<DtPendaftaran> pendaftarans = registrasiService
+				.getPendaftaransByUser(user.getId());
+		if (pendaftarans.size() > 0) {
+			model.addAttribute("idRegistrasi", pendaftarans.get(0).getNoRegister());
+			model.addAttribute("noPeserta", pendaftarans.get(0).getNoPeserta());
+		}
+		return "cetak_peserta";
+	}
 
 }
