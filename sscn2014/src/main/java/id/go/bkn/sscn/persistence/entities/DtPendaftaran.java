@@ -263,7 +263,7 @@ public class DtPendaftaran implements java.io.Serializable {
 		this.lembaga = lembaga;
 	}
 
-	@Column(name = "NO_IJAZAH", nullable = false, length = 20)
+	@Column(name = "NO_IJAZAH", nullable = false, length = 30)
 	public String getNoIjazah() {
 		return this.noIjazah;
 	}
