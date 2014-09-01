@@ -334,8 +334,9 @@ label.error {
 														name="nama" size="35" onKeyUp="caps(this)" />
 		  <p>		<label>Jenis Kelamin 
                   </label>
-                    <select id="jenis_kelamin" name="jenis_kelamin"
+                    <select id="jenis_kelamin" name="jenis_kelamin" style="width: 200px"
 														title="Jenis Kelamin">														
+														<option value="">Pilih Jenis Kelamin</option>
 														<c:choose>
 														    <c:when test="${userLogin.jenisKelamin == 'P'}">
 																<option value="P" selected>Pria</option>
@@ -347,7 +348,7 @@ label.error {
 																<option value="P">Pria</option>
 																<option value="W">Wanita</option>
 														    </c:otherwise>
-														</c:choose>														
+														</c:choose>	
 				  </select>
 
                 </p>
@@ -431,7 +432,7 @@ style="width: 390px" size="50" onKeyUp="caps(this)" />
                     </label>
                     <input type="text" class=" form-textbox" title="No Ijazah" style="width: 280px"
 														data-type="input-textbox" id="no_ijazah" name="no_ijazah"
-														size="30" maxlength="30" />
+														size="50" maxlength="50" />
                 </p>
 				<p>
                     <label>Akreditasi                    </label>
