@@ -115,20 +115,20 @@ public class RegistrasiServlet extends HttpServlet {
 								if(jabatan1.equalsIgnoreCase("")){
 									jabatan1 = null;
 								}
-								if(jabatan2.equalsIgnoreCase("")){
+								if(jabatan2!=null && jabatan2.equalsIgnoreCase("")){
 									jabatan2 = null;
 								}
-								if(jabatan3.equalsIgnoreCase("")){
+								if(jabatan3!=null && jabatan3.equalsIgnoreCase("")){
 									jabatan3 = null;
 								}
 								
 								if(lokasiKerja1.equalsIgnoreCase("")){
 									lokasiKerja1 = null;
 								}
-								if(lokasiKerja2.equalsIgnoreCase("")){
+								if(lokasiKerja2!=null && lokasiKerja2.equalsIgnoreCase("")){
 									lokasiKerja2 = null;
 								}
-								if(lokasiKerja3.equalsIgnoreCase("")){
+								if(lokasiKerja3!=null && lokasiKerja3.equalsIgnoreCase("")){
 									lokasiKerja3 = null;
 								}
 								
