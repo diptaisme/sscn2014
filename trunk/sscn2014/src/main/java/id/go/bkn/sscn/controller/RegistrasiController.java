@@ -396,18 +396,34 @@ public class RegistrasiController {
 					.getNama()));
 		}
 
+		// get jabatan pendidikan umum
 		List<RefJabatan> jabatanPendidikanUmum = null;
 		// D3
 		if (pendidikanChoose.getTingkat().equalsIgnoreCase("20")) {
-			jabatanPendidikanUmum = registrasiService.getJabatan(instansi,
-					lokasi, Constanta.D3SEMUAJURUSAN[0]);
+			if (!pendidikanChoose.getKode().equals(Constanta.D3SEMUAJURUSAN[0])) {
+				jabatanPendidikanUmum = registrasiService.getJabatan(instansi,
+						lokasi, Constanta.D3SEMUAJURUSAN[0]);
+			}
 		}
 		// D4 atau S1
-		else if (pendidikanChoose.getTingkat().equalsIgnoreCase("30")) {
-			jabatanPendidikanUmum = registrasiService.getJabatan(instansi,
-					lokasi, Constanta.D4SEMUAJURUSAN[0]);
-			jabatanPendidikanUmum.addAll(registrasiService.getJabatan(instansi,
-					lokasi, Constanta.S1SEMUAJURUSAN[0]));
+		else if (pendidikanChoose.getTingkat().equalsIgnoreCase("30")
+				&& !pendidikanChoose.getKode().startsWith("71")) {
+			if (!pendidikanChoose.getKode().equals(Constanta.D4SEMUAJURUSAN[0])
+					&& !pendidikanChoose.getKode().equals(
+							Constanta.S1SEMUAJURUSAN[0])) {
+				jabatanPendidikanUmum = registrasiService.getJabatan(instansi,
+						lokasi, Constanta.D4SEMUAJURUSAN[0]);
+				jabatanPendidikanUmum.addAll(registrasiService.getJabatan(
+						instansi, lokasi, Constanta.S1SEMUAJURUSAN[0]));
+			}
+		}
+		// S2
+		else if (pendidikanChoose.getTingkat().equalsIgnoreCase("30")
+				&& pendidikanChoose.getKode().startsWith("71")) {
+			if (!pendidikanChoose.getKode().equals(Constanta.S2SEMUAJURUSAN[0])) {
+				jabatanPendidikanUmum = registrasiService.getJabatan(instansi,
+						lokasi, Constanta.S2SEMUAJURUSAN[0]);
+			}
 		}
 
 		if (jabatanPendidikanUmum != null && jabatanPendidikanUmum.size() > 0) {
@@ -466,6 +482,10 @@ public class RegistrasiController {
 		newPendidikans.add(new PendidikanJson(Constanta.S1SEMUAJURUSAN[0],
 				Constanta.S1SEMUAJURUSAN[1], Constanta.S1SEMUAJURUSAN[2]));
 
+		// add pendidikan untuk S-2 SEMUA JURUSAN
+		newPendidikans.add(new PendidikanJson(Constanta.S2SEMUAJURUSAN[0],
+				Constanta.S2SEMUAJURUSAN[1], Constanta.S2SEMUAJURUSAN[2]));
+
 		Map<String, List<PendidikanJson>> pendidikanMap = new HashMap<String, List<PendidikanJson>>();
 		pendidikanMap.put("pendidikans", newPendidikans);
 
@@ -494,6 +514,45 @@ public class RegistrasiController {
 		for (RefLokasi lokasi : lokasis) {
 			newLokasis.add(new LokasiJson(lokasi.getKode(), lokasi.getNama()));
 		}
+		// get lokasi untuk pendidikan umum
+		RefPendidikan pendidikanChoose = refPendidikanDao.findByProperty(
+				"kode", pendidikan, null).get(0);
+		List<RefLokasi> lokasiPendidikanUmum = null;
+		// D3
+		if (pendidikanChoose.getTingkat().equalsIgnoreCase("20")) {
+			if (!pendidikanChoose.getKode().equals(Constanta.D3SEMUAJURUSAN[0])) {
+				lokasiPendidikanUmum = registrasiService.getLokasi(instansi,
+						Constanta.D3SEMUAJURUSAN[0]);
+			}
+		}
+		// D4 atau S1
+		else if (pendidikanChoose.getTingkat().equalsIgnoreCase("30")
+				&& !pendidikanChoose.getKode().startsWith("71")) {
+			if (!pendidikanChoose.getKode().equals(Constanta.D4SEMUAJURUSAN[0])
+					&& !pendidikanChoose.getKode().equals(
+							Constanta.S1SEMUAJURUSAN[0])) {
+				lokasiPendidikanUmum = registrasiService.getLokasi(instansi,
+						Constanta.D4SEMUAJURUSAN[0]);
+				lokasiPendidikanUmum.addAll(registrasiService.getLokasi(
+						instansi, Constanta.S1SEMUAJURUSAN[0]));
+			}
+		}
+		// S2
+		else if (pendidikanChoose.getTingkat().equalsIgnoreCase("30")
+				&& pendidikanChoose.getKode().startsWith("71")) {
+			if (!pendidikanChoose.getKode().equals(Constanta.S2SEMUAJURUSAN[0])) {
+				lokasiPendidikanUmum = registrasiService.getLokasi(instansi,
+						Constanta.S2SEMUAJURUSAN[0]);
+			}
+		}
+
+		if (lokasiPendidikanUmum != null && lokasiPendidikanUmum.size() > 0) {
+			for (RefLokasi lokasi : lokasiPendidikanUmum) {
+				newLokasis.add(new LokasiJson(lokasi.getKode(), lokasi
+						.getNama()));
+			}
+		}
+		//
 		Map<String, List<LokasiJson>> lokasiMap = new HashMap<String, List<LokasiJson>>();
 		lokasiMap.put("lokasis", newLokasis);
 
