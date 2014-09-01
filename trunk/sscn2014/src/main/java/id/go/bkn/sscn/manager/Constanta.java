@@ -26,6 +26,6 @@ public class Constanta {
 	public final static String[] S1SEMUAJURUSAN = new String[] { "5100000",
 		"S-1 SEMUA JURUSAN", "30" };
 	
-	/*public final static String[] S2SEMUAJURUSAN = new String[] { "7100000",
-		"S-2 SEMUA JURUSAN", "30" }; */
+	public final static String[] S2SEMUAJURUSAN = new String[] { "7100000",
+		"S-2 SEMUA JURUSAN", "30" };
 }
