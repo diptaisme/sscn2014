@@ -185,6 +185,7 @@ public class ActionController {
 		if (pendaftarans.size() > 0) {
 			model.addAttribute("idRegistrasi", pendaftarans.get(0).getNoRegister());
 			model.addAttribute("noPeserta", pendaftarans.get(0).getNoPeserta());
+			model.addAttribute("isFinalVerifikasi", user.getRefInstansi().getIsFinalVerifikasi());
 		}
 		return "cetak_peserta";
 	}
