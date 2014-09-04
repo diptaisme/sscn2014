@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptRegistrasi2014" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="55"/>
+	<property name="ireport.y" value="320"/>
 	<parameter name="NO_REGISTRASI" class="java.lang.String"/>
 	<parameter name="NAMA" class="java.lang.String"/>
 	<parameter name="TTL" class="java.lang.String"/>
@@ -90,28 +90,28 @@
 				<text><![CDATA[Institusi Pendidikan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="171" width="141" height="20"/>
+				<reportElement x="0" y="183" width="141" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<text><![CDATA[Kualifikasi Pendidikan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="190" width="141" height="20"/>
+				<reportElement x="0" y="202" width="141" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[No. Ijazah / Tahun Lulus]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="209" width="141" height="20"/>
+				<reportElement x="0" y="221" width="141" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<text><![CDATA[Akreditasi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="228" width="141" height="20"/>
+				<reportElement x="0" y="240" width="141" height="20"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
@@ -153,28 +153,28 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="141" y="171" width="4" height="20"/>
+				<reportElement x="141" y="182" width="4" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="141" y="190" width="4" height="20"/>
+				<reportElement x="141" y="203" width="4" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="141" y="209" width="4" height="20"/>
+				<reportElement x="141" y="221" width="4" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="142" y="331" width="4" height="20"/>
+				<reportElement x="142" y="343" width="4" height="20"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
@@ -201,36 +201,36 @@
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{TTL}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="147" y="152" width="408" height="20"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="147" y="152" width="295" height="31"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" size="12"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{UNIVERSITAS}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="147" y="171" width="408" height="20"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="147" y="183" width="295" height="20"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" size="12"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{PENDIDIKAN}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="147" y="190" width="408" height="20"/>
+				<reportElement x="147" y="205" width="408" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{NO_IJAZAH}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="147" y="210" width="408" height="20"/>
+				<reportElement x="147" y="222" width="408" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{AKREDITAS}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="147" y="231" width="408" height="33"/>
+				<reportElement x="147" y="243" width="408" height="33"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
@@ -265,7 +265,7 @@
 				<text><![CDATA[Persyaratan Khusus :]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="147" y="263" width="408" height="33"/>
+				<reportElement x="147" y="275" width="408" height="33"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
@@ -279,21 +279,21 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{NO_REGISTRASI}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="148" y="329" width="408" height="20"/>
+				<reportElement x="148" y="341" width="408" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{LOKASI_TEST}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="1" y="331" width="141" height="20"/>
+				<reportElement x="1" y="343" width="141" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<text><![CDATA[Lokasi Ujian]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="141" y="227" width="4" height="20"/>
+				<reportElement x="141" y="239" width="4" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
@@ -339,28 +339,28 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{JENIS_KELAMIN}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="147" y="295" width="408" height="35"/>
+				<reportElement x="147" y="307" width="408" height="35"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{JABATAN3}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="147" y="346" width="408" height="20"/>
+				<reportElement x="147" y="358" width="408" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{WAKTU_DAFTAR}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="1" y="348" width="141" height="20"/>
+				<reportElement x="1" y="360" width="141" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<text><![CDATA[Tgl / Jam Pendaftaran]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="142" y="349" width="4" height="20"/>
+				<reportElement x="142" y="361" width="4" height="20"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
