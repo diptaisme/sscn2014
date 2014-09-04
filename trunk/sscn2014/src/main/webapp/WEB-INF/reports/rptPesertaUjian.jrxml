@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptPesertaUjian" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="332"/>
+	<property name="ireport.y" value="3"/>
 	<parameter name="NOMOR_PESERTA" class="java.lang.String"/>
 	<parameter name="NAMA" class="java.lang.String"/>
 	<parameter name="TTL" class="java.lang.String"/>
@@ -295,7 +295,7 @@ FORMASI UMUM]]></text>
 				<textElement>
 					<font fontName="SansSerif" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[....., ...........................  2014]]></text>
+				<text><![CDATA[.....,...........................  2014]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="396" y="264" width="156" height="14"/>
@@ -741,7 +741,7 @@ FORMASI UMUM]]></text>
 			<componentElement>
 				<reportElement x="454" y="8" width="101" height="53"/>
 				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
-					<jr:codeExpression><![CDATA[]]></jr:codeExpression>
+					<jr:codeExpression><![CDATA[$P{BARCODE}]]></jr:codeExpression>
 				</jr:Code39>
 			</componentElement>
 		</band>
