@@ -112,7 +112,7 @@
 							<span style="color:red">Jika anda belum mendapatkan no peserta test maka tombol di bawah tidak akan tersedia.</span>	</p>
 							<p align="center">						
 							<c:choose>
-							    <c:when test="${idRegistrasi != null && noPeserta != null && noPeserta != ''}">
+							    <c:when test="${idRegistrasi != null && noPeserta != null && noPeserta != '' && isFinalVerifikasi != '0'}">
 										<form action="report" method="post" target="_blank"
 											name="formCetakRegistrasi" id="formCetakRegistrasi">
 											<div align="center">
