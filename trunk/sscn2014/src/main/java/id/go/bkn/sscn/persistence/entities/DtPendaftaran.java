@@ -163,7 +163,7 @@ public class DtPendaftaran implements java.io.Serializable {
 		this.nama = nama;
 	}
 
-	@Column(name = "TMP_LAHIR", nullable = false, length = 30)
+	@Column(name = "TMP_LAHIR", nullable = false, length = 500)
 	public String getTmpLahir() {
 		return this.tmpLahir;
 	}
