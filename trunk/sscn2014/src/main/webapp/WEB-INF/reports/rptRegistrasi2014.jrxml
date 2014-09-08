@@ -146,7 +146,7 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="141" y="152" width="4" height="20"/>
+				<reportElement x="141" y="154" width="4" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
@@ -202,7 +202,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{TTL}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="147" y="152" width="295" height="31"/>
+				<reportElement x="147" y="150" width="295" height="31"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="11"/>
 				</textElement>
@@ -332,7 +332,7 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="147" y="133" width="408" height="20"/>
+				<reportElement x="147" y="134" width="408" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12"/>
 				</textElement>
