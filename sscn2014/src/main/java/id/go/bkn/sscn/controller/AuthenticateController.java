@@ -64,9 +64,9 @@ public class AuthenticateController {
 	@RequestMapping(value = "/logout.html", method = RequestMethod.GET)
 	public String logout(ModelMap map, HttpSession session) {
 		if (session.getAttribute("userLogin") != null) {
-			session.removeAttribute("userLogin");
-			// session.invalidate();
+			session.removeAttribute("userLogin");			 
 		}
+		session.invalidate();
 		map.addAttribute("pesan", "Anda telah logout");
 		return "login";
 	}
