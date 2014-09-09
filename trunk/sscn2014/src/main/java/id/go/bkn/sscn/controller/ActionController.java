@@ -43,7 +43,10 @@ public class ActionController {
 		List<DtPendaftaran> pendaftarans = registrasiService
 				.getPendaftaransByUser(user.getId());
 		if (pendaftarans.size() > 0) {
-			model.addAttribute("idRegistrasi", pendaftarans.get(0).getId());
+			DtPendaftaran pendaftaran =pendaftarans.get(0); 
+			if(pendaftaran.getNoNik().equalsIgnoreCase(user.getNik())){
+				model.addAttribute("idRegistrasi", pendaftarans.get(0).getId());
+			}
 		}
 		return "cetak";
 	}
@@ -87,7 +90,7 @@ public class ActionController {
 		RefInstansi instansi = registrasiService.getInstansibyId(user
 				.getRefInstansi().getKode());
 		if (!instansi.getStatus().equalsIgnoreCase("1")) { // pake flag atau
-															// status?
+												// status?
 			model.addAttribute("namaInstansi", user.getRefInstansi().getNama());
 			return "tutup_pendaftaran";
 		}
