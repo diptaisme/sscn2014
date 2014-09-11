@@ -25,28 +25,30 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "ref_instansi", catalog = Constanta.DB_CATALOG)
 public class RefInstansi implements java.io.Serializable {
-
+	/**
+	 * 
+	 */
+	
 	private String kode;
 	private String nama;
 	private String status;
-	private String jumlahMaxDaftar;
+	private String pilihanJabatan;
 	private String pilihanLokasiTest;
+	private String pilihanCetakKartu;
+	private String spesimenNip;
+	private String spesimenNama;
+	private String isFinalVerifikasi;
 	private Set<DtPengumuman> dtPengumumans = new HashSet<DtPengumuman>(0);
 	private Set<MFormasi> MFormasis = new HashSet<MFormasi>(0);
 	private Set<DtUser> dtUsers = new HashSet<DtUser>(0);
 
-	private String isFinalVerifikasi;
-
 	public RefInstansi() {
 	}
 
-	public RefInstansi(String kode, String nama, String status,
-			String jumlahMaxDaftar, String pilihanLokasiTest) {
+	public RefInstansi(String kode, String nama, String status) {
 		this.kode = kode;
 		this.nama = nama;
 		this.status = status;
-		this.jumlahMaxDaftar = jumlahMaxDaftar;
-		this.pilihanLokasiTest = pilihanLokasiTest;
 	}
 
 	public RefInstansi(String kode, String nama, String status,
@@ -89,24 +91,6 @@ public class RefInstansi implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@Column(name = "JUMLAH_MAX_DAFTAR", nullable = false, length = 1)
-	public String getJumlahMaxDaftar() {
-		return this.jumlahMaxDaftar;
-	}
-
-	public void setJumlahMaxDaftar(String jumlahMaxDaftar) {
-		this.jumlahMaxDaftar = jumlahMaxDaftar;
-	}
-
-	@Column(name = "PILIHAN_LOKASI_TEST", nullable = false, length = 1)
-	public String getPilihanLokasiTest() {
-		return this.pilihanLokasiTest;
-	}
-
-	public void setPilihanLokasiTest(String pilihanLokasiTest) {
-		this.pilihanLokasiTest = pilihanLokasiTest;
-	}
-
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "refInstansi")
 	public Set<DtPengumuman> getDtPengumumans() {
@@ -137,15 +121,50 @@ public class RefInstansi implements java.io.Serializable {
 		this.dtUsers = dtUsers;
 	}
 
-	// @JsonIgnore
-	// @OneToMany(fetch = FetchType.LAZY, mappedBy = "refInstansi")
-	// public Set<RefPns> getRefPnses() {
-	// return this.refPnses;
-	// }
-	//
-	// public void setRefPnses(Set<RefPns> refPnses) {
-	// this.refPnses = refPnses;
-	// }
+	@Column(name = "JUMLAH_MAX_DAFTAR", nullable = true, length = 1)
+	public String getPilihanJabatan() {
+		return this.pilihanJabatan;
+	}
+
+	public void setPilihanJabatan(String status) {
+		this.pilihanJabatan = status;
+	}
+
+	@Column(name = "PILIHAN_LOKASI_TEST", nullable = true, length = 1)
+	public String getPilihanLokasiTest() {
+		return this.pilihanLokasiTest;
+	}
+
+	public void setPilihanLokasiTest(String status) {
+		this.pilihanLokasiTest = status;
+	}
+
+	@Column(name = "PILIHAN_CETAK_TEST", nullable = true, length = 1)
+	public String getPilihanCetakKartu() {
+		return this.pilihanCetakKartu;
+	}
+
+	public void setPilihanCetakKartu(String status) {
+		this.pilihanCetakKartu = status;
+	}
+
+	@Column(name = "SPESIMEN_NIP", nullable = true)
+	public String getSpesimenNip() {
+		return this.spesimenNip;
+	}
+
+	public void setSpesimenNip(String nip) {
+		this.spesimenNip = nip;
+	}
+
+	@Column(name = "SPESIMEN_NAMA", nullable = true)
+	public String getSpesimenNama() {
+		return this.spesimenNama;
+	}
+
+	public void setSpesimenNama(String nama) {
+		this.spesimenNama = nama;
+	}
 
 	@Column(name = "IS_FINAL_VERIFIKASI", nullable = true, length = 1)
 	public String getIsFinalVerifikasi() {

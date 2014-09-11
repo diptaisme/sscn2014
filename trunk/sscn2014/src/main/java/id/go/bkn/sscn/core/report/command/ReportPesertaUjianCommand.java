@@ -132,7 +132,7 @@ public class ReportPesertaUjianCommand extends ReportCommand {
 		String noPeserta = pendaftaran.getNoPeserta();
 		String formattedNoPeserta = noPeserta.substring(0, 4) + "-"
 				+ noPeserta.substring(4, 5) + "-" + noPeserta.substring(5, 10)
-				+ "-" + noPeserta.substring(10, 11);
+				+ noPeserta.substring(10, 11);
 		mapParamater.put("NOMOR_PESERTA", formattedNoPeserta);
 		mapParamater.put("BARCODE", pendaftaran.getNoPeserta());
 		mapParamater.put("NIK", pendaftaran.getNoNik());
@@ -151,44 +151,64 @@ public class ReportPesertaUjianCommand extends ReportCommand {
 				+ refPendidikan.getNama());
 
 		// JABATAN1
+		String status1 = "   [" + getStatusLulus(pendaftaran.getFlagFormasi())
+				+ "]";
 		mapParamater.put("JABATAN1", pendaftaran.getFormasi().getRefJabatan()
 				.getNama()
 				+ " ("
 				+ pendaftaran.getFormasi().getRefLokasi().getNama()
-				+ ")");
+				+ ")" + status1);
+
 		mapParamater.put("JABATAN2", "");
 		mapParamater.put("JABATAN3", "");
 		if (pendaftaran.getFormasi2() != null) {
 			// JABATAN2
+			String status2 = "   ["
+					+ getStatusLulus(pendaftaran.getFlagFormasi2()) + "]";
 			mapParamater.put("JABATAN2", pendaftaran.getFormasi2()
 					.getRefJabatan().getNama()
 					+ " ("
 					+ pendaftaran.getFormasi2().getRefLokasi().getNama()
-					+ ")");
+					+ ")" + status2);
 		}
 		if (pendaftaran.getFormasi3() != null
 				&& pendaftaran.getFormasi2() == null) {
 			// JABATAN3
+			String status3 = "   ["
+					+ getStatusLulus(pendaftaran.getFlagFormasi3()) + "]";
 			mapParamater.put("JABATAN2", pendaftaran.getFormasi3()
 					.getRefJabatan().getNama()
 					+ " ("
 					+ pendaftaran.getFormasi3().getRefLokasi().getNama()
-					+ ")");
+					+ ")" + status3);
 		}
 		if (pendaftaran.getFormasi3() != null
 				&& pendaftaran.getFormasi2() != null) {
 			// JABATAN3
+			String status3 = "   ["
+					+ getStatusLulus(pendaftaran.getFlagFormasi3()) + "]";
 			mapParamater.put("JABATAN3", pendaftaran.getFormasi3()
 					.getRefJabatan().getNama()
 					+ " ("
 					+ pendaftaran.getFormasi3().getRefLokasi().getNama()
-					+ ")");
+					+ ")" + status3);
 		}
 
 		mapParamater.put("LOKASI", pendaftaran.getFormasi().getRefLokasi()
 				.getNama());
 		mapParamater.put("INSTANSI", pendaftaran.getFormasi().getRefInstansi()
 				.getNama());
+		String nipSpesimen = "", namaSpesimen = "";
+		if (pendaftaran.getFormasi().getRefInstansi().getKode()
+				.equalsIgnoreCase("4011")) {
+			nipSpesimen = pendaftaran.getFormasi().getRefInstansi()
+					.getSpesimenNip();
+			namaSpesimen = pendaftaran.getFormasi().getRefInstansi()
+					.getSpesimenNama();
+		}
+		mapParamater.put("SPESIMEN_NIP", nipSpesimen);
+		mapParamater.put("SPESIMEN_NAMA", namaSpesimen);
+
 		String lokasiTest = "";
 		if (pendaftaran.getLokasiTest() != null) {
 			if (!pendaftaran.getLokasiTest().equalsIgnoreCase("")) {
@@ -204,4 +224,15 @@ public class ReportPesertaUjianCommand extends ReportCommand {
 		return mapParamater;
 	}
 
+	/* get status lulus */
+	private String getStatusLulus(Integer status) {
+		if (status == null) {
+			return "X";
+		} else if (status == 1) {
+			return "V";
+		} else {
+			return "X";
+		}
+
+	}
 }
