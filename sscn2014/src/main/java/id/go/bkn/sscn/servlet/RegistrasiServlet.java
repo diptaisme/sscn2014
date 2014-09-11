@@ -99,52 +99,67 @@ public class RegistrasiServlet extends HttpServlet {
 							cetakRegistrasiGagal(response, instansi.getNama());
 						} else {
 							// kondisi apakah instansi memperbolehkan daftar
-							// lebih dari 1 jabatan							
+							// lebih dari 1 jabatan
 							String jabatan2 = request.getParameter("jabatan2");
 							String jabatan3 = request.getParameter("jabatan3");
-							if (!instansi.getJumlahMaxDaftar()
-									.equalsIgnoreCase("3")
+							if (!instansi.getPilihanJabatan().equalsIgnoreCase(
+									"3")
 									&& (jabatan2 != null || jabatan3 != null)) {
 								cetakJumlahMaksimalPendaftaranInstansi(response);
 							} else {
 								String jabatan1 = request
 										.getParameter("jabatan1");
-								String lokasiKerja1 = request.getParameter("lokasi_kerja1");
-								String lokasiKerja2 = request.getParameter("lokasi_kerja2");
-								String lokasiKerja3 = request.getParameter("lokasi_kerja3");
-								if(jabatan1.equalsIgnoreCase("")){
+								String lokasiKerja1 = request
+										.getParameter("lokasi_kerja1");
+								String lokasiKerja2 = request
+										.getParameter("lokasi_kerja2");
+								String lokasiKerja3 = request
+										.getParameter("lokasi_kerja3");
+								if (jabatan1.equalsIgnoreCase("")) {
 									jabatan1 = null;
 								}
-								if(jabatan2!=null && jabatan2.equalsIgnoreCase("")){
+								if (jabatan2 != null
+										&& jabatan2.equalsIgnoreCase("")) {
 									jabatan2 = null;
 								}
-								if(jabatan3!=null && jabatan3.equalsIgnoreCase("")){
+								if (jabatan3 != null
+										&& jabatan3.equalsIgnoreCase("")) {
 									jabatan3 = null;
 								}
-								
-								if(lokasiKerja1.equalsIgnoreCase("")){
+
+								if (lokasiKerja1.equalsIgnoreCase("")) {
 									lokasiKerja1 = null;
 								}
-								if(lokasiKerja2!=null && lokasiKerja2.equalsIgnoreCase("")){
+								if (lokasiKerja2 != null
+										&& lokasiKerja2.equalsIgnoreCase("")) {
 									lokasiKerja2 = null;
 								}
-								if(lokasiKerja3!=null && lokasiKerja3.equalsIgnoreCase("")){
+								if (lokasiKerja3 != null
+										&& lokasiKerja3.equalsIgnoreCase("")) {
 									lokasiKerja3 = null;
 								}
-								
+
 								if (jabatan2 != null && lokasiKerja2 != null
-										&& jabatan1.equals(jabatan2) && lokasiKerja1.equals(lokasiKerja2)) {
-									throw new InvalidRegistrasiException("Ada jabatan dan lokasi kerja yang sama dipilih");
+										&& jabatan1.equals(jabatan2)
+										&& lokasiKerja1.equals(lokasiKerja2)) {
+									throw new InvalidRegistrasiException(
+											"Ada jabatan dan lokasi kerja yang sama dipilih");
 								}
 								if (jabatan3 != null && lokasiKerja3 != null
-										&& jabatan1.equals(jabatan3) && lokasiKerja1.equals(lokasiKerja3)) {
-									throw new InvalidRegistrasiException("Ada jabatan dan lokasi kerja yang sama dipilih");
+										&& jabatan1.equals(jabatan3)
+										&& lokasiKerja1.equals(lokasiKerja3)) {
+									throw new InvalidRegistrasiException(
+											"Ada jabatan dan lokasi kerja yang sama dipilih");
 								}
-								if (jabatan2 != null && jabatan3 !=null && lokasiKerja2 != null && lokasiKerja3 != null
-										&& jabatan2.equals(jabatan3) && lokasiKerja2.equals(lokasiKerja3)) {	
-									throw new InvalidRegistrasiException("Ada jabatan dan lokasi kerja yang sama dipilih");
+								if (jabatan2 != null && jabatan3 != null
+										&& lokasiKerja2 != null
+										&& lokasiKerja3 != null
+										&& jabatan2.equals(jabatan3)
+										&& lokasiKerja2.equals(lokasiKerja3)) {
+									throw new InvalidRegistrasiException(
+											"Ada jabatan dan lokasi kerja yang sama dipilih");
 								}
-								
+
 								// cek jumlah daftarnya user
 								if (pendaftar.getJumlahDaftar() == 0) { // sekali
 																		// daftar
@@ -201,12 +216,15 @@ public class RegistrasiServlet extends HttpServlet {
 
 						}
 					}
-				} 
-				catch (InvalidRegistrasiException ex) {
+				} catch (InvalidRegistrasiException ex) {
 					ex.printStackTrace();					
+					registrasiService.deletePendaftaran(pendaftaran); // rollback
+					// pendaftaran
+					// manually
+					pendaftar.setJumlahDaftar(jumlahDaftarAwal);
+					registrasiService.updatePendaftar(pendaftar);
 					cetakRegistrasiGagalKarenaAdaJabatanYangSama(response);
-				}
-				catch (Exception ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 					registrasiService.deletePendaftaran(pendaftaran); // rollback
 																		// pendaftaran
@@ -304,7 +322,8 @@ public class RegistrasiServlet extends HttpServlet {
 		}
 	}
 
-	private void cetakRegistrasiGagalKarenaAdaJabatanYangSama(HttpServletResponse response) {
+	private void cetakRegistrasiGagalKarenaAdaJabatanYangSama(
+			HttpServletResponse response) {
 		try {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
@@ -317,6 +336,7 @@ public class RegistrasiServlet extends HttpServlet {
 			ex.printStackTrace();
 		}
 	}
+
 	private void cetakJumlahMaksimalPendaftaranInstansi(
 			HttpServletResponse response) {
 		try {
