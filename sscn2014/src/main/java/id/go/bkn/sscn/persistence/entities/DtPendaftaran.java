@@ -2,14 +2,15 @@ package id.go.bkn.sscn.persistence.entities;
 
 // Generated Jun 17, 2014 3:07:46 PM by Hibernate Tools 3.4.0.CR1
 
+import static javax.persistence.GenerationType.IDENTITY;
 import id.go.bkn.sscn.manager.Constanta;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -62,8 +63,12 @@ public class DtPendaftaran implements java.io.Serializable {
 	private String akreditasi;
 	private String nilaiIpk;
 	private int tahunLulus;
-	
+	private Integer flagFormasi;
+	private Integer flagFormasi2;
+	private Integer flagFormasi3;
+
 	public DtPendaftaran() {
+		// NOOP
 	}
 
 	public DtPendaftaran(MFormasi mFormasi1, String noNik, String noRegister,
@@ -116,7 +121,7 @@ public class DtPendaftaran implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_PENDAFTAR")
+	@JoinColumn(name = "ID_PENDAFTAR", unique=true)
 	public TabelPendaftar getTabelPendaftar() {
 		return this.tabelPendaftar;
 	}
@@ -145,7 +150,7 @@ public class DtPendaftaran implements java.io.Serializable {
 	}
 
 	@Column(name = "NO_REGISTER", unique = true, nullable = false, length = 10)
-	//@Column(name = "NO_REGISTER", nullable = false, length = 10)
+	// @Column(name = "NO_REGISTER", nullable = false, length = 10)
 	public String getNoRegister() {
 		return this.noRegister;
 	}
@@ -383,8 +388,8 @@ public class DtPendaftaran implements java.io.Serializable {
 	public void setNilaiIpk(String nilaiIpk) {
 		this.nilaiIpk = nilaiIpk;
 	}
-	
-	//add formasi 2 dan 3
+
+	// add formasi 2 dan 3
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "FORMASI_ID2", nullable = true)
 	public MFormasi getFormasi2() {
@@ -394,7 +399,7 @@ public class DtPendaftaran implements java.io.Serializable {
 	public void setFormasi2(MFormasi formasi2) {
 		this.formasi2 = formasi2;
 	}
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "FORMASI_ID3", nullable = true)
 	public MFormasi getFormasi3() {
@@ -404,7 +409,7 @@ public class DtPendaftaran implements java.io.Serializable {
 	public void setFormasi3(MFormasi formasi3) {
 		this.formasi3 = formasi3;
 	}
-	
+
 	@Column(name = "TAHUN_LULUS", nullable = false, length = 4)
 	public int getTahunLulus() {
 		return this.tahunLulus;
@@ -414,4 +419,51 @@ public class DtPendaftaran implements java.io.Serializable {
 		this.tahunLulus = tahunLulus;
 	}
 
+	/**
+	 * @return the flagFormasi
+	 */
+	@Column(name = "FLAG_FORMASI", nullable = true)
+	public Integer getFlagFormasi() {
+		return flagFormasi;
+	}
+
+	/**
+	 * @param flagFormasi
+	 *            the flagFormasi to set
+	 */
+	public void setFlagFormasi(Integer flagFormasi) {
+		this.flagFormasi = flagFormasi;
+	}
+
+	/**
+	 * @return the flagFormasi2
+	 */
+	@Column(name = "FLAG_FORMASI2", nullable = true)
+	public Integer getFlagFormasi2() {
+		return flagFormasi2;
+	}
+
+	/**
+	 * @param flagFormasi2
+	 *            the flagFormasi2 to set
+	 */
+	public void setFlagFormasi2(Integer flagFormasi2) {
+		this.flagFormasi2 = flagFormasi2;
+	}
+
+	/**
+	 * @return the flagFormasi3
+	 */
+	@Column(name = "FLAG_FORMASI3", nullable = true)
+	public Integer getFlagFormasi3() {
+		return flagFormasi3;
+	}
+
+	/**
+	 * @param flagFormasi3
+	 *            the flagFormasi3 to set
+	 */
+	public void setFlagFormasi3(Integer flagFormasi3) {
+		this.flagFormasi3 = flagFormasi3;
+	}
 }
