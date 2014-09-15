@@ -204,7 +204,7 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 				.getNama()
 				+ " ("
 				+ pendaftaran.getFormasi().getRefLokasi().getNama()
-				+ ")");
+				+ ")     [  ]");
 		mapParamater.put("JABATAN2", "");
 		mapParamater.put("JABATAN3", "");
 		if (pendaftaran.getFormasi2() != null) {
@@ -213,7 +213,7 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 					.getRefJabatan().getNama()
 					+ " ("
 					+ pendaftaran.getFormasi2().getRefLokasi().getNama()
-					+ ")");
+					+ ")     [  ]");
 		}
 		if (pendaftaran.getFormasi3() != null
 				&& pendaftaran.getFormasi2() == null) {
@@ -222,7 +222,7 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 					.getRefJabatan().getNama()
 					+ " ("
 					+ pendaftaran.getFormasi3().getRefLokasi().getNama()
-					+ ")");
+					+ ")     [  ]");
 		}
 		if (pendaftaran.getFormasi3() != null
 				&& pendaftaran.getFormasi2() != null) {
@@ -231,7 +231,7 @@ public class ReportRegistrasi2014Command extends ReportCommand {
 					.getRefJabatan().getNama()
 					+ " ("
 					+ pendaftaran.getFormasi3().getRefLokasi().getNama()
-					+ ")");
+					+ ")     [  ]");
 		}
 
 		SimpleDateFormat formatDateTglDaftar = new SimpleDateFormat(
