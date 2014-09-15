@@ -227,7 +227,7 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 					&& !pendidikan2.equals("")
 					&& jabatan2 != null
 					&& !jabatan2.equals("")
-					&& instRefInstansi.getJumlahMaxDaftar().equalsIgnoreCase(
+					&& instRefInstansi.getPilihanJabatan().equalsIgnoreCase(
 							"3")) {
 				if (propertiesMap.size() > 0) {
 					propertiesMap.clear();
@@ -257,7 +257,7 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 					&& !pendidikan3.equals("")
 					&& jabatan3 != null
 					&& !jabatan3.equals("")
-					&& instRefInstansi.getJumlahMaxDaftar().equalsIgnoreCase(
+					&& instRefInstansi.getPilihanJabatan().equalsIgnoreCase(
 							"3")) {
 				if (propertiesMap.size() > 0) {
 					propertiesMap.clear();
