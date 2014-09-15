@@ -227,11 +227,11 @@ public class ReportPesertaUjianCommand extends ReportCommand {
 	/* get status lulus */
 	private String getStatusLulus(Integer status) {
 		if (status == null) {
-			return "X";
+			return "TMS";
 		} else if (status == 1) {
-			return "V";
+			return "MS";
 		} else {
-			return "X";
+			return "TMS";
 		}
 
 	}
