@@ -227,8 +227,9 @@ public class RegistrasiServiceImpl implements RegistrasiService {
 					&& !pendidikan2.equals("")
 					&& jabatan2 != null
 					&& !jabatan2.equals("")
-					&& instRefInstansi.getPilihanJabatan().equalsIgnoreCase(
-							"3")) {
+					&& (instRefInstansi.getPilihanJabatan().equalsIgnoreCase(
+							"2") || instRefInstansi.getPilihanJabatan().equalsIgnoreCase(
+									"3"))) {
 				if (propertiesMap.size() > 0) {
 					propertiesMap.clear();
 				}
