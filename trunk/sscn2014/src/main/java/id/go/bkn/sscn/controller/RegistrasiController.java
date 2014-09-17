@@ -20,6 +20,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -467,24 +469,29 @@ public class RegistrasiController {
 		}
 		pendidikans = new ArrayList<RefPendidikan>(mapPendidikans.values());
 
+		// sort by name
+		Collections.sort(pendidikans, new PendidikanComparator());
+
 		List<PendidikanJson> newPendidikans = new ArrayList<PendidikanJson>();
 		for (RefPendidikan pendidikan : pendidikans) {
 			newPendidikans.add(new PendidikanJson(pendidikan.getKode(),
 					pendidikan.getNama(), pendidikan.getTingkat()));
 		}
 		// add pendidikan untuk D-3 SEMUA JURUSAN
-		newPendidikans.add(new PendidikanJson(Constanta.D3SEMUAJURUSAN[0],
-				Constanta.D3SEMUAJURUSAN[1], Constanta.D3SEMUAJURUSAN[2]));
-		// add pendidikan untuk D-4 SEMUA JURUSAN
-		newPendidikans.add(new PendidikanJson(Constanta.D4SEMUAJURUSAN[0],
-				Constanta.D4SEMUAJURUSAN[1], Constanta.D4SEMUAJURUSAN[2]));
-		// add pendidikan untuk S-1 SEMUA JURUSAN
-		newPendidikans.add(new PendidikanJson(Constanta.S1SEMUAJURUSAN[0],
-				Constanta.S1SEMUAJURUSAN[1], Constanta.S1SEMUAJURUSAN[2]));
-
-		// add pendidikan untuk S-2 SEMUA JURUSAN
-		newPendidikans.add(new PendidikanJson(Constanta.S2SEMUAJURUSAN[0],
-				Constanta.S2SEMUAJURUSAN[1], Constanta.S2SEMUAJURUSAN[2]));
+		/*
+		 * newPendidikans.add(new PendidikanJson(Constanta.D3SEMUAJURUSAN[0],
+		 * Constanta.D3SEMUAJURUSAN[1], Constanta.D3SEMUAJURUSAN[2])); // add
+		 * pendidikan untuk D-4 SEMUA JURUSAN newPendidikans.add(new
+		 * PendidikanJson(Constanta.D4SEMUAJURUSAN[0],
+		 * Constanta.D4SEMUAJURUSAN[1], Constanta.D4SEMUAJURUSAN[2])); // add
+		 * pendidikan untuk S-1 SEMUA JURUSAN newPendidikans.add(new
+		 * PendidikanJson(Constanta.S1SEMUAJURUSAN[0],
+		 * Constanta.S1SEMUAJURUSAN[1], Constanta.S1SEMUAJURUSAN[2]));
+		 * 
+		 * // add pendidikan untuk S-2 SEMUA JURUSAN newPendidikans.add(new
+		 * PendidikanJson(Constanta.S2SEMUAJURUSAN[0],
+		 * Constanta.S2SEMUAJURUSAN[1], Constanta.S2SEMUAJURUSAN[2]));
+		 */
 
 		Map<String, List<PendidikanJson>> pendidikanMap = new HashMap<String, List<PendidikanJson>>();
 		pendidikanMap.put("pendidikans", newPendidikans);
@@ -525,24 +532,24 @@ public class RegistrasiController {
 						Constanta.D3SEMUAJURUSAN[0]);
 			}
 		}
-		// D4 atau S1
-		else if (pendidikanChoose.getTingkat().equalsIgnoreCase("30")
-				&& !pendidikanChoose.getKode().startsWith("71")) {
-			if (!pendidikanChoose.getKode().equals(Constanta.D4SEMUAJURUSAN[0])
-					&& !pendidikanChoose.getKode().equals(
-							Constanta.S1SEMUAJURUSAN[0])) {
-				lokasiPendidikanUmum = registrasiService.getLokasi(instansi,
-						Constanta.D4SEMUAJURUSAN[0]);
-				lokasiPendidikanUmum.addAll(registrasiService.getLokasi(
-						instansi, Constanta.S1SEMUAJURUSAN[0]));
-			}
-		}
-		// S2
-		else if (pendidikanChoose.getTingkat().equalsIgnoreCase("30")
-				&& pendidikanChoose.getKode().startsWith("71")) {
-			if (!pendidikanChoose.getKode().equals(Constanta.S2SEMUAJURUSAN[0])) {
-				lokasiPendidikanUmum = registrasiService.getLokasi(instansi,
-						Constanta.S2SEMUAJURUSAN[0]);
+		
+		else if (pendidikanChoose.getTingkat().equalsIgnoreCase("30")) {
+			//S2
+			if(pendidikanChoose.getKode().startsWith("71")){
+				if (!pendidikanChoose.getKode().equals(Constanta.S2SEMUAJURUSAN[0])) {
+					lokasiPendidikanUmum = registrasiService.getLokasi(instansi,
+							Constanta.S2SEMUAJURUSAN[0]);
+				}
+			}else{
+				//D4 atau S1
+				if (!pendidikanChoose.getKode().equals(Constanta.D4SEMUAJURUSAN[0])
+						&& !pendidikanChoose.getKode().equals(
+								Constanta.S1SEMUAJURUSAN[0])) {
+					lokasiPendidikanUmum = registrasiService.getLokasi(instansi,
+							Constanta.D4SEMUAJURUSAN[0]);
+					lokasiPendidikanUmum.addAll(registrasiService.getLokasi(
+							instansi, Constanta.S1SEMUAJURUSAN[0]));
+				}
 			}
 		}
 
@@ -583,4 +590,11 @@ public class RegistrasiController {
 				lokasiTestMap));
 	}
 
+}
+
+class PendidikanComparator implements Comparator<RefPendidikan> {
+	@Override
+	public int compare(RefPendidikan o1, RefPendidikan o2) {
+		return o1.getNama().compareTo(o2.getNama());
+	}
 }
