@@ -189,6 +189,7 @@ public class ActionController {
 			model.addAttribute("idRegistrasi", pendaftarans.get(0).getNoRegister());
 			model.addAttribute("noPeserta", pendaftarans.get(0).getNoPeserta());
 			model.addAttribute("isFinalVerifikasi", user.getRefInstansi().getIsFinalVerifikasi());
+			model.addAttribute("status", pendaftarans.get(0).getStatus());
 		}
 		return "cetak_peserta";
 	}
